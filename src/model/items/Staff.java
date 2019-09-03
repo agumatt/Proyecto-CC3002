@@ -29,6 +29,8 @@ public class Staff extends AbstractItem {
   }
 
 
+  public void useItem(IUnit unit){}
+
   @Override
   public void equipToArcher(Archer archer) {
 

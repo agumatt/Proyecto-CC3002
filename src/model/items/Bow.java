@@ -29,6 +29,8 @@ public class Bow extends AbstractItem {
     this.maxRange = Math.max(maxRange, this.minRange);
   }
 
+  public void useItem(IUnit unit){}
+  public void counterAttack(IUnit unit){}
 
   @Override
   public void equipToArcher(Archer archer) {

@@ -43,6 +43,14 @@ public abstract class AbstractItem implements IEquipableItem {
   abstract public void equipToSwordMaster(SwordMaster swordMaster);
   abstract public void equipToSorcerer(IUnit unit);
 
+  public void useItem(IUnit unit){
+      unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.power);
+      unit.getEquippedItem().counterAttack(this.owner);
+  }
+  public void counterAttack(IUnit unit){
+      unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.power);
+  }
+
   @Override
   public IUnit getOwner() {
     return owner;

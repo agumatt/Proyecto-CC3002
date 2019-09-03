@@ -16,15 +16,19 @@ public interface IEquipableItem {
   /**
    * Equips this item to a unit.
    *
-   * @param unit
-   *     the unit that will be quipped with the item
+   * @param unit the unit that will be quipped with the item
    */
 
   void equipToArcher(Archer archer);
+
   void equipToCleric(Cleric cleric);
+
   void equipToFighter(Fighter fighter);
+
   void equipToHero(Hero hero);
+
   void equipToSwordMaster(SwordMaster swordMaster);
+
   void equipToSorcerer(IUnit unit);
 
   /**
@@ -51,4 +55,9 @@ public interface IEquipableItem {
    * @return the maximum range of the item
    */
   int getMaxRange();
+
+
+  void useItem(IUnit unit);
+  void counterAttack(IUnit unit);
+
 }

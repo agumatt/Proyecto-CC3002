@@ -28,6 +28,10 @@ public interface IUnit {
    */
   int getCurrentHitPoints();
 
+  int getMaxHitPoints();
+
+  void setCurrentHitPoints(int hitPoints);
+
   /**
    * @return the items carried by this unit
    */
@@ -58,6 +62,8 @@ public interface IUnit {
    * @return the number of cells this unit can move
    */
   int getMovement();
+
+  int calcDistance(IUnit unit);
 
   /**
    * Moves this unit to another location.
