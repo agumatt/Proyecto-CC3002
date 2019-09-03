@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.*;
+
 /**
  * This class represents a <i>Staff</i> type item.
  * <p>
@@ -25,4 +27,37 @@ public class Staff extends AbstractItem {
   public Staff(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
   }
+
+
+  @Override
+  public void equipToArcher(Archer archer) {
+
+  }
+
+  @Override
+  public void equipToCleric(Cleric cleric) {
+    cleric.setEquippedItem(this);
+    owner=cleric;
+  }
+
+  @Override
+  public void equipToFighter(Fighter fighter) {
+
+  }
+
+  @Override
+  public void equipToHero(Hero hero) {
+
+  }
+
+  @Override
+  public void equipToSwordMaster(SwordMaster swordMaster) {
+
+  }
+
+  @Override
+  public void equipToSorcerer(IUnit unit) {
+
+  }
+
 }

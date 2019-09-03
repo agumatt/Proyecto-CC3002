@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.*;
+
 /**
  * This class represents an Axe.
  * <p>
@@ -24,5 +26,37 @@ public class Axe extends AbstractItem {
    */
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
+  }
+
+
+  @Override
+  public void equipToArcher(Archer archer) {
+
+  }
+
+  @Override
+  public void equipToCleric(Cleric cleric) {
+
+  }
+
+  @Override
+  public void equipToFighter(Fighter fighter) {
+    fighter.setEquippedItem(this);
+    owner=fighter;
+  }
+
+  @Override
+  public void equipToHero(Hero hero) {
+
+  }
+
+  @Override
+  public void equipToSwordMaster(SwordMaster swordMaster) {
+
+  }
+
+  @Override
+  public void equipToSorcerer(IUnit unit) {
+
   }
 }
