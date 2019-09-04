@@ -10,7 +10,7 @@ import model.units.*;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class Sword extends AbstractItem {
+public class Sword extends AbstractNonMagicalItem {
 
   /**
    * Creates a new Sword.
@@ -54,8 +54,4 @@ public class Sword extends AbstractItem {
     owner=swordMaster;
   }
 
-  @Override
-  public void equipToSorcerer(IUnit unit) {
-
-  }
 }

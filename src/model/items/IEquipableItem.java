@@ -19,17 +19,6 @@ public interface IEquipableItem {
    * @param unit the unit that will be quipped with the item
    */
 
-  void equipToArcher(Archer archer);
-
-  void equipToCleric(Cleric cleric);
-
-  void equipToFighter(Fighter fighter);
-
-  void equipToHero(Hero hero);
-
-  void equipToSwordMaster(SwordMaster swordMaster);
-
-  void equipToSorcerer(IUnit unit);
 
   /**
    * @return the unit that has currently equipped this item

@@ -35,13 +35,7 @@ public abstract class AbstractItem implements IEquipableItem {
     this.maxRange = Math.max(maxRange, this.minRange);
   }
 
-  @Override
-  abstract public void equipToArcher(Archer archer);
-  abstract public void equipToCleric(Cleric cleric);
-  abstract public void equipToFighter(Fighter fighter);
-  abstract public void equipToHero(Hero hero);
-  abstract public void equipToSwordMaster(SwordMaster swordMaster);
-  abstract public void equipToSorcerer(IUnit unit);
+
 
   public void useItem(IUnit unit){
       unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.power);
