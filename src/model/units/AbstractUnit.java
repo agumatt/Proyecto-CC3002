@@ -48,6 +48,25 @@ public abstract class AbstractUnit implements IUnit {
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
   }
 
+  public void giveItem(IUnit unit, IEquipableItem gift){
+      if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1){
+        for (IEquipableItem i : unit.getItems()){
+             if(i==null){
+               unit.getItems().add(gift);
+               this.items.remove(gift);
+               break;
+             }
+        }
+
+      }
+
+  }
+
+  @Override
+
+  public int getMaxHitPoints(){
+    return maxHitPoints;
+  }
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;

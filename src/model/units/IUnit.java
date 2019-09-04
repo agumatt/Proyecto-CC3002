@@ -58,12 +58,14 @@ public interface IUnit {
    */
   void setLocation(final Location location);
 
+  void giveItem(IUnit unit, IEquipableItem item);
+
   /**
    * @return the number of cells this unit can move
    */
   int getMovement();
 
-  int calcDistance(IUnit unit);
+
 
   /**
    * Moves this unit to another location.
