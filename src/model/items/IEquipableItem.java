@@ -24,8 +24,11 @@ public interface IEquipableItem {
    * @return the unit that has currently equipped this item
    */
 
-  double receiveMagicalDamage(IEquipableItem item);
-  double receiveNonMagicalDamage(IEquipableItem item);
+  double inflictMagicalDamage(IEquipableItem item);
+  double inflictNonMagicalDamage(IEquipableItem item);
+  double receiveMagicalDamage(IMagicalItem item);
+  double receiveNonMagicalDamage(INonMagicalItem item);
+
 
   IUnit getOwner();
 

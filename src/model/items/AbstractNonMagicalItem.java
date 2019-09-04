@@ -8,29 +8,24 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
         super(name,power,minRange,maxRange);
     }
 
-    @Override
-    public void useItem(IUnit unit) {
-        this.inflictNonMagicalDamage(unit.getEquippedItem());
+    public void useItem(IUnit unit){
+        unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.inflictMagicalDamage(unit.getEquippedItem()));
     }
-    public double inflictNonMagicalDamage(IEquipableItem item);
-    public double receiveNonMagicalDamage(IEquipableItem item);
 
-}
 
-    public double receiveMagicalDamage(IEquipableItem item){
+    @Override
+    public double inflictNonMagicalDamage(IEquipableItem item) {
+        return item.receiveNonMagicalDamage((INonMagicalItem) item);
+    }
+
+    public double inflictMagicalDamage(IEquipableItem item){
+        return 0;
+    }
+
+    @Override
+    public double receiveMagicalDamage(IMagicalItem item){
         return item.getPower()*1.5;
     }
-
-    abstract public double inflictAxeAttack(INonMagicalItem item);
-    abstract public double inflictBowAttack(INonMagicalItem item);
-    abstract public double inflictStaffAttack(INonMagicalItem item);
-    abstract public double inflictSwordAttack(INonMagicalItem item);
-    abstract public double inflictSpearAttack(INonMagicalItem item);
-    abstract public double receiveAxeAttack(INonMagicalItem item);
-    abstract public double receiveBowAttack(INonMagicalItem item);
-    abstract public double receiveStaffAttack(INonMagicalItem item);
-    abstract public double receiveSwordAttack(INonMagicalItem item);
-    abstract public double receiveSpearAttack(INonMagicalItem item);
 
 
 

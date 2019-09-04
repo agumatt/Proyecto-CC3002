@@ -34,6 +34,12 @@ public class Axe extends AbstractNonMagicalItem {
   public void counterAttack(IUnit unit){}
 
 
+
+  @Override
+  public double receiveNonMagicalDamage(INonMagicalItem item) {
+    return inflictAxeAttack(item);
+  }
+
   public double inflictAxeAttack(INonMagicalItem item){
      return receiveAxeAttack(item);
   }
@@ -57,10 +63,10 @@ public class Axe extends AbstractNonMagicalItem {
     return item.getPower();
   }
   public double receiveSwordAttack(INonMagicalItem item){
-    return item.getPower();
+    return item.getPower()*1.5;
   }
   public double receiveSpearAttack(INonMagicalItem item){
-    return item.getPower();
+    return item.getPower()-20;
   }
   public double receiveStaffAttack(INonMagicalItem item){
     return item.getPower();
@@ -92,8 +98,4 @@ public class Axe extends AbstractNonMagicalItem {
 
   }
 
-  @Override
-  public void equipToSorcerer(IUnit unit) {
-
-  }
 }

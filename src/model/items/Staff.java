@@ -32,6 +32,43 @@ public class Staff extends AbstractNonMagicalItem {
   public void useItem(IUnit unit){}
 
   @Override
+  public double receiveNonMagicalDamage(INonMagicalItem item) {
+    return inflictStaffAttack(item);
+  }
+
+  public double inflictAxeAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictBowAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictStaffAttack(INonMagicalItem item){
+    return item.receiveStaffAttack(this);
+  }
+  public double inflictSwordAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictSpearAttack(INonMagicalItem item){
+    return 0;
+  }
+
+  public double receiveAxeAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveBowAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveSwordAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveSpearAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveStaffAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+
+  @Override
   public void equipToArcher(Archer archer) {
 
   }
@@ -57,9 +94,5 @@ public class Staff extends AbstractNonMagicalItem {
 
   }
 
-  @Override
-  public void equipToSorcerer(IUnit unit) {
-
-  }
 
 }

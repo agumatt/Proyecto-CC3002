@@ -28,6 +28,44 @@ public class Sword extends AbstractNonMagicalItem {
     super(name, power, minRange, maxRange);
   }
 
+
+  @Override
+  public double receiveNonMagicalDamage(INonMagicalItem item) {
+    return inflictSwordAttack(item);
+  }
+
+  public double inflictAxeAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictBowAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictStaffAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictSwordAttack(INonMagicalItem item){
+    return item.receiveSwordAttack(this);
+  }
+  public double inflictSpearAttack(INonMagicalItem item){
+    return 0;
+  }
+
+  public double receiveAxeAttack(INonMagicalItem item){
+    return item.getPower()-20;
+  }
+  public double receiveBowAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveSwordAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveSpearAttack(INonMagicalItem item){
+    return item.getPower()*1.5;
+  }
+  public double receiveStaffAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+
   @Override
   public void equipToArcher(Archer archer) {
 

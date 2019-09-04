@@ -18,7 +18,7 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
 
     }
 
-    public double receiveNonMagicalDamage(IEquipableItem item){
+    public double receiveNonMagicalDamage(INonMagicalItem item){
         return item.getPower()*1.5;
     }
 

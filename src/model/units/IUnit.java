@@ -26,11 +26,11 @@ public interface IUnit {
   /**
    * @return hit points of the unit
    */
-  int getCurrentHitPoints();
+  double getCurrentHitPoints();
 
-  int getMaxHitPoints();
+  double getMaxHitPoints();
 
-  void setCurrentHitPoints(int hitPoints);
+  void setCurrentHitPoints(double hitPoints);
 
   /**
    * @return the items carried by this unit

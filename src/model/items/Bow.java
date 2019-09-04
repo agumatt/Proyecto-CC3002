@@ -32,6 +32,11 @@ public class Bow extends AbstractNonMagicalItem {
   public void useItem(IUnit unit){}
   public void counterAttack(IUnit unit){}
 
+  @Override
+  public double receiveNonMagicalDamage(INonMagicalItem item) {
+    return inflictBowAttack(item);
+  }
+
   public double inflictAxeAttack(INonMagicalItem item){
     return 0;
   }
@@ -90,8 +95,4 @@ public class Bow extends AbstractNonMagicalItem {
 
   }
 
-  @Override
-  public void equipToSorcerer(IUnit unit) {
-
-  }
 }

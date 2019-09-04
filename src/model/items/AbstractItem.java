@@ -36,10 +36,9 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
 
-  abstract public double receiveMagicalDamage(IEquipableItem item);
-  abstract  public double receiveNonMagicalDamage(IEquipableItem item);
 
-  abstract public void useItem(IUnit unit);
+
+
   abstract public void counterAttack(IUnit unit);
 
   @Override
