@@ -49,7 +49,7 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   public void giveItem(IUnit unit, IEquipableItem gift){
-      if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1){
+      if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1)){
         for (IEquipableItem i : unit.getItems()){
              if(i==null){
                unit.getItems().add(gift);

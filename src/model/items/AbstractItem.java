@@ -10,8 +10,8 @@ import model.units.*;
  */
 public abstract class AbstractItem implements IEquipableItem {
 
-  private final String name;
-  private final int power;
+  protected final String name;
+  protected final int power;
   protected int maxRange;
   protected int minRange;
   protected IUnit owner;
