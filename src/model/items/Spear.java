@@ -31,6 +31,26 @@ public class Spear extends AbstractNonMagicalItem {
   public void useItem(IUnit unit){}
   public void counterAttack(IUnit unit){}
 
+  public double inflictSpearAttack(IEquipableItem item){
+    return item.receiveSpearAttack(item);
+  }
+
+  public double receiveAxeAttack(IEquipableItem item){
+    return item.getPower();
+  }
+  public double receiveBowAttack(IEquipableItem item){
+    return item.getPower();
+  }
+  public double receiveSwordAttack(IEquipableItem item){
+    return item.getPower();
+  }
+  public double receiveSpearAttack(IEquipableItem item){
+    return item.getPower();
+  }
+  public double receiveStaffAttack(IEquipableItem item){
+    return item.getPower();
+  }
+
   @Override
   public void equipToArcher(Archer archer) {
 

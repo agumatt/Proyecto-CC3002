@@ -3,7 +3,7 @@ package model.items;
 import model.units.IUnit;
 import model.units.Sorcerer;
 
-public abstract class AbstractMagicalItem extends AbstractItem {
+public abstract class AbstractMagicalItem extends AbstractItem implements IMagicalItem {
 
     public AbstractMagicalItem(final String name, final int power, final int minRange, final int maxRange) {
         super(name,power,minRange,maxRange);

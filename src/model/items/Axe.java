@@ -28,8 +28,43 @@ public class Axe extends AbstractNonMagicalItem {
     super(name, power, minRange, maxRange);
   }
 
+
+
   public void useItem(IUnit unit){}
   public void counterAttack(IUnit unit){}
+
+
+  public double inflictAxeAttack(INonMagicalItem item){
+     return receiveAxeAttack(item);
+  }
+  public double inflictBowAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictStaffAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictSwordAttack(INonMagicalItem item){
+    return 0;
+  }
+  public double inflictSpearAttack(INonMagicalItem item){
+    return 0;
+  }
+
+  public double receiveAxeAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveBowAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveSwordAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveSpearAttack(INonMagicalItem item){
+    return item.getPower();
+  }
+  public double receiveStaffAttack(INonMagicalItem item){
+    return item.getPower();
+  }
 
   @Override
   public void equipToArcher(Archer archer) {
