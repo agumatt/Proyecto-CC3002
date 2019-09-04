@@ -23,6 +23,10 @@ public interface IEquipableItem {
   /**
    * @return the unit that has currently equipped this item
    */
+
+  double receiveMagicalDamage(IEquipableItem item);
+  double receiveNonMagicalDamage(IEquipableItem item);
+
   IUnit getOwner();
 
   /**
@@ -33,7 +37,7 @@ public interface IEquipableItem {
   /**
    * @return the power of the item
    */
-  int getPower();
+  double getPower();
 
   /**
    * @return the minimum range of the item

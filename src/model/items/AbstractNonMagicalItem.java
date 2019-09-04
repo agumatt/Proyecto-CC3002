@@ -8,6 +8,12 @@ public abstract class AbstractNonMagicalItem extends AbstractItem {
         super(name,power,minRange,maxRange);
     }
 
+    @Override
+    public void useItem(IUnit unit) {
+
+    }
+
+    abstract public void inflictNonMagicalDamage();
 
     abstract public void equipToArcher(Archer archer);
     abstract public void equipToCleric(Cleric cleric);

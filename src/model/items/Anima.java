@@ -8,6 +8,13 @@ public class Anima extends AbstractMagicalItem {
         super(name, power, minRange, maxRange);
     }
 
+    public double receiveMagicalDamage(IEquipableItem item){
+
+    }
+    public double receiveNonMagicalDamage(IEquipableItem item){
+
+    }
+
     @Override
     public void equipToSorcerer(Sorcerer sorcerer) {
 

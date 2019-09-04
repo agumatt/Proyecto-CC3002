@@ -9,6 +9,18 @@ public abstract class AbstractMagicalItem extends AbstractItem {
         super(name,power,minRange,maxRange);
     }
 
+    @Override
+    public void useItem(IUnit unit) {
+          this.inflictMagicalDamage(unit.getEquippedItem());
+    }
+    public double inflictMagicalDamage(IEquipableItem item){
+        return item.receiveMagicalDamage(this);
+
+    }
+
+    public double receiveNonMagicalDamage(IEquipableItem item){
+        return item.getPower()*1.5;
+    }
 
     abstract public void equipToSorcerer(Sorcerer sorcerer);
 

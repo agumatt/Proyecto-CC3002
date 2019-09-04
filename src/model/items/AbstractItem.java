@@ -11,7 +11,7 @@ import model.units.*;
 public abstract class AbstractItem implements IEquipableItem {
 
   protected final String name;
-  protected final int power;
+  protected final double power;
   protected int maxRange;
   protected int minRange;
   protected IUnit owner;
@@ -36,14 +36,11 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
 
+  abstract public double receiveMagicalDamage(IEquipableItem item);
+  abstract  public double receiveNonMagicalDamage(IEquipableItem item);
 
-  public void useItem(IUnit unit){
-      unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.power);
-      unit.getEquippedItem().counterAttack(this.owner);
-  }
-  public void counterAttack(IUnit unit){
-      unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.power);
-  }
+  abstract public void useItem(IUnit unit);
+  abstract public void counterAttack(IUnit unit);
 
   @Override
   public IUnit getOwner() {
@@ -56,7 +53,7 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public int getPower() {
+  public double getPower() {
     return power;
   }
 
