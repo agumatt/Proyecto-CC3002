@@ -32,7 +32,7 @@ public abstract class AbstractItem implements IEquipableItem {
     this.name = name;
     this.power = power;
     this.minRange = Math.max(minRange, 1);
-    this.maxRange = Math.max(maxRange, this.minRange);
+    this.maxRange = Math.max(maxRange, this.minRange+1);
   }
 
 

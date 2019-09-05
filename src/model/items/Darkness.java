@@ -25,10 +25,6 @@ public class Darkness extends AbstractMagicalItem{
     }
 
 
-    @Override
-    public void equipToSorcerer(Sorcerer sorcerer) {
-
-    }
 
 
 }

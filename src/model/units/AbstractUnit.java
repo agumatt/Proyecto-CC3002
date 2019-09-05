@@ -49,7 +49,7 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   public void giveItem(IUnit unit, IEquipableItem gift){
-      if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1)){
+      if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
         for (IEquipableItem i : unit.getItems()){
              if(i==null){
                unit.getItems().add(gift);
@@ -65,10 +65,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void useEquippedItem(IUnit unit){
     double dist=location.distanceTo(unit.getLocation());
-    if(equippedItem.getMinRange()<=dist && dist<=equippedItem.getMaxRange()) {
-      if(unit.getEquippedItem()==null){
-
-      }
+    if(equippedItem.getMinRange()<=dist && dist<=equippedItem.getMaxRange() && currentHitPoints>0) {
       equippedItem.useItem(unit);
       unit.getEquippedItem().counterAttack(this);
     }
@@ -124,7 +121,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
-        && targetLocation.getUnit() == null) {
+        && targetLocation.getUnit() == null && currentHitPoints>0) {
       setLocation(targetLocation);
     }
   }

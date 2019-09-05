@@ -25,8 +25,4 @@ public class Light extends AbstractMagicalItem {
     }
 
 
-    @Override
-    public void equipToSorcerer(Sorcerer sorcerer) {
-
-    }
 }
