@@ -43,7 +43,6 @@ public abstract class AbstractItem implements IEquipableItem {
     useItem(unit);
   }
 
-  abstract public double inflictAttack(IEquipableItem item);
 
   @Override
   public IUnit getOwner() {

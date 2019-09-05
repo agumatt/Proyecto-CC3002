@@ -16,7 +16,7 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
 
     @Override
     public void useItem(IUnit unit) {
-          this.inflictMagicalDamage(unit.getEquippedItem());
+        unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.inflictMagicalDamage(unit.getEquippedItem()));
     }
 
     public double inflictMagicalDamage(IEquipableItem item){
