@@ -35,25 +35,10 @@ public class Axe extends AbstractNonMagicalItem {
 
 
 
-  @Override
-  public double receiveNonMagicalDamage(INonMagicalItem item) {
-    return inflictAxeAttack(item);
-  }
 
-  public double inflictAxeAttack(INonMagicalItem item){
-     return receiveAxeAttack(item);
-  }
-  public double inflictBowAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictStaffAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictSwordAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictSpearAttack(INonMagicalItem item){
-    return 0;
+
+  public double inflictAttack(IEquipableItem item){
+    return ((INonMagicalItem) item).receiveAxeAttack(this);
   }
 
   public double receiveAxeAttack(INonMagicalItem item){
@@ -68,9 +53,7 @@ public class Axe extends AbstractNonMagicalItem {
   public double receiveSpearAttack(INonMagicalItem item){
     return item.getPower()-20;
   }
-  public double receiveStaffAttack(INonMagicalItem item){
-    return item.getPower();
-  }
+
 
   @Override
   public void equipToArcher(Archer archer) {

@@ -28,27 +28,22 @@ public class Staff extends AbstractNonMagicalItem {
     super(name, power, minRange, maxRange);
   }
 
+  @Override
+  public void useItem(IUnit unit){
+    unit.setCurrentHitPoints(unit.getCurrentHitPoints()+this.power);
+  }
 
-  public void useItem(IUnit unit){}
+  @Override
+  public void counterAttack(IUnit unit){
+  }
 
   @Override
   public double receiveNonMagicalDamage(INonMagicalItem item) {
-    return inflictStaffAttack(item);
+    return 0;
   }
 
-  public double inflictAxeAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictBowAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictStaffAttack(INonMagicalItem item){
-    return item.receiveStaffAttack(this);
-  }
-  public double inflictSwordAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictSpearAttack(INonMagicalItem item){
+
+  public double inflictAttack(IEquipableItem item){
     return 0;
   }
 
@@ -62,9 +57,6 @@ public class Staff extends AbstractNonMagicalItem {
     return item.getPower();
   }
   public double receiveSpearAttack(INonMagicalItem item){
-    return item.getPower();
-  }
-  public double receiveStaffAttack(INonMagicalItem item){
     return item.getPower();
   }
 

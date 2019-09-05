@@ -28,6 +28,7 @@ public interface IEquipableItem {
   double inflictNonMagicalDamage(IEquipableItem item);
   double receiveMagicalDamage(IMagicalItem item);
   double receiveNonMagicalDamage(INonMagicalItem item);
+  double inflictAttack(IEquipableItem item);
 
 
   IUnit getOwner();

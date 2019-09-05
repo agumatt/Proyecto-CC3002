@@ -63,6 +63,17 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
+  public void useEquippedItem(IUnit unit){
+    double dist=location.distanceTo(unit.getLocation());
+    if(equippedItem.getMinRange()<=dist && dist<=equippedItem.getMaxRange()) {
+      equippedItem.useItem(unit);
+      unit.getEquippedItem().counterAttack(this);
+    }
+
+    }
+
+
+
 
   public double getMaxHitPoints(){
     return maxHitPoints;

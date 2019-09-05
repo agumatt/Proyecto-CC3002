@@ -32,25 +32,10 @@ public class Bow extends AbstractNonMagicalItem {
   public void useItem(IUnit unit){}
   public void counterAttack(IUnit unit){}
 
-  @Override
-  public double receiveNonMagicalDamage(INonMagicalItem item) {
-    return inflictBowAttack(item);
-  }
 
-  public double inflictAxeAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictBowAttack(INonMagicalItem item){
-    return item.receiveBowAttack(this);
-  }
-  public double inflictStaffAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictSwordAttack(INonMagicalItem item){
-    return 0;
-  }
-  public double inflictSpearAttack(INonMagicalItem item){
-    return 0;
+
+  public double inflictAttack(IEquipableItem item){
+    return ((INonMagicalItem) item).receiveBowAttack(this);
   }
 
   public double receiveAxeAttack(INonMagicalItem item){
@@ -65,9 +50,7 @@ public class Bow extends AbstractNonMagicalItem {
   public double receiveSpearAttack(INonMagicalItem item){
     return item.getPower();
   }
-  public double receiveStaffAttack(INonMagicalItem item){
-    return item.getPower();
-  }
+
 
   @Override
   public void equipToArcher(Archer archer) {

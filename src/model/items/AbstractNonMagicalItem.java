@@ -9,13 +9,18 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
     }
 
     public void useItem(IUnit unit){
-        unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.inflictMagicalDamage(unit.getEquippedItem()));
+        unit.setCurrentHitPoints(unit.getCurrentHitPoints()-this.inflictNonMagicalDamage(unit.getEquippedItem()));
     }
 
 
     @Override
     public double inflictNonMagicalDamage(IEquipableItem item) {
         return item.receiveNonMagicalDamage((INonMagicalItem) item);
+    }
+
+    @Override
+    public double receiveNonMagicalDamage(INonMagicalItem item){
+        return ((IEquipableItem) item).inflictAttack(this);
     }
 
     public double inflictMagicalDamage(IEquipableItem item){

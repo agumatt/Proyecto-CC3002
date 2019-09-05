@@ -65,7 +65,7 @@ public interface IUnit {
    */
   int getMovement();
 
-
+ void useEquippedItem(IUnit unit);
 
   /**
    * Moves this unit to another location.
