@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import model.units.IUnit;
+import model.units.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -111,6 +111,47 @@ public abstract class AbstractTestItem {
     getTestItem().equipTo(unit);
     assertEquals(unit, getTestItem().getOwner());
   }
+
+  public void useItemTest(){
+
+  }
+
+  public void counterAttackTest(){
+
+  }
+  public void receiveMagicalDamageTest(){
+
+  }
+  public void receiveNonMagicalDamageTest(){
+
+  }
+
+  public void inflictNonMagicalDamageTest(){
+
+  }
+
+  public void inflictMagicalDamageTest(){
+
+  }
+
+  public void receiveAxeAttackTest(){}
+  public void receiveBowAttackTest(){}
+  public void receiveSwordAttackTest(){}
+  public void receiveSpearAttackTest(){}
+
+  public void equipToArcherTest(){}
+  public void equipToClericTest(){}
+  public void equipToFighterTest(){}
+  public void equipToHeroTest(){}
+  public void equipToSwordMasterTest(){}
+
+
+
+  public void receiveAnimaAttackTest(){}
+  public void receiveDarknessAttackTest(){}
+  public void receiveLightAttackTest(){}
+  public void equipToSorcererTest(){}
+
 
   /**
    * @return a unit that can equip the item being tested
