@@ -4,6 +4,10 @@ import model.units.IUnit;
 
 public interface IMagicalItem {
 
+    double receiveAnimaAttack(IMagicalItem item);
+    double receiveDarknessAttack(IMagicalItem item);
+    double receiveLightAttack(IMagicalItem item);
+
     IUnit getOwner();
 
     /**

@@ -30,13 +30,6 @@ public class Axe extends AbstractNonMagicalItem {
 
 
 
-  public void useItem(IUnit unit){}
-  public void counterAttack(IUnit unit){}
-
-
-
-
-
   public double inflictAttack(IEquipableItem item){
     return ((INonMagicalItem) item).receiveAxeAttack(this);
   }

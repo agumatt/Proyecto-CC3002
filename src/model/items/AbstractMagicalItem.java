@@ -10,6 +10,11 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
     }
 
     @Override
+    public double receiveMagicalDamage(IMagicalItem item){
+        return ((IEquipableItem) item).inflictAttack(this);
+    }
+
+    @Override
     public void useItem(IUnit unit) {
           this.inflictMagicalDamage(unit.getEquippedItem());
     }
@@ -17,6 +22,12 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
         return item.receiveMagicalDamage(this);
 
     }
+
+    @Override
+    public double inflictNonMagicalDamage(IEquipableItem item) {
+        return 0;
+    }
+
 
     public double receiveNonMagicalDamage(INonMagicalItem item){
         return item.getPower()*1.5;

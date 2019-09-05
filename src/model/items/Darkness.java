@@ -10,6 +10,21 @@ public class Darkness extends AbstractMagicalItem{
         super(name, power, minRange, maxRange);
     }
 
+    public double inflictAttack(IEquipableItem item){
+        return ((IMagicalItem) item).receiveDarknessAttack(this);
+    }
+
+    public double receiveAnimaAttack(IMagicalItem item){
+        return item.getPower()-20;
+    }
+    public double receiveDarknessAttack(IMagicalItem item){
+        return item.getPower();
+    }
+    public double receiveLightAttack(IMagicalItem item){
+        return item.getPower()*1.5;
+    }
+
+
     @Override
     public void equipToSorcerer(Sorcerer sorcerer) {
 

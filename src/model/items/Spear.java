@@ -28,8 +28,6 @@ public class Spear extends AbstractNonMagicalItem {
     super(name, power, minRange, maxRange);
   }
 
-  public void useItem(IUnit unit){}
-  public void counterAttack(IUnit unit){}
 
 
 
