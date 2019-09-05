@@ -2,6 +2,7 @@ package model.units;
 
 import model.items.Axe;
 import model.items.IEquipableItem;
+import model.items.INonMagicalItem;
 import model.map.Location;
 
 /**
@@ -26,6 +27,6 @@ public class Fighter extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.equipToFighter(this);
+    ((INonMagicalItem)item).equipToFighter(this);
   }
 }

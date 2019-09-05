@@ -1,6 +1,8 @@
 package model.units;
 
+import model.items.AbstractMagicalItem;
 import model.items.IEquipableItem;
+import model.items.INonMagicalItem;
 import model.items.Spear;
 import model.map.Location;
 
@@ -35,6 +37,6 @@ public class Hero extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.equipToHero(this);
+    ((INonMagicalItem)item).equipToHero(this);
   }
 }

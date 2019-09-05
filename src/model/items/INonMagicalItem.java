@@ -1,6 +1,6 @@
 package model.items;
 
-import model.units.IUnit;
+import model.units.*;
 
 public interface INonMagicalItem {
 
@@ -9,6 +9,12 @@ public interface INonMagicalItem {
     double receiveBowAttack(INonMagicalItem item);
     double receiveSwordAttack(INonMagicalItem item);
     double receiveSpearAttack(INonMagicalItem item);
+
+    void equipToArcher(Archer archer);
+    void equipToCleric(Cleric cleric);
+    void equipToFighter(Fighter fighter);
+    void equipToHero(Hero hero);
+    void equipToSwordMaster(SwordMaster swordMaster);
 
     IUnit getOwner();
 

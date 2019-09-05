@@ -1,6 +1,7 @@
 package model.units;
 
 import model.items.IEquipableItem;
+import model.items.INonMagicalItem;
 import model.items.Staff;
 import model.map.Location;
 
@@ -34,6 +35,6 @@ public class Cleric extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.equipToCleric(this);
+    ((INonMagicalItem)item).equipToCleric(this);
   }
 }

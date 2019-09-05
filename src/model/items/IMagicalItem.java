@@ -1,12 +1,15 @@
 package model.items;
 
-import model.units.IUnit;
+import model.units.*;
 
 public interface IMagicalItem {
 
     double receiveAnimaAttack(IMagicalItem item);
     double receiveDarknessAttack(IMagicalItem item);
     double receiveLightAttack(IMagicalItem item);
+
+    void equipToSorcerer(Sorcerer sorcerer);
+
 
     IUnit getOwner();
 

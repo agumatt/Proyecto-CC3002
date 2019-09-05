@@ -1,6 +1,7 @@
 package model.units;
 
 import model.items.IEquipableItem;
+import model.items.IMagicalItem;
 import model.map.Location;
 
 public class Sorcerer extends AbstractUnit{
@@ -18,8 +19,8 @@ public class Sorcerer extends AbstractUnit{
      */
     @Override
     public void equipItem(final IEquipableItem item) {
-        item.equipToSorcerer(this);
+        ((IMagicalItem)item).equipToSorcerer(this);
     }
 }
 
-}
+

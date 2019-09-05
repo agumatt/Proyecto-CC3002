@@ -15,6 +15,9 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
 
     @Override
     public double inflictNonMagicalDamage(IEquipableItem item) {
+        if(item==null){
+            return this.getPower();
+        }
         return item.receiveNonMagicalDamage((INonMagicalItem) item);
     }
 
@@ -35,10 +38,6 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
 
 
 
-    abstract public void equipToArcher(Archer archer);
-    abstract public void equipToCleric(Cleric cleric);
-    abstract public void equipToFighter(Fighter fighter);
-    abstract public void equipToHero(Hero hero);
-    abstract public void equipToSwordMaster(SwordMaster swordMaster);
+
 
 }

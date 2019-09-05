@@ -18,7 +18,11 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
     public void useItem(IUnit unit) {
           this.inflictMagicalDamage(unit.getEquippedItem());
     }
+
     public double inflictMagicalDamage(IEquipableItem item){
+        if(item==null){
+            return this.getPower();
+        }
         return item.receiveMagicalDamage(this);
 
     }
@@ -33,6 +37,9 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
         return item.getPower()*1.5;
     }
 
-    abstract public void equipToSorcerer(Sorcerer sorcerer);
+    public void equipToSorcerer(Sorcerer sorcerer) {
+        sorcerer.setEquippedItem(this);
+        this.owner=sorcerer;
+    }
 
 }

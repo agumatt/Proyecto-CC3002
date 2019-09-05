@@ -23,8 +23,5 @@ public class Anima extends AbstractMagicalItem {
     }
 
 
-    @Override
-    public void equipToSorcerer(Sorcerer sorcerer) {
 
-    }
 }
