@@ -40,6 +40,11 @@ public class SwordMasterTest extends AbstractTestUnit {
     sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
   }
 
+  @Override
+  public void testUseEquippedItem() {
+
+  }
+
   /**
    * @return the current unit being tested
    */

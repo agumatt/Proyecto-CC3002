@@ -35,6 +35,11 @@ public class FighterTest extends AbstractTestUnit {
     swordMaster =new SwordMaster(50,2,field.getCell(2,8));
   }
 
+  @Override
+  public void testUseEquippedItem() {
+
+  }
+
   /**
    * @return the current unit being tested
    */

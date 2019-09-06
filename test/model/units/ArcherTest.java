@@ -42,10 +42,12 @@ public class ArcherTest extends AbstractTestUnit {
   }
 
   @Override
+  @Test
   public void testUseEquippedItem() {
       archer.useEquippedItem(cleric);
       assertEquals(50,cleric.getCurrentHitPoints());
       equipWeapons();
+      assertEquals(3*1.5,4.5);
 
   }
 
