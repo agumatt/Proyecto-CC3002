@@ -44,7 +44,7 @@ public abstract class AbstractUnit implements IUnit {
     this.maxHitPoints = hitPoints;
     this.currentHitPoints=hitPoints;
     this.movement = movement;
-    if (location.getUnit() == null){
+    if (location.getUnit() == null && hitPoints>0){
     this.location = location;}
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
   }
@@ -70,17 +70,24 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void useEquippedItem(IUnit unit){
+    if(currentHitPoints>0){
     double dist=location.distanceTo(unit.getLocation());
     if (equippedItem != null) {
 
-    if(equippedItem.getMinRange()<=dist && dist<=equippedItem.getMaxRange() && currentHitPoints>0) {
+    if(equippedItem.getMinRange()<=dist && dist<=equippedItem.getMaxRange()) {
       equippedItem.useItem(unit);
       if (unit.getCurrentHitPoints()>0 && unit.getEquippedItem()!=null) {
         unit.getEquippedItem().counterAttack(this);
       }
     }
+    if(this.getCurrentHitPoints()<=0){
+        this.setLocation(null);
+    }
+    if(unit.getCurrentHitPoints()<=0){
+        unit.setLocation(null);
     }
     }
+    }}
 
 
 

@@ -62,7 +62,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public void setField() {
     this.field = new Field();
     this.field.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
-            new Location(0, 3),new Location(0, 4),new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
+            new Location(0, 3),new Location(0, 4),new Location(1, 0), new Location(1, 1), new Location(1, 2),new Location(1, 3), new Location(1, 4),new Location(2, 0),
         new Location(2, 1), new Location(2, 2),new Location(2, 3),new Location(2, 4),new Location(2, 5),new Location(2, 6),
             new Location(2, 7),new Location(2, 8));
   }

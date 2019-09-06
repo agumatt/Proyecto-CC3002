@@ -18,7 +18,7 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
         if(item==null){
             return this.getPower();
         }
-        return item.receiveNonMagicalDamage(item);
+        return item.receiveNonMagicalDamage(this);
     }
 
     @Override
