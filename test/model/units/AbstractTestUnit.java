@@ -50,6 +50,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     setTestUnit();
     setTargetAlpaca();
     setWeapons();
+    setOtherTestUnits();
   }
 
   /**
@@ -133,6 +134,24 @@ public abstract class AbstractTestUnit implements ITestUnit {
     getTestUnit().equipItem(item);
     assertNull(getTestUnit().getEquippedItem());
   }
+
+
+  @Test
+  public void equipDarknessTest(){checkEquippedItem(getDarkness());}
+
+  public Darkness getDarkness(){return darkness;}
+
+
+  @Test
+  public void equipLightTest(){checkEquippedItem(getLight());}
+
+  public Light getLight(){return light;}
+
+
+  @Test
+  public void equipAnimaTest(){checkEquippedItem(getAnima());}
+
+  public Anima getAnima(){return anima;}
 
   /**
    * @return the test axe

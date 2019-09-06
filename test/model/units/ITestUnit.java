@@ -48,6 +48,36 @@ public interface ITestUnit {
   void equipAxeTest();
 
   /**
+   * Checks if the darkness item is equipped correctly to the unit
+   */
+  @Test
+  void equipDarknessTest();
+  /**
+   * @return the test darkness
+   */
+  Darkness getDarkness();
+
+  /**
+   * Checks if the light item is equipped correctly to the unit
+   */
+  @Test
+  void equipLightTest();
+  /**
+   * @return the test light
+   */
+  Light getLight();
+
+  /**
+   * Checks if the anima item is equipped correctly to the unit
+   */
+  @Test
+  void equipAnimaTest();
+  /**
+   * @return the test anima
+   */
+  Anima getAnima();
+
+  /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
    *
    * @param item

@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -43,5 +44,31 @@ public class HeroTest extends AbstractTestUnit {
     assertNull(hero.getEquippedItem());
     hero.equipItem(spear);
     assertEquals(spear, hero.getEquippedItem());
+  }
+
+  @Override
+  public void equipAnimaTest() {
+    assertNull(hero.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      hero.equipItem(anima);
+    });
+  }
+
+  @Test
+  @Override
+  public void equipLightTest() {
+    assertNull(hero.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      hero.equipItem(light);
+    });
+  }
+
+  @Test
+  @Override
+  public void equipDarknessTest() {
+    assertNull(hero.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      hero.equipItem(darkness);
+    });
   }
 }

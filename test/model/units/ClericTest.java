@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -42,5 +43,31 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.equipItem(staff);
     assertEquals(staff, cleric.getEquippedItem());
+  }
+
+  @Override
+  public void equipAnimaTest() {
+    assertNull(cleric.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      cleric.equipItem(anima);
+    });
+  }
+
+  @Test
+  @Override
+  public void equipLightTest() {
+    assertNull(cleric.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      cleric.equipItem(light);
+    });
+  }
+
+  @Test
+  @Override
+  public void equipDarknessTest() {
+    assertNull(cleric.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      cleric.equipItem(darkness);
+    });
   }
 }

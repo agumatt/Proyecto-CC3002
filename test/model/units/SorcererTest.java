@@ -1,5 +1,6 @@
 package model.units;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,14 +35,75 @@ public class SorcererTest extends AbstractTestUnit {
         return sorcerer;
     }
 
-    /**
-     * Checks if the axe is equipped correctly to the unit
-     */
+
+    @Test
+    @Override
+    public void equipAnimaTest() {
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipItem(anima);
+        assertEquals(anima, sorcerer.getEquippedItem());
+    }
+
+    @Test
+    @Override
+    public void equipLightTest() {
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipItem(light);
+        assertEquals(light, sorcerer.getEquippedItem());
+    }
+
+    @Test
+    @Override
+    public void equipDarknessTest() {
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipItem(darkness);
+        assertEquals(darkness, sorcerer.getEquippedItem());
+    }
+
     @Test
     @Override
     public void equipAxeTest() {
         assertNull(sorcerer.getEquippedItem());
-        sorcerer.equipItem(axe);
-        assertEquals(axe, sorcerer.getEquippedItem());
+        Assertions.assertThrows(ClassCastException.class, () -> {
+            sorcerer.equipItem(axe);
+        });
     }
+
+    @Test
+    @Override
+    public void equipSpearTest() {
+        assertNull(sorcerer.getEquippedItem());
+        Assertions.assertThrows(ClassCastException.class, () -> {
+            sorcerer.equipItem(spear);
+        });
+    }
+
+    @Test
+    @Override
+    public void equipSwordTest() {
+        assertNull(sorcerer.getEquippedItem());
+        Assertions.assertThrows(ClassCastException.class, () -> {
+            sorcerer.equipItem(spear);
+        });
+    }
+
+    @Test
+    @Override
+    public void equipStaffTest() {
+        assertNull(sorcerer.getEquippedItem());
+        Assertions.assertThrows(ClassCastException.class, () -> {
+            sorcerer.equipItem(staff);
+        });
+    }
+
+    @Test
+    @Override
+    public void equipBowTest() {
+        assertNull(sorcerer.getEquippedItem());
+        Assertions.assertThrows(ClassCastException.class, () -> {
+            sorcerer.equipItem(bow);
+        });
+    }
+
+
 }

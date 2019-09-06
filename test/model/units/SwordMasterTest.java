@@ -1,5 +1,8 @@
 package model.units;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -37,9 +40,36 @@ public class SwordMasterTest extends AbstractTestUnit {
   }
 
   @Override
+  @Test
   public void equipSwordTest() {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.equipItem(sword);
     assertEquals(sword, swordMaster.getEquippedItem());
+  }
+
+  @Override
+  public void equipAnimaTest() {
+    assertNull(swordMaster.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      swordMaster.equipItem(anima);
+    });
+  }
+
+  @Test
+  @Override
+  public void equipLightTest() {
+    assertNull(swordMaster.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      swordMaster.equipItem(light);
+    });
+  }
+
+  @Test
+  @Override
+  public void equipDarknessTest() {
+    assertNull(swordMaster.getEquippedItem());
+    Assertions.assertThrows(ClassCastException.class, () -> {
+      swordMaster.equipItem(darkness);
+    });
   }
 }
