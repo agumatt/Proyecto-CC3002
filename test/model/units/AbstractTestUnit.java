@@ -29,6 +29,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   protected Alpaca alpaca;
   protected Sorcerer sorcerer;
+  protected Sorcerer sorcerer2;
+  protected Sorcerer sorcerer3;
   protected Archer archer;
   protected Cleric cleric;
   protected Fighter fighter;
@@ -60,7 +62,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public void setField() {
     this.field = new Field();
     this.field.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
-        new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
+            new Location(0, 3),new Location(0, 4),new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
         new Location(2, 1), new Location(2, 2),new Location(2, 3),new Location(2, 4),new Location(2, 5),new Location(2, 6),
             new Location(2, 7),new Location(2, 8));
   }
@@ -69,15 +71,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
    * Set up the main unit that's going to be tested in the test set
    */
   @Override
-  public void setTestUnit(){
-    alpaca = new Alpaca(50, 2, field.getCell(0, 0));
-    sorcerer= new Sorcerer(50,2,field.getCell(0,1));
-    archer =new Archer(50,2,field.getCell(1,1));
-    cleric =new Cleric(50,2,field.getCell(1,2));
-    fighter =new Fighter(50,2,field.getCell(2,3));
-    hero =new Hero(50,2,field.getCell(2,4));
-    swordMaster =new SwordMaster(50,2,field.getCell(2,8));
-  }
+  abstract public void setTestUnit();
+
 
   /**
    * Creates a set of testing weapons
@@ -134,6 +129,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     getTestUnit().equipItem(item);
     assertNull(getTestUnit().getEquippedItem());
   }
+
 
 
   @Test
@@ -217,6 +213,16 @@ public abstract class AbstractTestUnit implements ITestUnit {
     return bow;
   }
 
+
+  @Override
+  public void equipWeapons(){
+    archer.equipItem(bow);
+    cleric.equipItem(staff);
+    fighter.equipItem(axe);
+    hero.equipItem(spear);
+    swordMaster.equipItem(sword);
+    sorcerer.equipItem
+  }
   /**
    * Checks if the unit moves correctly
    */
@@ -251,4 +257,12 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public Alpaca getTargetAlpaca() {
     return targetAlpaca;
   }
+
+
+  @Override
+  abstract public void testUseEquippedItem();
+
+
+
+
 }

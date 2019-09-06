@@ -101,10 +101,6 @@ public abstract class AbstractTestItem {
     return expectedMaxRange;
   }
 
-  /**
-   * Checks that the Item can be correctly equipped to a unit
-   */
-
 
   /**
    * @return a unit that can equip the item being tested

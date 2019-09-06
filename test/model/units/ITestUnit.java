@@ -23,6 +23,8 @@ public interface ITestUnit {
    */
   void setTestUnit();
 
+  void equipWeapons();
+
   void setTargetAlpaca();
 
   /**
@@ -139,4 +141,11 @@ public interface ITestUnit {
    * @return the target Alpaca
    */
   Alpaca getTargetAlpaca();
+
+  void testUseEquippedItem();
+
+
+
+
+
 }

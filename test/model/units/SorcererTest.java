@@ -9,18 +9,24 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class SorcererTest extends AbstractTestUnit {
 
 
+    private Sorcerer weakSorcerer;
+    private Sorcerer deadSorcerer;
+
     /**
      * Set up the main unit that's going to be tested in the test set
      */
-    @Override
-    public void setTestUnit() {
-        sorcerer = new Sorcerer(50, 2, field.getCell(0, 0));
-    }
 
+    public void setTestUnit(){
+        sorcerer = new Sorcerer(50, 2, field.getCell(0, 0));
+        weakSorcerer = new Sorcerer(50, 2, field.getCell(1, 1));
+        deadSorcerer = new Sorcerer(50, 2, field.getCell(2, 2));
+    }
 
     public void setOtherTestUnits(){
         alpaca= new Alpaca(50,2,field.getCell(0,1));
-        archer =new Archer(50,2,field.getCell(1,1));
+        archer =new Archer(50,2,field.getCell(1,3));
+        sorcerer2= new Sorcerer(50,2,field.getCell(0,2));
+        sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
         cleric =new Cleric(50,2,field.getCell(1,2));
         fighter =new Fighter(50,2,field.getCell(2,3));
         hero =new Hero(50,2,field.getCell(2,4));
