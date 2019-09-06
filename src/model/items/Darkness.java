@@ -15,7 +15,11 @@ public class Darkness extends AbstractMagicalItem{
     }
 
     public double receiveAnimaAttack(IMagicalItem item){
-        return item.getPower()-20;
+        double ans=item.getPower()-20;
+        if(ans<0){
+            ans=0;
+        }
+        return ans;
     }
     public double receiveDarknessAttack(IMagicalItem item){
         return item.getPower();

@@ -79,6 +79,18 @@ public abstract class AbstractTestUnit implements ITestUnit {
    */
   @Override
   public void setWeapons() {
+    this.axe = new Axe("Axe", 10, 1, 10);
+    this.sword = new Sword("Sword", 10, 1, 10);
+    this.spear = new Spear("Spear", 10, 1, 10);
+    this.staff = new Staff("Staff", 10, 1, 10);
+    this.bow = new Bow("Bow", 10, 2, 10);
+    this.anima = new Anima("Devouring souls", 10, 1, 10);
+    this.darkness = new Darkness("Dark void", 10, 1, 10);
+    this.light = new Light("Light Ray", 10, 1, 10);
+  }
+
+  @Override
+  public void setWeaponsReducedReach() {
     this.axe = new Axe("Axe", 10, 1, 2);
     this.sword = new Sword("Sword", 10, 1, 2);
     this.spear = new Spear("Spear", 10, 1, 2);
@@ -221,7 +233,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     fighter.equipItem(axe);
     hero.equipItem(spear);
     swordMaster.equipItem(sword);
-    sorcerer.equipItem
+    sorcerer.equipItem(darkness);
+    sorcerer2.equipItem(light);
+    sorcerer3.equipItem(anima);
   }
   /**
    * Checks if the unit moves correctly

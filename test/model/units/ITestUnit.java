@@ -32,6 +32,8 @@ public interface ITestUnit {
    */
   void setWeapons();
 
+  void setWeaponsReducedReach();
+
   /**
    * Checks that the constructor works properly.
    */

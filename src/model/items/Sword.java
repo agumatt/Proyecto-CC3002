@@ -36,7 +36,11 @@ public class Sword extends AbstractNonMagicalItem {
   }
 
   public double receiveAxeAttack(INonMagicalItem item){
-    return item.getPower()-20;
+    double ans=item.getPower()-20;
+    if(ans<0){
+      ans=0;
+    }
+    return ans;
   }
   public double receiveBowAttack(INonMagicalItem item){
     return item.getPower();

@@ -18,7 +18,11 @@ public class Light extends AbstractMagicalItem {
         return item.getPower()*1.5;
     }
     public double receiveDarknessAttack(IMagicalItem item){
-        return item.getPower()-20;
+        double ans=item.getPower()-20;
+        if(ans<0){
+            ans=0;
+        }
+        return ans;
     }
     public double receiveLightAttack(IMagicalItem item){
         return item.getPower();
