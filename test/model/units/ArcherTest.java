@@ -1,10 +1,9 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the Archer unit.
@@ -51,23 +50,15 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(990,archer.getCurrentHitPoints());
 
       equipWeapons();
-    sorcerer.useEquippedItem(archer);
-    assertEquals(darkness,sorcerer.getEquippedItem());
-    assertEquals(975,archer.getCurrentHitPoints());
-      sorcerer2.useEquippedItem(archer);
-      assertEquals(960,archer.getCurrentHitPoints());
-    sorcerer3.useEquippedItem(archer);
-    assertEquals(945,archer.getCurrentHitPoints());
     hero.useEquippedItem(archer);
-    assertEquals(935,archer.getCurrentHitPoints());
-    fighter.useEquippedItem(archer);
-    assertEquals(925,archer.getCurrentHitPoints());
-    swordMaster.useEquippedItem(archer);
-    assertEquals(915,archer.getCurrentHitPoints());
-    weakArcher.useEquippedItem(archer);
-    assertEquals(905,archer.getCurrentHitPoints());
-    alpaca.useEquippedItem(archer);
-    assertEquals(905,archer.getCurrentHitPoints());
+    assertEquals(980,archer.getCurrentHitPoints());
+
+    double dist=sorcerer2.getLocation().distanceTo(archer.getLocation());
+    System.out.println(dist);
+    assertTrue(dist==2);
+    sorcerer2.useEquippedItem(archer);
+    assertEquals(965,archer.getCurrentHitPoints());
+
 
   }
 

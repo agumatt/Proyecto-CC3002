@@ -10,6 +10,12 @@ public interface INonMagicalItem {
     double receiveSwordAttack(INonMagicalItem item);
     double receiveSpearAttack(INonMagicalItem item);
 
+    double inflictMagicalDamage(IEquipableItem item);
+    double inflictNonMagicalDamage(IEquipableItem item);
+    double receiveMagicalDamage(IMagicalItem item);
+    double receiveNonMagicalDamage(INonMagicalItem item);
+    double inflictAttack(IEquipableItem item);
+
     void equipToArcher(Archer archer);
     void equipToCleric(Cleric cleric);
     void equipToFighter(Fighter fighter);

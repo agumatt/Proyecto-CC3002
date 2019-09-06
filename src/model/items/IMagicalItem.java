@@ -8,7 +8,11 @@ public interface IMagicalItem {
     double receiveAnimaAttack(IMagicalItem item);
     double receiveDarknessAttack(IMagicalItem item);
     double receiveLightAttack(IMagicalItem item);
-
+    double inflictMagicalDamage(IEquipableItem item);
+    double inflictNonMagicalDamage(IEquipableItem item);
+    double receiveMagicalDamage(IMagicalItem item);
+    double receiveNonMagicalDamage(INonMagicalItem item);
+    double inflictAttack(IEquipableItem item);
     void equipToSorcerer(Sorcerer sorcerer);
 
 
