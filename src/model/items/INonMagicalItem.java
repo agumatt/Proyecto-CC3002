@@ -4,7 +4,7 @@ import model.units.*;
 
 public interface INonMagicalItem {
 
-
+    boolean equals(Object o);
     double receiveAxeAttack(INonMagicalItem item);
     double receiveBowAttack(INonMagicalItem item);
     double receiveSwordAttack(INonMagicalItem item);

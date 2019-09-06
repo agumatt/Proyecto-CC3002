@@ -4,6 +4,7 @@ import model.units.*;
 
 public interface IMagicalItem {
 
+    boolean equals(Object o);
     double receiveAnimaAttack(IMagicalItem item);
     double receiveDarknessAttack(IMagicalItem item);
     double receiveLightAttack(IMagicalItem item);

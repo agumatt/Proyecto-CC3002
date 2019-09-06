@@ -46,8 +46,28 @@ public class ArcherTest extends AbstractTestUnit {
   public void testUseEquippedItem() {
       archer.useEquippedItem(cleric);
       assertEquals(50,cleric.getCurrentHitPoints());
+      weakArcher.equipItem(bow);
+      weakArcher.useEquippedItem(archer);
+    assertEquals(990,archer.getCurrentHitPoints());
+
       equipWeapons();
-      assertEquals(3*1.5,4.5);
+    sorcerer.useEquippedItem(archer);
+    assertEquals(darkness,sorcerer.getEquippedItem());
+    assertEquals(975,archer.getCurrentHitPoints());
+      sorcerer2.useEquippedItem(archer);
+      assertEquals(960,archer.getCurrentHitPoints());
+    sorcerer3.useEquippedItem(archer);
+    assertEquals(945,archer.getCurrentHitPoints());
+    hero.useEquippedItem(archer);
+    assertEquals(935,archer.getCurrentHitPoints());
+    fighter.useEquippedItem(archer);
+    assertEquals(925,archer.getCurrentHitPoints());
+    swordMaster.useEquippedItem(archer);
+    assertEquals(915,archer.getCurrentHitPoints());
+    weakArcher.useEquippedItem(archer);
+    assertEquals(905,archer.getCurrentHitPoints());
+    alpaca.useEquippedItem(archer);
+    assertEquals(905,archer.getCurrentHitPoints());
 
   }
 

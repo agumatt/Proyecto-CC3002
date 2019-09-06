@@ -53,6 +53,9 @@ public interface IEquipableItem {
    */
   int getMaxRange();
 
+  @Override
+  boolean equals(Object o);
+
 
   void useItem(IUnit unit);
 
