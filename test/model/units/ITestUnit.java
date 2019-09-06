@@ -98,6 +98,8 @@ public interface ITestUnit {
   @Test
   void testMovement();
 
+  void setOtherTestUnits();
+
   /**
    * @return the test field
    */

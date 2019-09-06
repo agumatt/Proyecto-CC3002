@@ -8,18 +8,20 @@ package model.units;
  */
 public class AlpacaTest extends AbstractTestUnit {
 
-  private Alpaca alpaca;
-  private Sorcerer sorcerer;
-  private Archer archer;
-  private Cleric cleric;
-  private Fighter fighter;
-  private Hero hero;
-  private SwordMaster swordMaster;
-
-  @Override
-  public void setTestUnit() {
+  public void setTestUnit(){
     alpaca = new Alpaca(50, 2, field.getCell(0, 0));
+
   }
+
+  public void setOtherTestUnits(){
+    sorcerer= new Sorcerer(50,2,field.getCell(0,1));
+    archer =new Archer(50,2,field.getCell(1,1));
+    cleric =new Cleric(50,2,field.getCell(1,2));
+    fighter =new Fighter(50,2,field.getCell(2,3));
+    hero =new Hero(50,2,field.getCell(2,4));
+    swordMaster =new SwordMaster(50,2,field.getCell(2,8));
+  }
+
 
   @Override
   public Alpaca getTestUnit() {

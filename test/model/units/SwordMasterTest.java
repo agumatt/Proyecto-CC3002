@@ -8,13 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 public class SwordMasterTest extends AbstractTestUnit {
 
-  private SwordMaster swordMaster;
-  private Sorcerer sorcerer;
-  private Alpaca alpaca;
-  private Archer archer;
-  private Cleric cleric;
-  private Fighter fighter;
-  private Hero hero;
+
 
   /**
    * Set up the main unit that's going to be tested in the test set
@@ -22,6 +16,16 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Override
   public void setTestUnit() {
     swordMaster = new SwordMaster(50, 2, field.getCell(0, 0));
+  }
+
+
+  public void setOtherTestUnits(){
+    alpaca= new Alpaca(50,2,field.getCell(0,1));
+    archer =new Archer(50,2,field.getCell(1,1));
+    cleric =new Cleric(50,2,field.getCell(1,2));
+    fighter =new Fighter(50,2,field.getCell(2,3));
+    hero =new Hero(50,2,field.getCell(2,4));
+    sorcerer =new Sorcerer(50,2,field.getCell(2,8));
   }
 
   /**
