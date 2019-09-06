@@ -10,8 +10,8 @@ public interface IMagicalItem {
     double receiveLightAttack(IMagicalItem item);
     double inflictMagicalDamage(IEquipableItem item);
     double inflictNonMagicalDamage(IEquipableItem item);
-    double receiveMagicalDamage(IMagicalItem item);
-    double receiveNonMagicalDamage(INonMagicalItem item);
+    double receiveMagicalDamage(IEquipableItem item);
+    double receiveNonMagicalDamage(IEquipableItem item);
     double inflictAttack(IEquipableItem item);
     void equipToSorcerer(Sorcerer sorcerer);
 

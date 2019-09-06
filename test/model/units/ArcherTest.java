@@ -54,10 +54,10 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(980,archer.getCurrentHitPoints());
 
     double dist=sorcerer2.getLocation().distanceTo(archer.getLocation());
-    System.out.println(dist);
+    System.out.println(archer.currentHitPoints);
     assertTrue(dist==2);
-    sorcerer2.useEquippedItem(archer);
-    assertEquals(965,archer.getCurrentHitPoints());
+    archer.useEquippedItem(sorcerer2);
+    assertEquals(35,sorcerer2.getCurrentHitPoints());
 
 
   }

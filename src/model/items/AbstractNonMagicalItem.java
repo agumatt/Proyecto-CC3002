@@ -18,12 +18,12 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
         if(item==null){
             return this.getPower();
         }
-        return item.receiveNonMagicalDamage((INonMagicalItem) item);
+        return item.receiveNonMagicalDamage(item);
     }
 
     @Override
-    public double receiveNonMagicalDamage(INonMagicalItem item){
-        return ((IEquipableItem) item).inflictAttack(this);
+    public double receiveNonMagicalDamage(IEquipableItem item){
+        return item.inflictAttack(this);
     }
 
     public double inflictMagicalDamage(IEquipableItem item){
@@ -31,7 +31,7 @@ public abstract class AbstractNonMagicalItem extends AbstractItem implements INo
     }
 
     @Override
-    public double receiveMagicalDamage(IMagicalItem item){
+    public double receiveMagicalDamage(IEquipableItem item){
         return item.getPower()*1.5;
     }
 

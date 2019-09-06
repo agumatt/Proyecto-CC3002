@@ -12,8 +12,8 @@ public interface INonMagicalItem {
 
     double inflictMagicalDamage(IEquipableItem item);
     double inflictNonMagicalDamage(IEquipableItem item);
-    double receiveMagicalDamage(IMagicalItem item);
-    double receiveNonMagicalDamage(INonMagicalItem item);
+    double receiveMagicalDamage(IEquipableItem item);
+    double receiveNonMagicalDamage(IEquipableItem item);
     double inflictAttack(IEquipableItem item);
 
     void equipToArcher(Archer archer);

@@ -38,7 +38,7 @@ public class Staff extends AbstractNonMagicalItem {
   }
 
   @Override
-  public double receiveNonMagicalDamage(INonMagicalItem item) {
+  public double receiveNonMagicalDamage(IEquipableItem item) {
     return 0;
   }
 

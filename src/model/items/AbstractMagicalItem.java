@@ -10,8 +10,8 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
     }
 
     @Override
-    public double receiveMagicalDamage(IMagicalItem item){
-        return ((IEquipableItem) item).inflictAttack(this);
+    public double receiveMagicalDamage(IEquipableItem item){
+        return item.inflictAttack(this);
     }
 
     @Override
@@ -33,7 +33,7 @@ public abstract class AbstractMagicalItem extends AbstractItem implements IMagic
     }
 
 
-    public double receiveNonMagicalDamage(INonMagicalItem item){
+    public double receiveNonMagicalDamage(IEquipableItem item){
         return item.getPower()*1.5;
     }
 
