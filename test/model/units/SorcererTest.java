@@ -7,6 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SorcererTest extends AbstractTestUnit {
     private Sorcerer sorcerer;
+    private Alpaca alpaca;
+    private Archer archer;
+    private Cleric cleric;
+    private Fighter fighter;
+    private Hero hero;
+    private SwordMaster swordMaster;
 
     /**
      * Set up the main unit that's going to be tested in the test set
@@ -30,8 +36,8 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipAxeTest() {
-        assertNull(fighter.getEquippedItem());
-        fighter.equipItem(axe);
-        assertEquals(axe, fighter.getEquippedItem());
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipItem(axe);
+        assertEquals(axe, sorcerer.getEquippedItem());
     }
 }

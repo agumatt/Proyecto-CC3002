@@ -11,6 +11,12 @@ import org.junit.jupiter.api.Test;
 public class FighterTest extends AbstractTestUnit {
 
   private Fighter fighter;
+  private Sorcerer sorcerer;
+  private Alpaca alpaca;
+  private Archer archer;
+  private Cleric cleric;
+  private Hero hero;
+  private SwordMaster swordMaster;
 
   /**
    * Set up the main unit that's going to be tested in the test set

@@ -9,6 +9,12 @@ package model.units;
 public class AlpacaTest extends AbstractTestUnit {
 
   private Alpaca alpaca;
+  private Sorcerer sorcerer;
+  private Archer archer;
+  private Cleric cleric;
+  private Fighter fighter;
+  private Hero hero;
+  private SwordMaster swordMaster;
 
   @Override
   public void setTestUnit() {

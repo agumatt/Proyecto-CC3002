@@ -9,6 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class SwordMasterTest extends AbstractTestUnit {
 
   private SwordMaster swordMaster;
+  private Sorcerer sorcerer;
+  private Alpaca alpaca;
+  private Archer archer;
+  private Cleric cleric;
+  private Fighter fighter;
+  private Hero hero;
 
   /**
    * Set up the main unit that's going to be tested in the test set

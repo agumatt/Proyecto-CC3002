@@ -104,53 +104,6 @@ public abstract class AbstractTestItem {
   /**
    * Checks that the Item can be correctly equipped to a unit
    */
-  @Test
-  public void equippedToTest() {
-    assertNull(getTestItem().getOwner());
-    IUnit unit = getTestUnit();
-    getTestItem().equipTo(unit);
-    assertEquals(unit, getTestItem().getOwner());
-  }
-
-  public void useItemTest(){
-
-  }
-
-  public void counterAttackTest(){
-
-  }
-  public void receiveMagicalDamageTest(){
-
-  }
-  public void receiveNonMagicalDamageTest(){
-
-  }
-
-  public void inflictNonMagicalDamageTest(){
-
-  }
-
-  public void inflictMagicalDamageTest(){
-
-  }
-
-  public void receiveAxeAttackTest(){}
-  public void receiveBowAttackTest(){}
-  public void receiveSwordAttackTest(){}
-  public void receiveSpearAttackTest(){}
-
-  public void equipToArcherTest(){}
-  public void equipToClericTest(){}
-  public void equipToFighterTest(){}
-  public void equipToHeroTest(){}
-  public void equipToSwordMasterTest(){}
-
-
-
-  public void receiveAnimaAttackTest(){}
-  public void receiveDarknessAttackTest(){}
-  public void receiveLightAttackTest(){}
-  public void equipToSorcererTest(){}
 
 
   /**

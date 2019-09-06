@@ -2,12 +2,13 @@ package model.items;
 
 import model.map.Location;
 import model.units.IUnit;
+import model.units.Sorcerer;
 import model.units.SorcererTest;
 
 public class DarknessTest extends AbstractTestItem {
     private Darkness darkness;
     private Darkness wrongDarkness;
-    private SorcererTest sorcerer;
+    private Sorcerer sorcerer;
 
     @Override
     public void setTestItem() {
@@ -20,12 +21,12 @@ public class DarknessTest extends AbstractTestItem {
 
     @Override
     public void setWrongRangeItem() {
-        wrongDarkness = new Darkness("Wrong light", 0, -3, -5);
+        wrongDarkness = new Darkness("Wrong darkness", 0, -3, -5);
     }
 
     @Override
     public void setTestUnit()  {
-        sorcerer = new SorcererTest(10, 5, new Location(0, 0));
+        sorcerer = new Sorcerer(10, 5, new Location(0, 0));
 
     }
 

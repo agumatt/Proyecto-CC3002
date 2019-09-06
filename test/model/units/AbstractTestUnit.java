@@ -23,6 +23,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
+  protected Light light;
+  protected Darkness darkness;
+  protected Anima anima;
 
   @Override
   public void setTargetAlpaca() {
@@ -48,7 +51,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.field = new Field();
     this.field.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
         new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
-        new Location(2, 1), new Location(2, 2));
+        new Location(2, 1), new Location(2, 2),new Location(2, 3),new Location(2, 4),new Location(2, 5),new Location(2, 6),
+            new Location(2, 7),new Location(2, 8));
   }
 
   /**
@@ -67,6 +71,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
+    this.anima = new Anima("Devouring souls", 7, 4, 8);
+    this.darkness = new Darkness("Dark void", 10, 2, 3);
+    this.light = new Light("Light Ray", 4, 1, 8);
   }
 
   /**

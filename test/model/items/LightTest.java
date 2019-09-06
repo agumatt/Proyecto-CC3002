@@ -2,13 +2,14 @@ package model.items;
 
 import model.map.Location;
 import model.units.IUnit;
+import model.units.Sorcerer;
 import model.units.SorcererTest;
 
 public class LightTest extends AbstractTestItem {
 
     private Light light;
     private Light wrongLight;
-    private SorcererTest sorcerer;
+    private Sorcerer sorcerer;
 
     @Override
     public void setTestItem() {
@@ -26,7 +27,7 @@ public class LightTest extends AbstractTestItem {
 
     @Override
     public void setTestUnit()  {
-        sorcerer = new SorcererTest(10, 5, new Location(0, 0));
+        sorcerer = new Sorcerer(10, 5, new Location(0, 0));
 
     }
 
