@@ -25,8 +25,8 @@ public class SwordMasterTest extends AbstractTestUnit {
 
   public void setTestUnit(){
     swordMaster = new SwordMaster(1000, 2, field.getCell(0, 0));
-    noCounterattackSwordMaster = new SwordMaster(50, 2, field.getCell(1, 1));
-    secondSwordMaster = new SwordMaster(50, 2, field.getCell(2, 2));
+    noCounterattackSwordMaster = new SwordMaster(1, 2, field.getCell(1, 1));
+    secondSwordMaster = new SwordMaster(1, 2, field.getCell(2, 2));
     this.sword2 = new Sword("Sword", 10, 1, 5);
     this.sword3 = new Sword("Sword", 10, 1, 5);
     sword2.setOwner(noCounterattackSwordMaster);
@@ -46,6 +46,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
   }
 
+  @Test
   @Override
   public void testUseEquippedItem() {
 
@@ -73,37 +74,37 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertEquals(35,sorcerer3.getCurrentHitPoints());
 
     hero.useEquippedItem(swordMaster);
-    assertEquals(935,swordMaster.getCurrentHitPoints());
-    assertEquals(40,hero.getCurrentHitPoints());
+    assertEquals(930,swordMaster.getCurrentHitPoints());
+    assertEquals(50,hero.getCurrentHitPoints());
 
     fighter.useEquippedItem(swordMaster);
-    assertEquals(925,swordMaster.getCurrentHitPoints());
-    assertEquals(40,fighter.getCurrentHitPoints());
+    assertEquals(930,swordMaster.getCurrentHitPoints());
+    assertEquals(35,fighter.getCurrentHitPoints());
 
     archer.useEquippedItem(swordMaster);
-    assertEquals(915,swordMaster.getCurrentHitPoints());
+    assertEquals(920,swordMaster.getCurrentHitPoints());
     assertEquals(40,archer.getCurrentHitPoints());
 
     //ataque de unidad del mismo tipo
     secondSwordMaster.useEquippedItem(swordMaster);
-    assertEquals(905,swordMaster.getCurrentHitPoints());
+    assertEquals(910,swordMaster.getCurrentHitPoints());
     assertEquals(-9,secondSwordMaster.getCurrentHitPoints());
 
     alpaca.useEquippedItem(swordMaster);
-    assertEquals(905,swordMaster.getCurrentHitPoints());
+    assertEquals(910,swordMaster.getCurrentHitPoints());
     assertEquals(50,alpaca.getCurrentHitPoints());
 
     cleric.useEquippedItem(swordMaster);
-    assertEquals(915,swordMaster.getCurrentHitPoints());
+    assertEquals(920,swordMaster.getCurrentHitPoints());
 
     //unidad con poca vida no logra contraatacar
     archer.useEquippedItem(noCounterattackSwordMaster);
     assertEquals(-9,noCounterattackSwordMaster.getCurrentHitPoints());
-    assertEquals(915,swordMaster.getCurrentHitPoints());
+    assertEquals(920,swordMaster.getCurrentHitPoints());
 
     //ataque de unidad fuera de combate
     noCounterattackSwordMaster.useEquippedItem(swordMaster);
-    assertEquals(915,swordMaster.getCurrentHitPoints());
+    assertEquals(920,swordMaster.getCurrentHitPoints());
     assertEquals(-9,noCounterattackSwordMaster.getCurrentHitPoints());
 
   }
