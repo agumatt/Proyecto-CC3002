@@ -26,8 +26,8 @@ public class FighterTest extends AbstractTestUnit {
     fighter = new Fighter(1000, 2, field.getCell(0, 0));
     noCounterattackFighter = new Fighter(1, 2, field.getCell(1, 1));
     secondFighter = new Fighter(1, 2, field.getCell(2, 2));
-    this.axe2 = new Axe("Axe", 10, 1, 2);
-    this.axe3 = new Axe("Axe", 10, 1, 2);
+    this.axe2 = new Axe("Axe", 10, 1, 5);
+    this.axe3 = new Axe("Axe", 10, 1, 5);
     axe2.setOwner(noCounterattackFighter);
     axe3.setOwner(secondFighter);
   }
@@ -51,6 +51,7 @@ public class FighterTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints());
     assertEquals(1000,fighter.getCurrentHitPoints());
     secondFighter.equipItem(axe3);
+    assertEquals(10,secondFighter.getEquippedItem().getPower());
     //unidad principal desarmada
     secondFighter.useEquippedItem(fighter);
     assertEquals(990,fighter.getCurrentHitPoints());

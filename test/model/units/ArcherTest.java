@@ -27,8 +27,8 @@ public class ArcherTest extends AbstractTestUnit {
     archer = new Archer(1000, 2, field.getCell(0, 0));
     secondArcher = new Archer(1, 2, field.getCell(1, 1));
     noCounterattackArcher = new Archer(1, 2, field.getCell(2, 2));
-    this.bow2 = new Bow("Bow", 10, 1, 2);
-    this.bow3 = new Bow("Bow", 10, 1, 2);
+    this.bow2 = new Bow("Bow", 10, 1, 5);
+    this.bow3 = new Bow("Bow", 10, 1, 5);
     bow2.setOwner(noCounterattackArcher);
     bow3.setOwner(secondArcher);
   }
