@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Staff;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,17 +13,19 @@ import org.junit.jupiter.api.Test;
 public class ClericTest extends AbstractTestUnit {
 
 
-  private Cleric weakCleric;
-  private Cleric deadCleric;
+  private Cleric noCounterattackCleric;
+  private Cleric secondCleric;
+  private Staff staff2;
+  private Staff staff3;
 
   /**
    * Set up the main unit that's going to be tested in the test set
    */
 
   public void setTestUnit(){
-    cleric = new Cleric(50, 2, field.getCell(0, 0));
-    weakCleric = new Cleric(50, 2, field.getCell(1, 1));
-    deadCleric = new Cleric(50, 2, field.getCell(2, 2));
+    cleric = new Cleric(1000, 2, field.getCell(0, 0));
+    noCounterattackCleric = new Cleric(50, 2, field.getCell(1, 1));
+    secondCleric = new Cleric(50, 2, field.getCell(2, 2));
   }
 
   public void setOtherTestUnits(){
@@ -52,6 +55,7 @@ public class ClericTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipStaffTest() {
+    staff.setOwner(cleric);
     assertNull(cleric.getEquippedItem());
     cleric.equipItem(staff);
     assertEquals(staff, cleric.getEquippedItem());
@@ -59,6 +63,7 @@ public class ClericTest extends AbstractTestUnit {
 
   @Override
   public void equipAnimaTest() {
+    anima.setOwner(cleric);
     assertNull(cleric.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       cleric.equipItem(anima);
@@ -68,6 +73,7 @@ public class ClericTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipLightTest() {
+    light.setOwner(cleric);
     assertNull(cleric.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       cleric.equipItem(light);
@@ -77,6 +83,7 @@ public class ClericTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipDarknessTest() {
+    darkness.setOwner(cleric);
     assertNull(cleric.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       cleric.equipItem(darkness);

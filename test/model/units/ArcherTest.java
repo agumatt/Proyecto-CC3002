@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.Bow;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,8 @@ public class ArcherTest extends AbstractTestUnit {
 
   private Archer noCounterattackArcher;
   private Archer secondArcher;
+  private Bow bow2;
+  private Bow bow3;
 
   /**
    * Set up the main unit that's going to be tested in the test set
@@ -24,6 +27,10 @@ public class ArcherTest extends AbstractTestUnit {
     archer = new Archer(1000, 2, field.getCell(0, 0));
     secondArcher = new Archer(1, 2, field.getCell(1, 1));
     noCounterattackArcher = new Archer(1, 2, field.getCell(2, 2));
+    this.bow2 = new Bow("Bow", 10, 1, 2);
+    this.bow3 = new Bow("Bow", 10, 1, 2);
+    bow2.setOwner(noCounterattackArcher);
+    bow3.setOwner(secondArcher);
   }
 
 
@@ -48,7 +55,7 @@ public class ArcherTest extends AbstractTestUnit {
       archer.useEquippedItem(cleric);
       assertEquals(50,cleric.getCurrentHitPoints());
     assertEquals(1000,archer.getCurrentHitPoints());
-      secondArcher.equipItem(bow);
+      secondArcher.equipItem(bow3);
       //unidad principal desarmada
       secondArcher.useEquippedItem(archer);
     assertEquals(990,archer.getCurrentHitPoints());
@@ -118,6 +125,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipBowTest() {
+    bow.setOwner(archer);
     assertNull(archer.getEquippedItem());
     archer.equipItem(bow);
     assertEquals(bow, archer.getEquippedItem());
@@ -126,6 +134,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipAnimaTest() {
+    anima.setOwner(archer);
     assertNull(archer.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       archer.equipItem(anima);
@@ -135,6 +144,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipLightTest() {
+    light.setOwner(archer);
     assertNull(archer.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       archer.equipItem(light);
@@ -144,6 +154,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipDarknessTest() {
+    darkness.setOwner(archer);
     assertNull(archer.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       archer.equipItem(darkness);

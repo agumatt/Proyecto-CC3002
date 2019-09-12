@@ -107,7 +107,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void constructorTest() {
-    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    assertEquals(1000, getTestUnit().getCurrentHitPoints());
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
@@ -228,6 +228,14 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   public void equipWeapons(){
+    bow.setOwner(archer);
+    staff.setOwner(cleric);
+    axe.setOwner(fighter);
+    spear.setOwner(hero);
+    sword.setOwner(swordMaster);
+    darkness.setOwner(sorcerer);
+    light.setOwner(sorcerer2);
+    anima.setOwner(sorcerer3);
     archer.equipItem(bow);
     cleric.equipItem(staff);
     fighter.equipItem(axe);

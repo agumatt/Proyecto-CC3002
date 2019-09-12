@@ -37,6 +37,8 @@ public class Hero extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    ((INonMagicalItem)item).equipToHero(this);
+    if (item.getOwner() == this) {
+      ((INonMagicalItem) item).equipToHero(this);
+    }
   }
 }

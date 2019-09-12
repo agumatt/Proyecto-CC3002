@@ -14,17 +14,19 @@ public class SwordMasterTest extends AbstractTestUnit {
 
 
 
-  private SwordMaster weakSwordMaster;
-  private SwordMaster deadSwordMaster;
+  private SwordMaster noCounterattackSwordMaster;
+  private SwordMaster secondSwordMaster;
+  private Sword sword2;
+  private Sword sword3;
 
   /**
    * Set up the main unit that's going to be tested in the test set
    */
 
   public void setTestUnit(){
-    swordMaster = new SwordMaster(50, 2, field.getCell(0, 0));
-    weakSwordMaster = new SwordMaster(50, 2, field.getCell(1, 1));
-    deadSwordMaster = new SwordMaster(50, 2, field.getCell(2, 2));
+    swordMaster = new SwordMaster(1000, 2, field.getCell(0, 0));
+    noCounterattackSwordMaster = new SwordMaster(50, 2, field.getCell(1, 1));
+    secondSwordMaster = new SwordMaster(50, 2, field.getCell(2, 2));
   }
 
 
@@ -56,6 +58,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Override
   @Test
   public void equipSwordTest() {
+    sword.setOwner(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.equipItem(sword);
     assertEquals(sword, swordMaster.getEquippedItem());
@@ -63,6 +66,7 @@ public class SwordMasterTest extends AbstractTestUnit {
 
   @Override
   public void equipAnimaTest() {
+    anima.setOwner(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       swordMaster.equipItem(anima);
@@ -72,6 +76,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipLightTest() {
+    light.setOwner(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       swordMaster.equipItem(light);
@@ -81,6 +86,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipDarknessTest() {
+    darkness.setOwner(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       swordMaster.equipItem(darkness);

@@ -27,6 +27,8 @@ public class SwordMaster extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    ((INonMagicalItem)item).equipToSwordMaster(this);
+    if (item.getOwner() == this) {
+      ((INonMagicalItem) item).equipToSwordMaster(this);
+    }
   }
 }

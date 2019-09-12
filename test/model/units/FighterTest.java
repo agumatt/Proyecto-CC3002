@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.Axe;
 import model.items.INonMagicalItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,9 @@ public class FighterTest extends AbstractTestUnit {
 
   private Fighter noCounterattackFighter;
   private Fighter secondFighter;
+  private Axe axe2;
+  private Axe axe3;
+
 
   /**
    * Set up the main unit that's going to be tested in the test set
@@ -22,6 +26,10 @@ public class FighterTest extends AbstractTestUnit {
     fighter = new Fighter(1000, 2, field.getCell(0, 0));
     noCounterattackFighter = new Fighter(1, 2, field.getCell(1, 1));
     secondFighter = new Fighter(1, 2, field.getCell(2, 2));
+    this.axe2 = new Axe("Axe", 10, 1, 2);
+    this.axe3 = new Axe("Axe", 10, 1, 2);
+    axe2.setOwner(noCounterattackFighter);
+    axe3.setOwner(secondFighter);
   }
 
   public void setOtherTestUnits(){
@@ -42,7 +50,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.useEquippedItem(cleric);
     assertEquals(50,cleric.getCurrentHitPoints());
     assertEquals(1000,fighter.getCurrentHitPoints());
-    secondFighter.equipItem(axe);
+    secondFighter.equipItem(axe3);
     //unidad principal desarmada
     secondFighter.useEquippedItem(fighter);
     assertEquals(990,fighter.getCurrentHitPoints());
@@ -112,6 +120,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipAxeTest() {
+    axe.setOwner(fighter);
     assertNull(fighter.getEquippedItem());
     fighter.equipItem(axe);
     assertEquals(axe, fighter.getEquippedItem());
@@ -119,6 +128,7 @@ public class FighterTest extends AbstractTestUnit {
 
   @Override
   public void equipAnimaTest() {
+    anima.setOwner(fighter);
     assertNull(fighter.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       fighter.equipItem(anima);
@@ -128,6 +138,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipLightTest() {
+    light.setOwner(fighter);
     assertNull(fighter.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       fighter.equipItem(light);
@@ -137,6 +148,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipDarknessTest() {
+    darkness.setOwner(fighter);
     assertNull(fighter.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       fighter.equipItem(darkness);

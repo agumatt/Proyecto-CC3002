@@ -53,6 +53,8 @@ public interface IEquipableItem {
    */
   int getMaxRange();
 
+  void setOwner(IUnit unit);
+
   @Override
   boolean equals(Object o);
 

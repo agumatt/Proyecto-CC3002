@@ -53,6 +53,7 @@ public abstract class AbstractUnit implements IUnit {
       if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
         for (IEquipableItem i : unit.getItems()){
              if(i==null){
+               gift.setOwner(unit);
                unit.getItems().add(gift);
                this.items.remove(gift);
                break;

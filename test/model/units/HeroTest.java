@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Spear;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,17 +13,19 @@ import org.junit.jupiter.api.Test;
 public class HeroTest extends AbstractTestUnit {
 
 
-  private Hero weakHero;
-  private Hero deadHero;
+  private Hero noCounterattackHero;
+  private Hero secondHero;
+  private Spear spear2;
+  private Spear spear3;
 
   /**
    * Set up the main unit that's going to be tested in the test set
    */
 
   public void setTestUnit(){
-    hero = new Hero(50, 2, field.getCell(0, 0));
-    weakHero = new Hero(50, 2, field.getCell(1, 1));
-    deadHero = new Hero(50, 2, field.getCell(2, 2));
+    hero = new Hero(1000, 2, field.getCell(0, 0));
+    noCounterattackHero = new Hero(50, 2, field.getCell(1, 1));
+    secondHero = new Hero(50, 2, field.getCell(2, 2));
   }
 
 
@@ -53,6 +56,7 @@ public class HeroTest extends AbstractTestUnit {
   @Override
   @Test
   public void equipSpearTest() {
+    spear.setOwner(hero);
     assertNull(hero.getEquippedItem());
     hero.equipItem(spear);
     assertEquals(spear, hero.getEquippedItem());
@@ -60,6 +64,7 @@ public class HeroTest extends AbstractTestUnit {
 
   @Override
   public void equipAnimaTest() {
+    anima.setOwner(hero);
     assertNull(hero.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       hero.equipItem(anima);
@@ -69,6 +74,7 @@ public class HeroTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipLightTest() {
+    light.setOwner(hero);
     assertNull(hero.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       hero.equipItem(light);
@@ -78,6 +84,7 @@ public class HeroTest extends AbstractTestUnit {
   @Test
   @Override
   public void equipDarknessTest() {
+    darkness.setOwner(hero);
     assertNull(hero.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
       hero.equipItem(darkness);

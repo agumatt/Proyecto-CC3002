@@ -51,6 +51,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipAnimaTest() {
+        anima.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         sorcerer.equipItem(anima);
         assertEquals(anima, sorcerer.getEquippedItem());
@@ -59,6 +60,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipLightTest() {
+        light.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         sorcerer.equipItem(light);
         assertEquals(light, sorcerer.getEquippedItem());
@@ -67,6 +69,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipDarknessTest() {
+        darkness.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         sorcerer.equipItem(darkness);
         assertEquals(darkness, sorcerer.getEquippedItem());
@@ -75,6 +78,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipAxeTest() {
+        axe.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         Assertions.assertThrows(ClassCastException.class, () -> {
             sorcerer.equipItem(axe);
@@ -84,6 +88,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipSpearTest() {
+        spear.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         Assertions.assertThrows(ClassCastException.class, () -> {
             sorcerer.equipItem(spear);
@@ -93,15 +98,17 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipSwordTest() {
+        sword.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         Assertions.assertThrows(ClassCastException.class, () -> {
-            sorcerer.equipItem(spear);
+            sorcerer.equipItem(sword);
         });
     }
 
     @Test
     @Override
     public void equipStaffTest() {
+        staff.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         Assertions.assertThrows(ClassCastException.class, () -> {
             sorcerer.equipItem(staff);
@@ -111,6 +118,7 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     @Override
     public void equipBowTest() {
+        bow.setOwner(sorcerer);
         assertNull(sorcerer.getEquippedItem());
         Assertions.assertThrows(ClassCastException.class, () -> {
             sorcerer.equipItem(bow);

@@ -19,7 +19,9 @@ public class Sorcerer extends AbstractUnit{
      */
     @Override
     public void equipItem(final IEquipableItem item) {
-        ((IMagicalItem)item).equipToSorcerer(this);
+        if (item.getOwner() == this) {
+            ((IMagicalItem) item).equipToSorcerer(this);
+        }
     }
 }
 

@@ -35,6 +35,8 @@ public class Cleric extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    ((INonMagicalItem)item).equipToCleric(this);
+    if (item.getOwner() == this) {
+      ((INonMagicalItem) item).equipToCleric(this);
+    }
   }
 }

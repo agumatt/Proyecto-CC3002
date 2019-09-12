@@ -76,4 +76,11 @@ public abstract class AbstractItem implements IEquipableItem {
   public int getMaxRange() {
     return maxRange;
   }
+
+  @Override
+  public void setOwner(IUnit unit){
+    this.owner=unit;
+  }
+
+
 }
