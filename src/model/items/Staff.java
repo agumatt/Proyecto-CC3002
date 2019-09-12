@@ -30,7 +30,12 @@ public class Staff extends AbstractNonMagicalItem {
 
   @Override
   public void useItem(IUnit unit){
-    unit.setCurrentHitPoints(unit.getCurrentHitPoints()+this.power);
+    double ans=unit.getCurrentHitPoints()+this.power;
+    if(ans<=unit.getMaxHitPoints()){
+      unit.setCurrentHitPoints(ans);
+    }else{
+      unit.setCurrentHitPoints(unit.getMaxHitPoints());
+    }
   }
 
   @Override
