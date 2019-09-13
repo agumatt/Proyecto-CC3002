@@ -99,6 +99,7 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(915,archer.getCurrentHitPoints());
 
     //unidad con poca vida no logra contraatacar
+    noCounterattackArcher.equipItem(bow2);
     archer.useEquippedItem(noCounterattackArcher);
     assertEquals(-9,noCounterattackArcher.getCurrentHitPoints());
     assertEquals(915,archer.getCurrentHitPoints());

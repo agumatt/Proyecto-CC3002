@@ -1,5 +1,8 @@
 package model.units;
 
+import model.items.Anima;
+import model.items.Darkness;
+import model.items.Light;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,17 +12,36 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class SorcererTest extends AbstractTestUnit {
 
 
-    private Sorcerer weakSorcerer;
-    private Sorcerer deadSorcerer;
+    private Sorcerer noCounterattackSorcerer;
+    private Sorcerer secondSorcerer;
+    private Darkness darkness2;
+    private Darkness darkness3;
+    private Light light2;
+    private Light light3;
+    private Anima anima2;
+    private Anima anima3;
 
     /**
      * Set up the main unit that's going to be tested in the test set
      */
 
     public void setTestUnit(){
-        sorcerer = new Sorcerer(50, 2, field.getCell(0, 0));
-        weakSorcerer = new Sorcerer(50, 2, field.getCell(1, 1));
-        deadSorcerer = new Sorcerer(50, 2, field.getCell(2, 2));
+        sorcerer = new Sorcerer(1000, 2, field.getCell(0, 0));
+        noCounterattackSorcerer = new Sorcerer(1, 2, field.getCell(1, 1));
+        secondSorcerer = new Sorcerer(1, 2, field.getCell(2, 2));
+        this.darkness2 = new Darkness("Darkness", 10, 1, 5);
+        this.darkness3 = new Darkness("Darkness", 10, 1, 5);
+        this.light2 = new Light("Light", 10, 1, 5);
+        this.light3 = new Light("Light", 10, 1, 5);
+        this.anima2 = new Anima("Anima", 10, 1, 5);
+        this.anima3 = new Anima("Anima", 10, 1, 5);
+        darkness2.setOwner(noCounterattackSorcerer);
+        darkness3.setOwner(secondSorcerer);
+        light2.setOwner(noCounterattackSorcerer);
+        light3.setOwner(secondSorcerer);
+        anima2.setOwner(noCounterattackSorcerer);
+        anima3.setOwner(secondSorcerer);
+
     }
 
     public void setOtherTestUnits(){
@@ -33,9 +55,199 @@ public class SorcererTest extends AbstractTestUnit {
         swordMaster =new SwordMaster(50,2,field.getCell(2,8));
     }
 
+    @Test
     @Override
     public void testUseEquippedItem() {
 
+        //Sorcerer darkness
+        //unidad desarmada vs unidad desarmada
+        sorcerer.useEquippedItem(cleric);
+        assertEquals(50,cleric.getCurrentHitPoints());
+        assertEquals(1000,sorcerer.getCurrentHitPoints());
+        secondSorcerer.equipItem(darkness3);
+        //unidad principal desarmada
+        secondSorcerer.useEquippedItem(sorcerer);
+        assertEquals(990,sorcerer.getCurrentHitPoints());
+        assertEquals(1,secondSorcerer.getCurrentHitPoints());
+
+        equipWeapons();
+        fighter.useEquippedItem(sorcerer);
+        assertEquals(975,sorcerer.getCurrentHitPoints());
+        assertEquals(35,fighter.getCurrentHitPoints());
+
+        sorcerer2.useEquippedItem(sorcerer);
+        assertEquals(960,sorcerer.getCurrentHitPoints());
+        assertEquals(50,sorcerer2.getCurrentHitPoints());
+
+        sorcerer3.useEquippedItem(sorcerer);
+        assertEquals(960,sorcerer.getCurrentHitPoints());
+        assertEquals(35,sorcerer3.getCurrentHitPoints());
+
+        hero.useEquippedItem(sorcerer);
+        assertEquals(945,sorcerer.getCurrentHitPoints());
+        assertEquals(35,hero.getCurrentHitPoints());
+
+        archer.useEquippedItem(sorcerer);
+        assertEquals(930,sorcerer.getCurrentHitPoints());
+        assertEquals(35,archer.getCurrentHitPoints());
+
+        swordMaster.useEquippedItem(sorcerer);
+        assertEquals(915,sorcerer.getCurrentHitPoints());
+        assertEquals(35,swordMaster.getCurrentHitPoints());
+
+        //ataque de unidad del mismo tipo
+        secondSorcerer.useEquippedItem(sorcerer);
+        assertEquals(905,sorcerer.getCurrentHitPoints());
+        assertEquals(-9,secondSorcerer.getCurrentHitPoints());
+
+        alpaca.useEquippedItem(sorcerer);
+        assertEquals(905,sorcerer.getCurrentHitPoints());
+        assertEquals(50,alpaca.getCurrentHitPoints());
+
+        cleric.useEquippedItem(sorcerer);
+        assertEquals(915,sorcerer.getCurrentHitPoints());
+
+        //unidad con poca vida no logra contraatacar
+        noCounterattackSorcerer.equipItem(darkness2);
+        sorcerer.useEquippedItem(noCounterattackSorcerer);
+        assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
+        assertEquals(915,sorcerer.getCurrentHitPoints());
+
+        //ataque de unidad fuera de combate
+        noCounterattackSorcerer.useEquippedItem(sorcerer);
+        assertEquals(915,sorcerer.getCurrentHitPoints());
+        assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
+
+
+        setTestUnit();
+        setOtherTestUnits();
+        sorcerer= new Sorcerer(50,2,field.getCell(0,2));
+        sorcerer2= new Sorcerer(1000,2,field.getCell(0,0));
+        sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
+        //Sorcerer light
+        //unidad desarmada vs unidad desarmada
+        sorcerer2.useEquippedItem(cleric);
+        assertEquals(50,cleric.getCurrentHitPoints());
+        assertEquals(1000,sorcerer2.getCurrentHitPoints());
+
+        secondSorcerer.equipItem(light3);
+        //unidad principal desarmada
+        secondSorcerer.useEquippedItem(sorcerer2);
+        assertEquals(990,sorcerer2.getCurrentHitPoints());
+        assertEquals(1,secondSorcerer.getCurrentHitPoints());
+
+        equipWeapons();
+        fighter.useEquippedItem(sorcerer2);
+        assertEquals(975,sorcerer2.getCurrentHitPoints());
+        assertEquals(35,fighter.getCurrentHitPoints());
+
+        sorcerer.useEquippedItem(sorcerer2);
+        assertEquals(975,sorcerer2.getCurrentHitPoints());
+        assertEquals(35,sorcerer.getCurrentHitPoints());
+
+        sorcerer3.useEquippedItem(sorcerer2);
+        assertEquals(960,sorcerer2.getCurrentHitPoints());
+        assertEquals(50,sorcerer3.getCurrentHitPoints());
+
+        hero.useEquippedItem(sorcerer2);
+        assertEquals(945,sorcerer2.getCurrentHitPoints());
+        assertEquals(35,hero.getCurrentHitPoints());
+
+        archer.useEquippedItem(sorcerer2);
+        assertEquals(930,sorcerer2.getCurrentHitPoints());
+        assertEquals(35,archer.getCurrentHitPoints());
+
+        swordMaster.useEquippedItem(sorcerer2);
+        assertEquals(915,sorcerer2.getCurrentHitPoints());
+        assertEquals(35,swordMaster.getCurrentHitPoints());
+
+        //ataque de unidad del mismo tipo
+        secondSorcerer.useEquippedItem(sorcerer2);
+        assertEquals(905,sorcerer2.getCurrentHitPoints());
+        assertEquals(-9,secondSorcerer.getCurrentHitPoints());
+
+        alpaca.useEquippedItem(sorcerer2);
+        assertEquals(905,sorcerer2.getCurrentHitPoints());
+        assertEquals(50,alpaca.getCurrentHitPoints());
+
+        cleric.useEquippedItem(sorcerer2);
+        assertEquals(915,sorcerer2.getCurrentHitPoints());
+
+        //unidad con poca vida no logra contraatacar
+        noCounterattackSorcerer.equipItem(light2);
+        sorcerer2.useEquippedItem(noCounterattackSorcerer);
+        assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
+        assertEquals(915,sorcerer2.getCurrentHitPoints());
+
+        //ataque de unidad fuera de combate
+        noCounterattackSorcerer.useEquippedItem(sorcerer2);
+        assertEquals(915,sorcerer2.getCurrentHitPoints());
+        assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
+
+
+        setTestUnit();
+        setOtherTestUnits();
+        sorcerer= new Sorcerer(50,2,field.getCell(0,2));
+        sorcerer2= new Sorcerer(50,2,field.getCell(0,3));
+        sorcerer3= new Sorcerer(1000,2,field.getCell(0,0));
+        //Sorcerer anima
+        //unidad desarmada vs unidad desarmada
+        sorcerer3.useEquippedItem(cleric);
+        assertEquals(50,cleric.getCurrentHitPoints());
+        assertEquals(1000,sorcerer3.getCurrentHitPoints());
+        secondSorcerer.equipItem(anima3);
+        //unidad principal desarmada
+        secondSorcerer.useEquippedItem(sorcerer3);
+        assertEquals(990,sorcerer3.getCurrentHitPoints());
+        assertEquals(1,secondSorcerer.getCurrentHitPoints());
+
+        equipWeapons();
+        fighter.useEquippedItem(sorcerer3);
+        assertEquals(975,sorcerer3.getCurrentHitPoints());
+        assertEquals(35,fighter.getCurrentHitPoints());
+
+        sorcerer2.useEquippedItem(sorcerer3);
+        assertEquals(975,sorcerer3.getCurrentHitPoints());
+        assertEquals(35,sorcerer2.getCurrentHitPoints());
+
+        sorcerer.useEquippedItem(sorcerer3);
+        assertEquals(960,sorcerer3.getCurrentHitPoints());
+        assertEquals(50,sorcerer.getCurrentHitPoints());
+
+        hero.useEquippedItem(sorcerer3);
+        assertEquals(945,sorcerer3.getCurrentHitPoints());
+        assertEquals(35,hero.getCurrentHitPoints());
+
+        archer.useEquippedItem(sorcerer3);
+        assertEquals(930,sorcerer3.getCurrentHitPoints());
+        assertEquals(35,archer.getCurrentHitPoints());
+
+        swordMaster.useEquippedItem(sorcerer3);
+        assertEquals(915,sorcerer3.getCurrentHitPoints());
+        assertEquals(35,swordMaster.getCurrentHitPoints());
+
+        //ataque de unidad del mismo tipo
+        secondSorcerer.useEquippedItem(sorcerer3);
+        assertEquals(905,sorcerer3.getCurrentHitPoints());
+        assertEquals(-9,secondSorcerer.getCurrentHitPoints());
+
+        alpaca.useEquippedItem(sorcerer3);
+        assertEquals(905,sorcerer3.getCurrentHitPoints());
+        assertEquals(50,alpaca.getCurrentHitPoints());
+
+        cleric.useEquippedItem(sorcerer3);
+        assertEquals(915,sorcerer3.getCurrentHitPoints());
+
+        //unidad con poca vida no logra contraatacar
+        noCounterattackSorcerer.equipItem(anima2);
+        sorcerer3.useEquippedItem(noCounterattackSorcerer);
+        assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
+        assertEquals(915,sorcerer3.getCurrentHitPoints());
+
+        //ataque de unidad fuera de combate
+        noCounterattackSorcerer.useEquippedItem(sorcerer3);
+        assertEquals(915,sorcerer3.getCurrentHitPoints());
+        assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
     }
 
     /**

@@ -95,6 +95,7 @@ public class HeroTest extends AbstractTestUnit {
     assertEquals(920,hero.getCurrentHitPoints());
 
     //unidad con poca vida no logra contraatacar
+    noCounterattackHero.equipItem(spear2);
     archer.useEquippedItem(noCounterattackHero);
     assertEquals(-9,noCounterattackHero.getCurrentHitPoints());
     assertEquals(920,hero.getCurrentHitPoints());

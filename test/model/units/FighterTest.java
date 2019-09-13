@@ -51,7 +51,6 @@ public class FighterTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints());
     assertEquals(1000,fighter.getCurrentHitPoints());
     secondFighter.equipItem(axe3);
-    assertEquals(10,secondFighter.getEquippedItem().getPower());
     //unidad principal desarmada
     secondFighter.useEquippedItem(fighter);
     assertEquals(990,fighter.getCurrentHitPoints());
@@ -95,6 +94,7 @@ public class FighterTest extends AbstractTestUnit {
     assertEquals(920,fighter.getCurrentHitPoints());
 
     //unidad con poca vida no logra contraatacar
+    noCounterattackFighter.equipItem(axe2);
     fighter.useEquippedItem(noCounterattackFighter);
     assertEquals(-9,noCounterattackFighter.getCurrentHitPoints());
     assertEquals(920,fighter.getCurrentHitPoints());

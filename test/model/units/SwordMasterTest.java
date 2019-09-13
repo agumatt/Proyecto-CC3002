@@ -98,6 +98,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertEquals(920,swordMaster.getCurrentHitPoints());
 
     //unidad con poca vida no logra contraatacar
+    noCounterattackSwordMaster.equipItem(sword2);
     archer.useEquippedItem(noCounterattackSwordMaster);
     assertEquals(-9,noCounterattackSwordMaster.getCurrentHitPoints());
     assertEquals(920,swordMaster.getCurrentHitPoints());
