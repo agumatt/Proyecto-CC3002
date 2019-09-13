@@ -4,6 +4,15 @@ import model.items.IEquipableItem;
 import model.items.IMagicalItem;
 import model.map.Location;
 
+/**
+ * This class represents a <i>Sorcerer</i> type unit.
+ * <p>
+ * A <i>Sorcerer</i> is a unit that <b>can only use magical weapons</b>.
+ *
+ * @author Agustin Matthey
+ * @since 2.0
+ */
+
 public class Sorcerer extends AbstractUnit{
 
     public Sorcerer(final int hitPoints, final int movement, final Location location,

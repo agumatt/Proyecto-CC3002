@@ -3,8 +3,11 @@ package model.items;
 import model.units.*;
 
 /**
- * @author Ignacio Slater Muñoz
- * @since
+ * This class represents a <i>bow</i>.
+ * <p>
+ *
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public class Bow extends AbstractNonMagicalItem {
 

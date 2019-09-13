@@ -2,6 +2,16 @@ package model.items;
 
 import model.units.*;
 
+/**
+ * This interface represents the <i>non-magical weapons</i> that the units of the game can use.
+ * <p>
+ * The signature for all the common methods of non-magical weapons are defined here.
+ * Non-magical weapons are strong against magical weapons.
+ *
+ * @author Agustin Matthey
+ * @since 2.0
+ */
+
 public interface INonMagicalItem {
 
     @Override

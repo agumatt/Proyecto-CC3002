@@ -2,6 +2,13 @@ package model.items;
 
 import model.units.*;
 
+/**
+ * Abstract class that defines some common information and behaviour between all non-magical items.
+ *
+ * @author Agustin Matthey
+ * @since 2.0
+ */
+
 public abstract class AbstractNonMagicalItem extends AbstractItem implements INonMagicalItem{
 
     public AbstractNonMagicalItem(final String name, final int power, final int minRange, final int maxRange) {

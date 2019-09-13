@@ -5,8 +5,8 @@ import model.units.*;
 /**
  * Abstract class that defines some common information and behaviour between all items.
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public abstract class AbstractItem implements IEquipableItem {
 

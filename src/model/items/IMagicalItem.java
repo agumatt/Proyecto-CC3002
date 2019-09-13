@@ -2,6 +2,16 @@ package model.items;
 
 import model.units.*;
 
+/**
+ * This interface represents the <i>magical weapons</i> that the units of the game can use.
+ * <p>
+ * The signature for all the common methods of magical weapons are defined here.
+ * Magical weapons are strong against non-magical weapons.
+ *
+ * @author Agustin Matthey
+ * @since 2.0
+ */
+
 public interface IMagicalItem {
 
     @Override

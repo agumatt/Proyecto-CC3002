@@ -7,8 +7,8 @@ import model.units.*;
  * <p>
  * Spears are strong against swords and weak against axes
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public class Spear extends AbstractNonMagicalItem {
 

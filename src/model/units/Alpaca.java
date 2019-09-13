@@ -9,8 +9,8 @@ import model.map.Location;
  * This are a special kind of unit that can carry an unlimited amount of items but can't use any of
  * them.
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public class Alpaca extends AbstractUnit {
 

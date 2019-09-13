@@ -8,8 +8,8 @@ import model.units.*;
  * The signature for all the common methods of the weapons are defined here. Every weapon have a
  * base damage and is strong or weak against other type of weapons.
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public interface IEquipableItem {
 

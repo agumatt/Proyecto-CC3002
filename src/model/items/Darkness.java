@@ -3,9 +3,30 @@ package model.items;
 import model.units.IUnit;
 import model.units.Sorcerer;
 
+/**
+ * This class represents a Darkness.
+ * <p>
+ * Darkness are strong against Anima but weak against Light.
+ *
+ * @author Agustin Matthey
+ * @since 2.0
+ */
+
+
 public class Darkness extends AbstractMagicalItem{
 
-
+    /**
+     * Creates a new darkness item
+     *
+     * @param name
+     *     the name of the darkness
+     * @param power
+     *     the damage of the darkness
+     * @param minRange
+     *     the minimum range of the darkness
+     * @param maxRange
+     *     the maximum range of the darkness
+     */
     public Darkness(final String name, final int power, final int minRange, final int maxRange) {
         super(name, power, minRange, maxRange);
     }

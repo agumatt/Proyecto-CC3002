@@ -11,8 +11,8 @@ import model.map.Location;
  * <p>
  * This unit <b>can only use spear weapons</b>.
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public class Hero extends AbstractUnit {
 
