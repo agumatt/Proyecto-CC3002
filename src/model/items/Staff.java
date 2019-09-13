@@ -42,11 +42,6 @@ public class Staff extends AbstractNonMagicalItem {
   public void counterAttack(IUnit unit){
   }
 
-  @Override
-  public double receiveNonMagicalDamage(IEquipableItem item) {
-    return 0;
-  }
-
 
   public double inflictAttack(IEquipableItem item){
     return 0;
