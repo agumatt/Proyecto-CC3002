@@ -4,18 +4,65 @@ import model.units.*;
 
 public interface IMagicalItem {
 
+    @Override
     boolean equals(Object o);
+
+    /**
+     * generates the damage received by an anima.
+     * @param item
+     * the item that inflicts the attack
+     * @return
+     * the amount of damage to be dealt
+     */
     double receiveAnimaAttack(IMagicalItem item);
+
+    /**
+     * generates the damage received by a darkness.
+     * @param item
+     * the item that inflicts the attack
+     * @return
+     * the amount of damage to be dealt
+     */
     double receiveDarknessAttack(IMagicalItem item);
+
+    /**
+     * generates the damage received by a light.
+     * @param item
+     * the item that inflicts the attack
+     * @return
+     * the amount of damage to be dealt
+     */
     double receiveLightAttack(IMagicalItem item);
+
+    /**
+     * generates the inflicted magical damage on an item.
+     * @param item
+     * the item that will receive the attack
+     * @return
+     * the amount of damage to be dealt
+     */
     double inflictMagicalDamage(IEquipableItem item);
-    double inflictNonMagicalDamage(IEquipableItem item);
-    double receiveMagicalDamage(IEquipableItem item);
-    double receiveNonMagicalDamage(IEquipableItem item);
+
+    /**
+     * generates the inflicted damage on an item.
+     * @param item
+     * the item that will receive the attack
+     * @return
+     * the amount of damage to be dealt
+     */
     double inflictAttack(IEquipableItem item);
+
+    /**
+     * equip item to a sorcerer.
+     * @param sorcerer
+     * the unit that will equip the item.
+     */
     void equipToSorcerer(Sorcerer sorcerer);
 
 
+    /**
+     * @return the owner of the item
+     */
     IUnit getOwner();
 
     /**

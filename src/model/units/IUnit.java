@@ -28,8 +28,17 @@ public interface IUnit {
    */
   double getCurrentHitPoints();
 
+
+  /**
+   * @return maximum hit points of the unit
+   */
   double getMaxHitPoints();
 
+  /**
+   * Sets the current hitPoints of this unit.
+   * @param hitPoints
+   *     the hitPoints to be set
+   */
   void setCurrentHitPoints(double hitPoints);
 
   /**
@@ -58,7 +67,20 @@ public interface IUnit {
    */
   void setLocation(final Location location);
 
+  /**
+   * Gives an item to another unit
+   * @param unit
+   * the unit that gives the item
+   * @param item
+   * the item to be given
+   */
   void giveItem(IUnit unit, IEquipableItem item);
+
+  /**
+   * receive an item from another unt
+   * @param gift
+   * the item to be received
+   */
   void receiveItem(IEquipableItem gift);
 
   /**
@@ -66,6 +88,10 @@ public interface IUnit {
    */
   int getMovement();
 
+  /**
+   * @param unit
+   * the unit on which the equipped item will be used.
+   */
  void useEquippedItem(IUnit unit);
 
   /**

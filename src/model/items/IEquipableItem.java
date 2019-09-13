@@ -13,23 +13,55 @@ import model.units.*;
  */
 public interface IEquipableItem {
 
+
+
+
   /**
-   * Equips this item to a unit.
-   *
-   * @param unit the unit that will be quipped with the item
+   * generates the inflicted magical damage on an item.
+   * @param item
+   * the item that will receive the attack
+   * @return
+   * the amount of damage to be dealt
    */
+  double inflictMagicalDamage(IEquipableItem item);
+  /**
+   * generates the inflicted non-magical damage on an item.
+   * @param item
+   * the item that will receive the attack
+   * @return
+   * the amount of damage to be dealt
+   */
+  double inflictNonMagicalDamage(IEquipableItem item);
+  /**
+   * generates the received magical damage from an item.
+   * @param item
+   * the item that attacks
+   * @return
+   * the amount of damage to be dealt
+   */
+  double receiveMagicalDamage(IEquipableItem item);
+  /**
+   * generates the received non-magical damage from an item.
+   * @param item
+   * the item that attacks
+   * @return
+   * the amount of damage to be dealt
+   */
+  double receiveNonMagicalDamage(IEquipableItem item);
+
+  /**
+   * generates the inflicted damage on an item.
+   * @param item
+   * the item that will receive the attack
+   * @return
+   * the amount of damage to be dealt
+   */
+  double inflictAttack(IEquipableItem item);
 
 
   /**
    * @return the unit that has currently equipped this item
    */
-
-  double inflictMagicalDamage(IEquipableItem item);
-  double inflictNonMagicalDamage(IEquipableItem item);
-  double receiveMagicalDamage(IEquipableItem item);
-  double receiveNonMagicalDamage(IEquipableItem item);
-  double inflictAttack(IEquipableItem item);
-
 
   IUnit getOwner();
 
@@ -53,14 +85,28 @@ public interface IEquipableItem {
    */
   int getMaxRange();
 
+
+  /**
+   * sets a new owner for the item
+   * @param unit
+   *     the new owner of the item
+   */
   void setOwner(IUnit unit);
 
   @Override
   boolean equals(Object o);
 
-
+  /**
+   * use an Item
+   * @param unit
+   *     the unit that uses the item
+   */
   void useItem(IUnit unit);
 
+  /**
+   * @param unit
+   *     this unit attacks back
+   */
   void counterAttack(IUnit unit);
 
 }
