@@ -259,7 +259,7 @@ public class SorcererTest extends AbstractTestUnit {
 
     @Test
     public void testGiveItem(){
-        sorcerer=new Sorcerer(100,3,field.getCell(0,0),axe,light);
+        sorcerer=new Sorcerer(100,3,field.getCell(0,0),light,bow);
         fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
         assertTrue(fighter.getItems().contains(darkness));
         assertEquals(fighter,darkness.getOwner());

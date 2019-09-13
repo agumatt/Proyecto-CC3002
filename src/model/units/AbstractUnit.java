@@ -48,14 +48,16 @@ public abstract class AbstractUnit implements IUnit {
     if (location.getUnit() == null && hitPoints>0){
     this.location = location;}
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
-    if(maxItems>items.length){
-      for(int i=0;i<(maxItems-items.length);i++){
+   for(IEquipableItem i:items){
+      i.setOwner(this);
+    }
+    int len=items.length;
+    if(len<3){
+      for(int i=0;i<(3-len);i++){
         this.items.add(null);
       }
     }
-    for(IEquipableItem i:items){
-      i.setOwner(this);
-    }
+
   }
 
   public void giveItem(IUnit unit, IEquipableItem gift){
