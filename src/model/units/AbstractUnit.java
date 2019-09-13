@@ -2,6 +2,7 @@ package model.units;
 
 import static java.lang.Math.min;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,15 +48,24 @@ public abstract class AbstractUnit implements IUnit {
     if (location.getUnit() == null && hitPoints>0){
     this.location = location;}
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
+    if(maxItems>items.length){
+      for(int i=0;i<(maxItems-items.length);i++){
+        this.items.add(null);
+      }
+    }
+    for(IEquipableItem i:items){
+      i.setOwner(this);
+    }
   }
 
   public void giveItem(IUnit unit, IEquipableItem gift){
-      if(this.items.contains(gift) && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
-        for (IEquipableItem i : unit.getItems()){
+      if(gift.getOwner()==this && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
+        List<IEquipableItem> itemList=unit.getItems();
+        for (IEquipableItem i : itemList){
              if(i==null){
                gift.setOwner(unit);
-               unit.getItems().add(gift);
-               this.items.remove(gift);
+               unit.getItems().set(itemList.indexOf(i),gift);
+               this.items.set(items.indexOf(gift),null);
                break;
              }
         }

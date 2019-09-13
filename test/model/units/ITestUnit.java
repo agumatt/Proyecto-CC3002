@@ -144,7 +144,9 @@ public interface ITestUnit {
    */
   Alpaca getTargetAlpaca();
 
+  @Test
   void testUseEquippedItem();
+
 
 
 

@@ -2,12 +2,13 @@ package model.units;
 
 import model.items.Anima;
 import model.items.Darkness;
+import model.items.IEquipableItem;
 import model.items.Light;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SorcererTest extends AbstractTestUnit {
 
@@ -253,6 +254,26 @@ public class SorcererTest extends AbstractTestUnit {
     /**
      * @return the current unit being tested
      */
+
+
+
+    @Test
+    public void testGiveItem(){
+        sorcerer=new Sorcerer(100,3,field.getCell(0,0),axe,light);
+        fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
+        assertTrue(fighter.getItems().contains(darkness));
+        assertEquals(fighter,darkness.getOwner());
+        assertTrue(!(sorcerer.getItems().contains(darkness)));
+
+        fighter.giveItem(sorcerer,darkness);
+
+        //for(IEquipableItem i: fighter.getItems()){
+          //  System.out.println(i.getOwner().getClass());
+        //}
+        assertTrue(sorcerer.getItems().contains(darkness));
+        assertEquals(sorcerer,darkness.getOwner());
+        assertTrue(!(fighter.getItems().contains(darkness)));
+    }
 
     @Override
     public IUnit getTestUnit() {
