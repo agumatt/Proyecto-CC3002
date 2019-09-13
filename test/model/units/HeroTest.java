@@ -152,4 +152,47 @@ public class HeroTest extends AbstractTestUnit {
       hero.equipItem(darkness);
     });
   }
+
+
+
+
+  @Test
+  @Override
+  public void equipAxeTest() {
+    axe.setOwner(hero);
+    assertNull(hero.getEquippedItem());
+    hero.equipItem(axe);
+    assertNull(hero.getEquippedItem());
+  }
+
+
+
+
+  @Test
+  @Override
+  public void equipSwordTest() {
+    sword.setOwner(hero);
+    assertNull(hero.getEquippedItem());
+    hero.equipItem(sword);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipStaffTest() {
+    staff.setOwner(hero);
+    assertNull(hero.getEquippedItem());
+    hero.equipItem(staff);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipBowTest() {
+    bow.setOwner(hero);
+    assertNull(hero.getEquippedItem());
+    hero.equipItem(bow);
+    assertNull(hero.getEquippedItem());
+  }
+
 }

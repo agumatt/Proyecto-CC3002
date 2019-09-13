@@ -114,20 +114,11 @@ public class ClericTest extends AbstractTestUnit {
 
   @Test
   @Override
-  public void equipStaffTest() {
-    staff.setOwner(cleric);
-    assertNull(cleric.getEquippedItem());
-    cleric.equipItem(staff);
-    assertEquals(staff, cleric.getEquippedItem());
-  }
-
-  @Override
   public void equipAnimaTest() {
     anima.setOwner(cleric);
     assertNull(cleric.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
-      cleric.equipItem(anima);
-    });
+      cleric.equipItem(anima);});
   }
 
   @Test
@@ -136,8 +127,7 @@ public class ClericTest extends AbstractTestUnit {
     light.setOwner(cleric);
     assertNull(cleric.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
-      cleric.equipItem(light);
-    });
+      cleric.equipItem(light);});
   }
 
   @Test
@@ -149,4 +139,52 @@ public class ClericTest extends AbstractTestUnit {
       cleric.equipItem(darkness);
     });
   }
+
+  @Test
+  @Override
+  public void equipAxeTest() {
+    axe.setOwner(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.equipItem(axe);
+    assertNull(cleric.getEquippedItem());
+  }
+
+
+  @Test
+  @Override
+  public void equipSpearTest() {
+    spear.setOwner(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.equipItem(spear);
+    assertNull(cleric.getEquippedItem());
+  }
+
+
+  @Test
+  @Override
+  public void equipSwordTest() {
+    sword.setOwner(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.equipItem(sword);
+    assertNull(cleric.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipStaffTest() {
+    staff.setOwner(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.equipItem(staff);
+    assertEquals(staff,cleric.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipBowTest() {
+    bow.setOwner(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.equipItem(bow);
+    assertNull(cleric.getEquippedItem());
+  }
+
 }

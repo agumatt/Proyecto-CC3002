@@ -125,22 +125,12 @@ public class ArcherTest extends AbstractTestUnit {
    */
   @Test
   @Override
-  public void equipBowTest() {
-    bow.setOwner(archer);
-    assertNull(archer.getEquippedItem());
-    archer.equipItem(bow);
-    assertEquals(bow, archer.getEquippedItem());
-  }
-
-  @Test
-  @Override
   public void equipAnimaTest() {
     anima.setOwner(archer);
     assertNull(archer.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
-      archer.equipItem(anima);
-    });
-  }
+      archer.equipItem(anima);});
+    }
 
   @Test
   @Override
@@ -148,8 +138,7 @@ public class ArcherTest extends AbstractTestUnit {
     light.setOwner(archer);
     assertNull(archer.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
-      archer.equipItem(light);
-    });
+      archer.equipItem(light);});
   }
 
   @Test
@@ -161,4 +150,54 @@ public class ArcherTest extends AbstractTestUnit {
       archer.equipItem(darkness);
     });
   }
+
+  @Test
+  @Override
+  public void equipAxeTest() {
+    axe.setOwner(archer);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(axe);
+    assertNull(archer.getEquippedItem());
+    }
+
+
+  @Test
+  @Override
+  public void equipSpearTest() {
+    spear.setOwner(archer);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(spear);
+    assertNull(archer.getEquippedItem());
+    }
+
+
+  @Test
+  @Override
+  public void equipSwordTest() {
+    sword.setOwner(archer);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(sword);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipStaffTest() {
+    staff.setOwner(archer);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(staff);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipBowTest() {
+    bow.setOwner(archer);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(bow);
+    assertEquals(bow,archer.getEquippedItem());
+  }
+
+
+
 }

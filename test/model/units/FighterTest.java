@@ -120,20 +120,11 @@ public class FighterTest extends AbstractTestUnit {
    */
   @Test
   @Override
-  public void equipAxeTest() {
-    axe.setOwner(fighter);
-    assertNull(fighter.getEquippedItem());
-    fighter.equipItem(axe);
-    assertEquals(axe, fighter.getEquippedItem());
-  }
-
-  @Override
   public void equipAnimaTest() {
     anima.setOwner(fighter);
     assertNull(fighter.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
-      fighter.equipItem(anima);
-    });
+      fighter.equipItem(anima);});
   }
 
   @Test
@@ -142,8 +133,7 @@ public class FighterTest extends AbstractTestUnit {
     light.setOwner(fighter);
     assertNull(fighter.getEquippedItem());
     Assertions.assertThrows(ClassCastException.class, () -> {
-      fighter.equipItem(light);
-    });
+      fighter.equipItem(light);});
   }
 
   @Test
@@ -155,4 +145,52 @@ public class FighterTest extends AbstractTestUnit {
       fighter.equipItem(darkness);
     });
   }
+
+  @Test
+  @Override
+  public void equipAxeTest() {
+    axe.setOwner(fighter);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(axe);
+    assertEquals(axe,fighter.getEquippedItem());
+  }
+
+
+  @Test
+  @Override
+  public void equipSpearTest() {
+    spear.setOwner(fighter);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(spear);
+    assertNull(fighter.getEquippedItem());
+  }
+
+
+  @Test
+  @Override
+  public void equipSwordTest() {
+    sword.setOwner(fighter);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(sword);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipStaffTest() {
+    staff.setOwner(fighter);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(staff);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipBowTest() {
+    bow.setOwner(fighter);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(bow);
+    assertNull(fighter.getEquippedItem());
+  }
+
 }

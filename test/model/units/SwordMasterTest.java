@@ -155,4 +155,44 @@ public class SwordMasterTest extends AbstractTestUnit {
       swordMaster.equipItem(darkness);
     });
   }
+
+
+
+  @Test
+  @Override
+  public void equipAxeTest() {
+    axe.setOwner(swordMaster);
+    assertNull(swordMaster.getEquippedItem());
+    swordMaster.equipItem(axe);
+    assertNull(swordMaster.getEquippedItem());
+  }
+
+
+  @Test
+  @Override
+  public void equipSpearTest() {
+    spear.setOwner(swordMaster);
+    assertNull(swordMaster.getEquippedItem());
+    swordMaster.equipItem(spear);
+    assertNull(swordMaster.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipStaffTest() {
+    staff.setOwner(swordMaster);
+    assertNull(swordMaster.getEquippedItem());
+    swordMaster.equipItem(staff);
+    assertNull(swordMaster.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void equipBowTest() {
+    bow.setOwner(swordMaster);
+    assertNull(swordMaster.getEquippedItem());
+    swordMaster.equipItem(bow);
+    assertNull(swordMaster.getEquippedItem());
+  }
+
 }
