@@ -59,7 +59,7 @@ public interface IUnit {
   void setLocation(final Location location);
 
   void giveItem(IUnit unit, IEquipableItem item);
-  void receiveItem(IUnit unit, IEquipableItem gift);
+  void receiveItem(IEquipableItem gift);
 
   /**
    * @return the number of cells this unit can move

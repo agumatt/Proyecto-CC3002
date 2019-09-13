@@ -40,12 +40,12 @@ public class Alpaca extends AbstractUnit {
   }
 
   @Override
-  public void giveItem(IUnit unit, IEquipableItem gift){
-    if(gift.getOwner()==this && (this.getLocation().distanceTo(unit.getLocation())==1) && currentHitPoints>0){
-      gift.setOwner(unit);
-      unit.getItems().add(gift);
-      this.items.set(items.indexOf(gift),null);
-    }
+  public void receiveItem(IEquipableItem gift) {
+    this.items.add(gift);
+    gift.setOwner(this);
   }
 
+
 }
+
+

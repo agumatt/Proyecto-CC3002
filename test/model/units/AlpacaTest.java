@@ -3,8 +3,8 @@ package model.units;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test set for the alpaca unit
@@ -33,6 +33,23 @@ public class AlpacaTest extends AbstractTestUnit {
     hero = new Hero(50, 2, field.getCell(2, 4));
     swordMaster = new SwordMaster(50, 2, field.getCell(2, 8));
   }
+
+
+  @Test
+  public void testGiveItem(){
+    alpaca=new Alpaca(100,3,field.getCell(0,0),light,bow,anima,axe,sword);
+    fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
+    assertTrue(fighter.getItems().contains(darkness));
+    assertEquals(fighter,darkness.getOwner());
+    assertTrue(!(alpaca.getItems().contains(darkness)));
+
+    fighter.giveItem(alpaca,darkness);
+
+    assertTrue(alpaca.getItems().contains(darkness));
+    assertEquals(alpaca,darkness.getOwner());
+    assertTrue(!(fighter.getItems().contains(darkness)));
+  }
+
 
   @Override
   public void testUseEquippedItem() {

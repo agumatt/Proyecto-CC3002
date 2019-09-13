@@ -267,9 +267,6 @@ public class SorcererTest extends AbstractTestUnit {
 
         fighter.giveItem(sorcerer,darkness);
 
-        //for(IEquipableItem i: fighter.getItems()){
-          //  System.out.println(i.getOwner().getClass());
-        //}
         assertTrue(sorcerer.getItems().contains(darkness));
         assertEquals(sorcerer,darkness.getOwner());
         assertTrue(!(fighter.getItems().contains(darkness)));

@@ -51,34 +51,27 @@ public abstract class AbstractUnit implements IUnit {
    for(IEquipableItem i:items){
       i.setOwner(this);
     }
-    int len=items.length;
-    if(len<3){
-      for(int i=0;i<(3-len);i++){
-        this.items.add(null);
-      }
+
     }
 
-  }
+
 
   public void giveItem(IUnit unit, IEquipableItem gift){
       if(gift.getOwner()==this && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
-        List<IEquipableItem> itemList=unit.getItems();
-        for (IEquipableItem i : itemList){
-             if(i==null){
-               gift.setOwner(unit);
-               unit.getItems().set(itemList.indexOf(i),gift);
-               this.items.set(items.indexOf(gift),null);
-               break;
-             }
+        unit.receiveItem(gift);
+        if(gift.getOwner()==unit){
+        this.items.remove(gift);
         }
+      }}
 
-      }
 
-  }
 
   @Override
-  public void receiveItem(IUnit unit, IEquipableItem gift){
-    unit.giveItem(this,gift);
+  public void receiveItem(IEquipableItem gift) {
+    if (this.items.size() < 3) {
+      this.items.add(gift);
+      gift.setOwner(this);
+    }
   }
 
   @Override
