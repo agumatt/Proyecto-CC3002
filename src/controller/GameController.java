@@ -1,10 +1,13 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
 import model.units.IUnit;
+
 
 /**
  * Controller of the game.
@@ -16,6 +19,12 @@ import model.units.IUnit;
  */
 public class GameController {
 
+    private final ArrayList<Tactician> tacticians = new ArrayList<>();
+    private final ArrayList<Tactician> currentRoundOrder = new ArrayList<>();
+    private int roundNumber = 0;
+    private int maxRounds;
+    private Tactician turnOwner;
+
     /**
      * Creates the controller for a new game.
      *
@@ -26,13 +35,27 @@ public class GameController {
      */
     public GameController(int numberOfPlayers, int mapSize) {
 
+
     }
 
     /**
      * @return the list of all the tacticians participating in the game.
      */
     public List<Tactician> getTacticians() {
-        return null;
+        return List.copyOf(tacticians);
+    }
+
+    private void setNewOrder(){   //randomize
+        List<Tactician> auxList =List.copyOf(currentRoundOrder);
+        Collections.shuffle(auxList);
+        if (roundNumber > 0) {
+            while(currentRoundOrder.get(currentRoundOrder.size()-1).getName().equals(auxList.get(auxList.size()-1).getName())){
+                Collections.shuffle(auxList);
+            }
+        }
+        for(int i=0;i<currentRoundOrder.size();i++) {
+            currentRoundOrder.set(i, auxList.get(i));
+        }
     }
 
     /**
