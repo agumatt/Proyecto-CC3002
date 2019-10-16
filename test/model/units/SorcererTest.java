@@ -2,7 +2,6 @@ package model.units;
 
 import model.items.Anima;
 import model.items.Darkness;
-import model.items.IEquipableItem;
 import model.items.Light;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -265,7 +264,7 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(fighter,darkness.getOwner());
         assertTrue(!(sorcerer.getItems().contains(darkness)));
 
-        fighter.giveItem(sorcerer,darkness);
+        fighter.giveItemTo(sorcerer,darkness);
 
         assertTrue(sorcerer.getItems().contains(darkness));
         assertEquals(sorcerer,darkness.getOwner());

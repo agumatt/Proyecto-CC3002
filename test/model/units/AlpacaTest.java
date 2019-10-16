@@ -1,6 +1,5 @@
 package model.units;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,7 +42,7 @@ public class AlpacaTest extends AbstractTestUnit {
     assertEquals(fighter,darkness.getOwner());
     assertTrue(!(alpaca.getItems().contains(darkness)));
 
-    fighter.giveItem(alpaca,darkness);
+    fighter.giveItemTo(alpaca,darkness);
 
     assertTrue(alpaca.getItems().contains(darkness));
     assertEquals(alpaca,darkness.getOwner());

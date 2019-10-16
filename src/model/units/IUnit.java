@@ -74,7 +74,7 @@ public interface IUnit {
    * @param item
    * the item to be given
    */
-  void giveItem(IUnit unit, IEquipableItem item);
+  void giveItemTo(IUnit unit, IEquipableItem item);
 
   /**
    * receive an item from another unt

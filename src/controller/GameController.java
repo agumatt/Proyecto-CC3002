@@ -6,6 +6,7 @@ import java.util.List;
 import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
+import model.map.Location;
 import model.units.IUnit;
 
 
@@ -21,9 +22,12 @@ public class GameController {
 
     private final ArrayList<Tactician> tacticians = new ArrayList<>();
     private final ArrayList<Tactician> currentRoundOrder = new ArrayList<>();
+    private Field map = new Field();
     private int roundNumber = 0;
+    private int turnNumber;
     private int maxRounds;
     private Tactician turnOwner;
+    private List<String> Winners;
 
     /**
      * Creates the controller for a new game.
@@ -34,8 +38,16 @@ public class GameController {
      *     the dimensions of the map, for simplicity, all maps are squares
      */
     public GameController(int numberOfPlayers, int mapSize) {
-
-
+           for(int i=0;i<numberOfPlayers;i++){
+               tacticians.set(i,new Tactician("Player "+ i));
+           }
+           Location[] locations=new Location[mapSize*mapSize];
+           for(int i=0;i<mapSize;i++){
+               for(int j=0;j<mapSize;j++){
+                   locations[i+j]=new Location(i,j);
+               }
+           }
+           map.addCells(false, locations);
     }
 
     /**
@@ -62,28 +74,28 @@ public class GameController {
      * @return the map of the current game
      */
     public Field getGameMap() {
-        return null;
+        return map;
     }
 
     /**
      * @return the tactician that's currently playing
      */
     public Tactician getTurnOwner() {
-        return null;
+        return turnOwner;
     }
 
     /**
      * @return the number of rounds since the start of the game.
      */
     public int getRoundNumber() {
-        return 0;
+        return roundNumber;
     }
 
     /**
      * @return the maximum number of rounds a match can last
      */
     public int getMaxRounds() {
-        return 0;
+        return maxRounds;
     }
 
     /**

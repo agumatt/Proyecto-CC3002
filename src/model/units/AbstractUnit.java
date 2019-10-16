@@ -56,7 +56,7 @@ public abstract class AbstractUnit implements IUnit {
 
 
 
-  public void giveItem(IUnit unit, IEquipableItem gift){
+  public void giveItemTo(IUnit unit, IEquipableItem gift){
       if(gift.getOwner()==this && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
         unit.receiveItem(gift);
         if(gift.getOwner()==unit){
