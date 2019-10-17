@@ -5,6 +5,7 @@ import model.map.Location;
 import model.units.IUnit;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +13,30 @@ import java.util.List;
 public class Tactician {
 
    private String name;
+
+
+
    private IUnit selectedUnit;
    private final ArrayList<Tactician> units = new ArrayList<>();
-   private PropertyChangeSupport change;
+   private PropertyChangeSupport changes;
 
    public Tactician(String name){
      this.name=name;
-     change = new PropertyChangeSupport(this);
+     changes = new PropertyChangeSupport(this);
    }
 
    public String getName() {
    return name;
    }
 
+   public IUnit getSelectedUnit() {
+        return selectedUnit;
+    }
 
+
+   public List<Tactician> getUnits() {
+        return List.copyOf(units);
+    }
 
     /**
      * Sets the currently equipped item of this unit.
@@ -124,17 +135,33 @@ public class Tactician {
       return selectedUnit.getMovement();
     }
 
+
+   public void addObserver(PropertyChangeListener respHandler){
+          changes.addPropertyChangeListener(respHandler);
+   }
     /**
      * @param unit
      * the unit on which the equipped item will be used.
      */
    public  void useEquippedItem(IUnit unit){
         selectedUnit.useEquippedItem(unit);
-        if(!unit.gameChanger() && ){
-
+        //notify events
+        //attacked player
+        if(unit.getCurrentHitPoints()<=0){
+               if(unit.getTactician().getUnits().size()==1 || unit.gameChanger()){      //last unit or hero defeated
+                      changes.firePropertyChange("attacked player defeated",null,0);
+               }else{      //notAHero defeated
+                      changes.firePropertyChange("attacked unit defeated",null,0);
+               }
         }
-        else if(unit.gameChanger() && )
-
+        //attacking player
+        if(selectedUnit.getCurrentHitPoints()<=0){
+              if(units.size()==1 || selectedUnit.gameChanger()){      //last unit or hero defeated
+                  changes.firePropertyChange("current player defeated",null,0);
+              }else{      //notAHero defeated
+                  changes.firePropertyChange("selected unit defeated",null,0);
+                }
+            }
     }
 
     /**

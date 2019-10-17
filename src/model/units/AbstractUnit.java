@@ -6,6 +6,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -27,6 +29,17 @@ public abstract class AbstractUnit implements IUnit {
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
+  private Tactician tactician;
+
+  public Tactician getTactician() {
+    return tactician;
+  }
+
+  public void setTactician(Tactician tactician) {
+    this.tactician = tactician;
+  }
+
+
 
   /**
    * Creates a new Unit.
