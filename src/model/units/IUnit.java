@@ -68,6 +68,11 @@ public interface IUnit {
   void setLocation(final Location location);
 
   /**
+   * Determines if the loss of the unit makes you lose the game instantly
+   */
+  boolean gameChanger();
+
+  /**
    * Gives an item to another unit
    * @param unit
    * the unit that gives the item

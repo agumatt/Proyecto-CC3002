@@ -32,6 +32,11 @@ public class Sorcerer extends AbstractUnit{
             ((IMagicalItem) item).equipToSorcerer(this);
         }
     }
+
+    @Override
+    public boolean gameChanger() {
+        return false;
+    }
 }
 
 

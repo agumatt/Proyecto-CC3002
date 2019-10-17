@@ -46,4 +46,9 @@ public class Archer extends AbstractUnit {
       ((INonMagicalItem) item).equipToArcher(this);
     }
   }
+
+  @Override
+  public boolean gameChanger() {
+    return false;
+  }
 }

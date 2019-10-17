@@ -31,4 +31,9 @@ public class SwordMaster extends AbstractUnit {
       ((INonMagicalItem) item).equipToSwordMaster(this);
     }
   }
+
+  @Override
+  public boolean gameChanger() {
+    return false;
+  }
 }

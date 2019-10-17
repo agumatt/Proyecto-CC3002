@@ -31,4 +31,9 @@ public class Fighter extends AbstractUnit {
       ((INonMagicalItem) item).equipToFighter(this);
     }
   }
+
+  @Override
+  public boolean gameChanger() {
+    return false;
+  }
 }

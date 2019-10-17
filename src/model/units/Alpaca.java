@@ -40,6 +40,11 @@ public class Alpaca extends AbstractUnit {
   }
 
   @Override
+  public boolean gameChanger() {
+    return false;
+  }
+
+  @Override
   public void receiveItem(IEquipableItem gift) {
     this.items.add(gift);
     gift.setOwner(this);

@@ -14,12 +14,11 @@ public class Tactician {
    private String name;
    private IUnit selectedUnit;
    private final ArrayList<Tactician> units = new ArrayList<>();
-   private PropertyChangeSupport ownHeroDied;
-   private PropertyChangeSupport otherHeroDied;
-   private PropertyChangeSupport outOfUnits;
+   private PropertyChangeSupport change;
 
    public Tactician(String name){
      this.name=name;
+     change = new PropertyChangeSupport(this);
    }
 
    public String getName() {
@@ -131,6 +130,11 @@ public class Tactician {
      */
    public  void useEquippedItem(IUnit unit){
         selectedUnit.useEquippedItem(unit);
+        if(!unit.gameChanger() && ){
+
+        }
+        else if(unit.gameChanger() && )
+
     }
 
     /**

@@ -39,4 +39,9 @@ public class Cleric extends AbstractUnit {
       ((INonMagicalItem) item).equipToCleric(this);
     }
   }
+
+  @Override
+  public boolean gameChanger() {
+    return false;
+  }
 }

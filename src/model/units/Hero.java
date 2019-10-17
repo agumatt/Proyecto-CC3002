@@ -41,4 +41,9 @@ public class Hero extends AbstractUnit {
       ((INonMagicalItem) item).equipToHero(this);
     }
   }
+
+  @Override
+  public boolean gameChanger() {
+    return true;
+  }
 }
