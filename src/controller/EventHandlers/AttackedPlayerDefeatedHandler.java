@@ -1,6 +1,7 @@
 package controller.EventHandlers;
 
 import controller.GameController;
+import model.Tactician;
 
 import java.beans.PropertyChangeEvent;
 
@@ -12,6 +13,9 @@ public class AttackedPlayerDefeatedHandler extends AbstractEventHandler{
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals("attacked player defeated")){
+            controller.removeTactician(((Tactician)evt.getOldValue()).getName());
+        }
 
     }
 }

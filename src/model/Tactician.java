@@ -17,7 +17,7 @@ public class Tactician {
 
 
    private IUnit selectedUnit;
-   private final ArrayList<Tactician> units = new ArrayList<>();
+   private final ArrayList<IUnit> units = new ArrayList<>();
    private PropertyChangeSupport changes;
 
    public Tactician(String name){
@@ -33,8 +33,12 @@ public class Tactician {
         return selectedUnit;
     }
 
+   public void removeUnit(IUnit unit){
+       units.remove(unit);
+   }
 
-   public List<Tactician> getUnits() {
+
+   public List<IUnit> getUnits() {
         return List.copyOf(units);
     }
 
@@ -149,17 +153,17 @@ public class Tactician {
         //attacked player
         if(unit.getCurrentHitPoints()<=0){
                if(unit.getTactician().getUnits().size()==1 || unit.gameChanger()){      //last unit or hero defeated
-                      changes.firePropertyChange("attacked player defeated",null,0);
+                      changes.firePropertyChange(new PropertyChangeEvent(this,"attacked player defeated",unit.getTactician(),null));
                }else{      //notAHero defeated
-                      changes.firePropertyChange("attacked unit defeated",null,0);
+                      changes.firePropertyChange(new PropertyChangeEvent(this,"attacked unit defeated",unit,null));
                }
         }
         //attacking player
         if(selectedUnit.getCurrentHitPoints()<=0){
               if(units.size()==1 || selectedUnit.gameChanger()){      //last unit or hero defeated
-                  changes.firePropertyChange("current player defeated",null,0);
+                  changes.firePropertyChange(new PropertyChangeEvent(this,"current player defeated",this,null));
               }else{      //notAHero defeated
-                  changes.firePropertyChange("selected unit defeated",null,0);
+                  changes.firePropertyChange(new PropertyChangeEvent(this,"selected unit defeated",selectedUnit,null));
                 }
             }
     }

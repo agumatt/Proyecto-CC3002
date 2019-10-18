@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 import model.Tactician;
 import model.map.Field;
+import model.map.Location;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,8 @@ class GameControllerTest {
         controller = new GameController(4, 7);
         testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
     }
+
+
 
     @Test
     void getTacticians() {
@@ -93,7 +96,7 @@ class GameControllerTest {
     void endTurn() {
         Tactician firstPlayer = controller.getTurnOwner();
         // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
-        Tactician secondPlayer = new Tactician(); // <- Deben cambiar esto (!)
+        Tactician secondPlayer = new Tactician("Player 1"); // <- Deben cambiar esto (!)
         assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
         controller.endTurn();

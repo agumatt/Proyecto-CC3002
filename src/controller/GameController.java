@@ -26,6 +26,7 @@ public class GameController {
     private int roundNumber = 0;
     private int turnNumber;
     private int maxRounds;
+    private int maxTurns;
     private Tactician turnOwner;
     private List<String> Winners;
 
@@ -40,15 +41,17 @@ public class GameController {
      */
     public GameController(int numberOfPlayers, int mapSize) {
            for(int i=0;i<numberOfPlayers;i++){
-               tacticians.set(i,new Tactician("Player "+ i));
+               tacticians.add(new Tactician("Player "+ i));
+               currentRoundOrder.add(new Tactician("Player "+ i));
            }
-           Location[] locations=new Location[mapSize*mapSize];
            for(int i=0;i<mapSize;i++){
                for(int j=0;j<mapSize;j++){
-                   locations[i+j]=new Location(i,j);
+                   map.addCells(false,new Location(i,j));
                }
            }
-           map.addCells(false, locations);
+           Collections.shuffle(currentRoundOrder);
+
+
     }
 
     /**
@@ -59,16 +62,14 @@ public class GameController {
     }
 
     private void setNewOrder(){   //randomize
-        List<Tactician> auxList =List.copyOf(currentRoundOrder);
-        Collections.shuffle(auxList);
+        Tactician auxSave = currentRoundOrder.get(currentRoundOrder.size()-1);
+        Collections.shuffle(currentRoundOrder);
         if (roundNumber > 0) {
-            while(currentRoundOrder.get(currentRoundOrder.size()-1).getName().equals(auxList.get(auxList.size()-1).getName())){
-                Collections.shuffle(auxList);
+            while(currentRoundOrder.get(currentRoundOrder.size()-1).getName().equals(auxSave.getName())){
+                Collections.shuffle(currentRoundOrder);
             }
         }
-        for(int i=0;i<currentRoundOrder.size();i++) {
-            currentRoundOrder.set(i, auxList.get(i));
-        }
+        turnOwner=currentRoundOrder.get(0);
     }
 
     /**
@@ -103,7 +104,21 @@ public class GameController {
      * Finishes the current player's turn.
      */
     public void endTurn() {
-
+        int currentIndex = currentRoundOrder.indexOf(turnOwner);
+        if(turnNumber==maxTurns){
+            turnOwner=null;  //fin del juego
+            return;
+        }
+        if(currentIndex <(currentRoundOrder.size()-1)){
+            turnOwner=currentRoundOrder.get(currentIndex+1);
+            turnNumber++;
+        }else if(roundNumber<maxRounds){
+            roundNumber++;
+            turnNumber++;
+            setNewOrder();
+        }else{
+            turnOwner=null;    //fin del juego
+        }
     }
 
     /**
@@ -113,7 +128,31 @@ public class GameController {
      *     the player to be removed
      */
     public void removeTactician(String tactician) {
+         int i=0;
+         while(i<tacticians.size() && !tacticians.get(i).getName().equals(tactician)){
+             i++;
+         }
+         if(i==tacticians.size()){
+             return;
+         }
+         for(IUnit u : tacticians.get(i).getUnits()){
+             u.getLocation().setUnit(null);
+         }
+         tacticians.remove(i);
+        for(Tactician t: tacticians){   //clean order array
+            if(!currentRoundOrder.contains(t)){
+                currentRoundOrder.remove(t);
+            }
+        }
+        if(turnOwner!=null && turnOwner.getName().equals(tactician)){  //remove current player
+            endTurn();
+        }
+    }
 
+
+    public void removeUnit(IUnit unit){
+         unit.getLocation().setUnit(null);
+         unit.getTactician().removeUnit(unit);
     }
 
     /**
@@ -122,7 +161,7 @@ public class GameController {
      *  the maximum number of turns the game can last
      */
     public void initGame(final int maxTurns) {
-
+        this.maxRounds = maxTurns;
     }
 
     /**
