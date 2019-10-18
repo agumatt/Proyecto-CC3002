@@ -186,14 +186,14 @@ public class GameController {
      * @return the winner of this game, if the match ends in a draw returns a list of all the winners
      */
     public List<String> getWinners() {
-        return Winners;
+        return winners;
     }
 
     /**
      * @return the current player's selected unit
      */
     public IUnit getSelectedUnit() {
-        return null;
+        return turnOwner.getSelectedUnit();
     }
 
     /**
@@ -205,14 +205,14 @@ public class GameController {
      *     vertical position of the unit
      */
     public void selectUnitIn(int x, int y) {
-
+         turnOwner.setSelectedUnit(map.getCell(x,y).getUnit());
     }
 
     /**
      * @return the inventory of the currently selected unit.
      */
     public List<IEquipableItem> getItems() {
-        return null;
+        return turnOwner.getItems();
     }
 
     /**
@@ -222,7 +222,7 @@ public class GameController {
      *     the location of the item in the inventory.
      */
     public void equipItem(int index) {
-
+        turnOwner.equipItem(turnOwner.getItems().get(index));
     }
 
     /**
@@ -234,7 +234,7 @@ public class GameController {
      *     vertical position of the target
      */
     public void useItemOn(int x, int y) {
-
+         turnOwner.useEquippedItem(map.getCell(x,y).getUnit());
     }
 
     /**
@@ -244,7 +244,7 @@ public class GameController {
      *     the location of the item in the inventory.
      */
     public void selectItem(int index) {
-
+        turnOwner.setSelectedItem(turnOwner.getItems().get(index));
     }
     /**
      * Gives the selected item to a target unit.
@@ -255,6 +255,6 @@ public class GameController {
      *     vertical position of the target
      */
     public void giveItemTo(int x, int y) {
-
+         turnOwner.giveItemTo(map.getCell(x,y).getUnit(),turnOwner.getSelectedItem());
     }
 }

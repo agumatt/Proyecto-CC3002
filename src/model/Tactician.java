@@ -16,6 +16,7 @@ public class Tactician {
 
 
 
+    private IEquipableItem selectedItem;
    private IUnit selectedUnit;
    private final ArrayList<IUnit> units = new ArrayList<>();
    private PropertyChangeSupport changes;
@@ -33,7 +34,20 @@ public class Tactician {
         return selectedUnit;
     }
 
-   public void removeUnit(IUnit unit){
+   public void setSelectedUnit(IUnit selectedUnit) {
+        this.selectedUnit = selectedUnit;
+    }
+
+    public IEquipableItem getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(IEquipableItem selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+
+    public void removeUnit(IUnit unit){
        units.remove(unit);
    }
 
