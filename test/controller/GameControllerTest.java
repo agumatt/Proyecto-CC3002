@@ -97,6 +97,7 @@ class GameControllerTest {
         Tactician firstPlayer = controller.getTurnOwner();
         // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
         Tactician secondPlayer = new Tactician("Player 1"); // <- Deben cambiar esto (!)
+
         assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
         controller.endTurn();
