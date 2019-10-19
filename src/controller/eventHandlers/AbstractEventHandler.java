@@ -1,4 +1,4 @@
-package controller.EventHandlers;
+package controller.eventHandlers;
 
 import controller.GameController;
 

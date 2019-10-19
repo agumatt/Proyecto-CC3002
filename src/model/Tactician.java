@@ -173,7 +173,7 @@ public class Tactician {
         //attacked player
         if(unit.getCurrentHitPoints()<=0){
                if(unit.getTactician().getUnits().size()==1 || unit.gameChanger()){      //last unit or hero defeated
-                      changes.firePropertyChange(new PropertyChangeEvent(this,"attacked player defeated",unit.getTactician(),null));
+                      changes.firePropertyChange(new PropertyChangeEvent(this,"player defeated",unit.getTactician(),null)); //attacked player defeated
                }else{      //notAHero defeated
                       changes.firePropertyChange(new PropertyChangeEvent(this,"attacked unit defeated",unit,null));
                }
@@ -181,7 +181,7 @@ public class Tactician {
         //attacking player
         if(selectedUnit.getCurrentHitPoints()<=0){
               if(units.size()==1 || selectedUnit.gameChanger()){      //last unit or hero defeated
-                  changes.firePropertyChange(new PropertyChangeEvent(this,"current player defeated",this,null));
+                  changes.firePropertyChange(new PropertyChangeEvent(this,"player defeated",this,null)); //current player defeated
               }else{      //notAHero defeated
                   changes.firePropertyChange(new PropertyChangeEvent(this,"selected unit defeated",selectedUnit,null));
                 }

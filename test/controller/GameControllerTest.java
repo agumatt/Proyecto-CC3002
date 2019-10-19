@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
+
+import controller.Factory.AlpacaFactory;
 import model.Tactician;
 import model.map.Field;
-import model.map.Location;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -123,6 +126,7 @@ class GameControllerTest {
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
     }
 
+
     @Test
     void getWinners() {
         controller.initGame(2);
@@ -130,6 +134,7 @@ class GameControllerTest {
         assertEquals(4, controller.getWinners().size());
         controller.getWinners()
                 .forEach(player -> Assertions.assertTrue(testTacticians.contains(player)));
+
 
         controller.initGame(2);
         IntStream.range(0, 4).forEach(i -> controller.endTurn());
