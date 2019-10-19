@@ -26,7 +26,8 @@ public class GameController {
     private int roundNumber = 0;
     private int maxRounds;
     private Tactician turnOwner;
-    private List<String> winners;
+    private ArrayList<String> winners = new ArrayList<>();
+    private int next = 1;
 
 
     /**
@@ -52,6 +53,10 @@ public class GameController {
 
     }
 
+    public List<Tactician> getCurrentRoundOrder(){
+        return List.copyOf(currentRoundOrder);
+    }
+
     /**
      * @return the list of all the tacticians participating in the game.
      */
@@ -62,10 +67,8 @@ public class GameController {
     private void setNewOrder(){   //randomize
         Tactician auxSave = currentRoundOrder.get(currentRoundOrder.size()-1);
         Collections.shuffle(currentRoundOrder);
-        if (roundNumber > 0) {
-            while(currentRoundOrder.get(currentRoundOrder.size()-1).getName().equals(auxSave.getName())){
-                Collections.shuffle(currentRoundOrder);
-            }
+        while(currentRoundOrder.get(0).getName().equals(auxSave.getName())) {
+             Collections.shuffle(currentRoundOrder);
         }
         turnOwner=currentRoundOrder.get(0);
     }
@@ -103,13 +106,18 @@ public class GameController {
      */
     public void endTurn() {
         if(tacticians.size()==1){
-            winners.add(turnOwner.getName());
-            turnOwner = null;  //fin del juego
+            winners.add(tacticians.get(0).getName());
+            Collections.shuffle(currentRoundOrder);
+            turnOwner = currentRoundOrder.get(0);  //se prepara un juego nuevo
+            return;
         }
         int currentIndex = currentRoundOrder.indexOf(turnOwner);
-        if(currentIndex <(currentRoundOrder.size()-1)){
-            turnOwner=currentRoundOrder.get(currentIndex+1);
-        }else if(roundNumber<maxRounds){
+        if(next==0){
+            return;
+        }
+        if(currentIndex <(currentRoundOrder.size()-1)) {
+            turnOwner = currentRoundOrder.get(currentIndex + 1);
+        }else if(roundNumber<maxRounds || maxRounds==-1){
             roundNumber++;
             setNewOrder();
         }else{
@@ -123,11 +131,12 @@ public class GameController {
             }
             winners.add(aWinner.getName());
             for(Tactician t : tacticians){
-                if(t!=aWinner && t.getUnits().size()==maxUnits){
+                if(!t.getName().equals(aWinner.getName()) && t.getUnits().size()==maxUnits){
                     winners.add(t.getName());
                 }
             }
-            turnOwner=null;    //fin del juego
+            Collections.shuffle(currentRoundOrder);
+            turnOwner = currentRoundOrder.get(0);  //se prepara un juego nuevo
 
         }
     }
@@ -149,14 +158,20 @@ public class GameController {
          for(IUnit u : tacticians.get(i).getUnits()){
              u.getLocation().setUnit(null);
          }
+         Tactician tAuxSave = tacticians.get(i);
+         int cSize = currentRoundOrder.size();
+         int iAuxSave = currentRoundOrder.indexOf(tAuxSave);
          tacticians.remove(i);
-        for(Tactician t: tacticians){   //clean order array
-            if(!currentRoundOrder.contains(t)){
-                currentRoundOrder.remove(t);
-            }
-        }
+         currentRoundOrder.remove(tAuxSave);   //clean order array
         if(turnOwner!=null && turnOwner.getName().equals(tactician)){  //remove current player
+            if(iAuxSave<cSize-1){
+                next=0;
+                turnOwner = currentRoundOrder.get(iAuxSave);   //hicimos aqui el paso al siguiente jugador
+            }else{
+                turnOwner = currentRoundOrder.get(currentRoundOrder.size()-1);
+            }
             endTurn();
+            next = 1;
         }
     }
 
@@ -172,13 +187,19 @@ public class GameController {
      *  the maximum number of turns the game can last
      */
     public void initGame(final int maxTurns) {
+        winners = new ArrayList<>();
+        roundNumber = 1;
         this.maxRounds = maxTurns;
+
     }
+
 
     /**
      * Starts a game without a limit of turns.
      */
     public void initEndlessGame() {
+        winners = new ArrayList<>();
+        roundNumber = 1;
         this.maxRounds = -1;
     }
 
@@ -186,7 +207,7 @@ public class GameController {
      * @return the winner of this game, if the match ends in a draw returns a list of all the winners
      */
     public List<String> getWinners() {
-        return winners;
+        return List.copyOf(winners);
     }
 
     /**

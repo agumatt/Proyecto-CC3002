@@ -13,17 +13,23 @@ import java.util.List;
 public class Tactician {
 
    private String name;
-
-
-
-    private IEquipableItem selectedItem;
+   private IEquipableItem selectedItem;
    private IUnit selectedUnit;
    private final ArrayList<IUnit> units = new ArrayList<>();
    private PropertyChangeSupport changes;
 
+
    public Tactician(String name){
      this.name=name;
      changes = new PropertyChangeSupport(this);
+   }
+
+   @Override
+   public boolean equals(Object o){
+     if(!(o instanceof Tactician)){
+         return false;
+     }
+     return this.getName().equals(((Tactician) o).getName());
    }
 
    public String getName() {

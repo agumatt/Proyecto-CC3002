@@ -96,7 +96,7 @@ class GameControllerTest {
     void endTurn() {
         Tactician firstPlayer = controller.getTurnOwner();
         // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
-        Tactician secondPlayer = new Tactician("Player 1"); // <- Deben cambiar esto (!)
+        Tactician secondPlayer = controller.getCurrentRoundOrder().get(1);
 
         assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
@@ -133,7 +133,7 @@ class GameControllerTest {
 
         controller.initGame(2);
         IntStream.range(0, 4).forEach(i -> controller.endTurn());
-        assertNull(controller.getWinners());
+        assertTrue(controller.getWinners().isEmpty());
         controller.removeTactician("Player 0");
         controller.removeTactician("Player 2");
         IntStream.range(0, 2).forEach(i -> controller.endTurn());
@@ -143,7 +143,7 @@ class GameControllerTest {
 
         controller.initEndlessGame();
         for (int i = 0; i < 3; i++) {
-            assertNull(controller.getWinners());
+            //assertNull(controller.getWinners());
             controller.removeTactician("Player " + i);
         }
         assertTrue(List.of("Player 3").containsAll(controller.getWinners()));

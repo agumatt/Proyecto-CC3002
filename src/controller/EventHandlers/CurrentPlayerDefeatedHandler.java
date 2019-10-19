@@ -16,7 +16,6 @@ public class CurrentPlayerDefeatedHandler extends AbstractEventHandler{
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName().equals("current player defeated")){
             controller.removeTactician(((Tactician) evt.getOldValue()).getName());
-            controller.endTurn();
         }
 
     }
