@@ -53,7 +53,7 @@ public abstract class AbstractUnit implements IUnit {
    * @param maxItems
    *     maximum amount of items this unit can carry
    */
-  protected AbstractUnit(final int hitPoints, final int movement,
+  protected AbstractUnit(final double hitPoints, final int movement,
       final Location location, final int maxItems, final IEquipableItem... items) {
     this.maxHitPoints = hitPoints;
     this.currentHitPoints=hitPoints;

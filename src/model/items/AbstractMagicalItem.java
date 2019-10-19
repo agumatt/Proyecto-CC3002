@@ -12,7 +12,7 @@ import model.units.Sorcerer;
 
 public abstract class AbstractMagicalItem extends AbstractItem implements IMagicalItem {
 
-    public AbstractMagicalItem(final String name, final int power, final int minRange, final int maxRange) {
+    public AbstractMagicalItem(final String name, final double power, final int minRange, final int maxRange) {
         super(name,power,minRange,maxRange);
     }
 

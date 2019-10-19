@@ -13,7 +13,12 @@ import java.util.stream.IntStream;
 
 import controller.Factory.AlpacaFactory;
 import model.Tactician;
+import model.items.Bow;
+import model.items.Sword;
 import model.map.Field;
+import model.map.Location;
+import model.units.Alpaca;
+import model.units.IUnit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +42,11 @@ class GameControllerTest {
     }
 
 
+    @Test
+    void test(){
+        IUnit a = new Alpaca(5,5,new Location(3,2),new Sword("a",4,3,4),new Bow("b",3,4,3));
+
+    }
 
     @Test
     void getTacticians() {

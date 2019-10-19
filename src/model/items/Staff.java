@@ -24,7 +24,7 @@ public class Staff extends AbstractNonMagicalItem {
    * @param maxRange
    *     the maximum range of the staff
    */
-  public Staff(final String name, final int power, final int minRange, final int maxRange) {
+  public Staff(final String name, final double power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
   }
 

@@ -24,7 +24,7 @@ public class Spear extends AbstractNonMagicalItem {
    * @param maxRange
    *     the maximum range of the axe
    */
-  public Spear(final String name, final int power, final int minRange, final int maxRange) {
+  public Spear(final String name, final double power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
   }
 
