@@ -45,6 +45,12 @@ public class FighterTest extends AbstractTestUnit {
 
   @Override
   @Test
+  public void gameChangerTest() {
+    assertFalse(secondFighter.gameChanger());
+  }
+
+  @Override
+  @Test
   public void testUseEquippedItem() {
     //unidad desarmada vs unidad desarmada
     fighter.useEquippedItem(cleric);

@@ -23,6 +23,9 @@ public interface ITestUnit {
    */
   void setTestUnit();
 
+  @Test
+  void gameChangerTest();
+
   void equipWeapons();
 
   void setTargetAlpaca();

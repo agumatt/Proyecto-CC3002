@@ -4,8 +4,7 @@ import model.items.Sword;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -44,6 +43,12 @@ public class SwordMasterTest extends AbstractTestUnit {
     sorcerer =new Sorcerer(50,2,field.getCell(2,8));
     sorcerer2= new Sorcerer(50,2,field.getCell(0,2));
     sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
+  }
+
+  @Override
+  @Test
+  public void gameChangerTest() {
+    assertFalse(swordMaster.gameChanger());
   }
 
   @Test

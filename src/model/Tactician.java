@@ -32,32 +32,71 @@ public class Tactician {
      return this.getName().equals(((Tactician) o).getName());
    }
 
+    /**
+     * @return name of the player
+     */
    public String getName() {
    return name;
    }
 
+
+    /**
+     * Sets the units owned by this player.
+     * @param units
+     *     the units to be set
+     */
+   public void setUnits(ArrayList<IUnit> units){
+       this.units.addAll(units);
+       for(IUnit u : units){
+           u.setTactician(this);
+       }
+   }
+
+    /**
+     * @return the unit that is currently selected
+     */
    public IUnit getSelectedUnit() {
         return selectedUnit;
     }
-
+    /**
+     * Selects a unit to be used.
+     * @param selectedUnit
+     *     the units to be selected
+     */
    public void setSelectedUnit(IUnit selectedUnit) {
-        this.selectedUnit = selectedUnit;
+       if(this.equals(selectedUnit.getTactician())){
+        this.selectedUnit = selectedUnit;}
     }
 
+    /**
+     * @return the item that the selected unit has equipped
+     */
     public IEquipableItem getSelectedItem() {
         return selectedItem;
     }
 
+    /**
+     * Set the selected units equipped item.
+     * @param selectedItem
+     *     the item to be set
+     */
     public void setSelectedItem(IEquipableItem selectedItem) {
         this.selectedItem = selectedItem;
     }
 
-
+    /**
+     * Removes a unit from the players list.
+     * @param unit
+     *     the units to be removed
+     */
     public void removeUnit(IUnit unit){
        units.remove(unit);
    }
 
 
+    /**
+     * @return the units owned by the player
+     */
    public List<IUnit> getUnits() {
         return List.copyOf(units);
     }
@@ -159,7 +198,11 @@ public class Tactician {
       return selectedUnit.getMovement();
     }
 
-
+    /**
+     * add an observer
+     * @param respHandler
+     * the response handler class
+     */
    public void addObserver(PropertyChangeListener respHandler){
           changes.addPropertyChangeListener(respHandler);
    }

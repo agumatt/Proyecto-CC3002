@@ -111,6 +111,11 @@ public class ArcherTest extends AbstractTestUnit {
 
   }
 
+  @Override
+  @Test
+  public void gameChangerTest() {
+    assertFalse(secondArcher.gameChanger());
+  }
 
   /**
    * @return the current unit being tested

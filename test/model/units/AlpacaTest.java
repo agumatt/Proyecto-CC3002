@@ -21,6 +21,12 @@ public class AlpacaTest extends AbstractTestUnit {
     deadAlpaca = new Alpaca(0, 2, field.getCell(2, 2));
   }
 
+  @Override
+  @Test
+  public void gameChangerTest() {
+    assertFalse(weakAlpaca.gameChanger());
+  }
+
 
   public void setOtherTestUnits() {
     sorcerer = new Sorcerer(50, 2, field.getCell(0, 1));
@@ -167,4 +173,6 @@ public class AlpacaTest extends AbstractTestUnit {
     alpaca.equipItem(axe);
     assertNull(alpaca.getEquippedItem());
   }
+
+
 }

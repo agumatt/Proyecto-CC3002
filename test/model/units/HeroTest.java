@@ -1,11 +1,10 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import model.items.Spear;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -43,6 +42,14 @@ public class HeroTest extends AbstractTestUnit {
     sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
     swordMaster =new SwordMaster(50,2,field.getCell(2,8));
   }
+
+
+  @Override
+  @Test
+  public void gameChangerTest() {
+    assertTrue(secondHero.gameChanger());
+  }
+
 
   @Test
   @Override
