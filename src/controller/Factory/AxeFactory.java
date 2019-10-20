@@ -6,6 +6,8 @@ import model.items.IEquipableItem;
 public class AxeFactory extends AbstractItemFactory {
     @Override
     public IEquipableItem createProduct() {
-        return new Axe(setting + " Axd", power, minRange, maxRange);
+        IEquipableItem axe = new Axe(setting + " Axe", power, minRange, maxRange);
+        axe.setOwner(owner);
+        return axe;
     }
 }

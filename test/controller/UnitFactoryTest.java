@@ -33,7 +33,6 @@ public class UnitFactoryTest {
     @Test
     public void alpacaFactory(){
         UnitFactory alpacaFactory = new AlpacaFactory();
-        alpacaFactory.setDurableUnit();
         alpacaFactory.setItems(testItem);
         alpacaFactory.setLocation(testLocation);
         IUnit alpaca = alpacaFactory.createProduct();
@@ -41,7 +40,7 @@ public class UnitFactoryTest {
         assertEquals(alpaca.getClass(),Alpaca.class);
         assertEquals(alpaca.getLocation(),testLocation);
         assertEquals(alpaca.getItems().get(0),testItem.get(0));
-        assertEquals(alpaca.getMaxHitPoints(),100);
+        assertEquals(alpaca.getMaxHitPoints(),75);
 
 
     }

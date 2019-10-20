@@ -6,6 +6,8 @@ import model.items.Staff;
 public class StaffFactory extends AbstractItemFactory {
     @Override
     public IEquipableItem createProduct() {
-        return new Staff(setting + " Staff", power, minRange, maxRange);
+        IEquipableItem staff = new Staff(setting + " Staff", power, minRange, maxRange);
+        staff.setOwner(owner);
+        return staff;
     }
 }

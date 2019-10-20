@@ -6,6 +6,8 @@ import model.items.IEquipableItem;
 public class AnimaFactory extends AbstractItemFactory {
     @Override
     public IEquipableItem createProduct() {
-        return new Anima(setting + " Anima", power, minRange, maxRange);
+        IEquipableItem anima = new Anima(setting + " Anima", power, minRange, maxRange);
+        anima.setOwner(owner);
+        return anima;
     }
 }

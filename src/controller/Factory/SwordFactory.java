@@ -6,6 +6,8 @@ import model.items.Sword;
 public class SwordFactory extends AbstractItemFactory {
     @Override
     public IEquipableItem createProduct() {
-        return new Sword(setting + " Sword", power, minRange, maxRange);
+        IEquipableItem sword = new Sword(setting + " Sword", power, minRange, maxRange);
+        sword.setOwner(owner);
+        return sword;
     }
 }
