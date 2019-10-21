@@ -13,7 +13,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TactiacianTest {
+public class TacticianTest {
 
     private IEquipableItem testItem1;
     private IEquipableItem testItem2;
@@ -32,7 +32,7 @@ public class TactiacianTest {
         testItem1 = new Spear("a1",10,1,3);
         testItem2 = new Sword("b2", 10,1,2);
         testItem3 = new Darkness("a2", 20,2,6);
-        testItem4 = new Bow("b2", 10,2,10);
+        testItem4 = new Bow("b2", 100,2,10);
         field = new Field();
         field.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
                 new Location(0, 3),new Location(0, 4),new Location(1, 0), new Location(1, 1), new Location(1, 2),new Location(1, 3), new Location(1, 4),new Location(2, 0),
@@ -40,9 +40,11 @@ public class TactiacianTest {
                 new Location(2, 7),new Location(2, 8));
         testUnit1 = new Hero(100,2,field.getCell(0,0),testItem1,testItem2);
         testUnit2 = new Cleric(100,2,field.getCell(2,2));
-        testUnit3 = new Sorcerer(100,2,field.getCell(1,1),testItem3,testItem4);
+        testUnit3 = new Sorcerer(100,2,field.getCell(1,0),testItem3);
+
         testPlayer1 = new Tactician("Player 1");
         testPlayer2 = new Tactician("Player 2");
+
 
     }
 
@@ -63,6 +65,19 @@ public class TactiacianTest {
         assertEquals("Player 2", testPlayer2.getName());
         assertNull(testPlayer1.getSelectedUnit());
         assertTrue(testPlayer2.getUnits().isEmpty());
+
+    }
+
+
+    @Test
+    void basicTest(){
+        setUnits();
+        testPlayer1.setSelectedUnit(testPlayer1.getUnits().get(0));
+        assertEquals(2,testPlayer1.getMovement());
+        assertEquals(100,testPlayer1.getCurrentHitPoints());
+        assertEquals(100,testPlayer1.getMaxHitPoints());
+        testPlayer1.setCurrentHitPoints(50);
+        assertEquals(50,testPlayer1.getCurrentHitPoints());
     }
 
     @Test
@@ -76,6 +91,8 @@ public class TactiacianTest {
         assertTrue(testPlayer1.getUnits().containsAll(unitsT));
 
     }
+
+
 
 
     @Test
@@ -114,12 +131,59 @@ public class TactiacianTest {
         assertEquals(new Location(0, 0), testPlayer1.getLocation());
         testPlayer2.setSelectedUnit(testPlayer2.getUnits().get(0));
         testPlayer2.moveTo(field.getCell(0, 2));
-        assertEquals(new Location(0, 2), testPlayer2.getLocation());
-
+        assertNotEquals(new Location(0, 2), testPlayer2.getLocation());
+        testPlayer2.moveTo(field.getCell(1, 2));
+        assertEquals(new Location(1, 2), testPlayer2.getLocation());
             }
+    @Test
+    void getSelectedItem(){
+        setUnits();
+        testPlayer1.setSelectedUnit(testPlayer1.getUnits().get(0));
+        assertNull(testPlayer1.getSelectedItem());
+        testPlayer1.setSelectedItem(testItem1);
+        assertEquals(testItem1,testPlayer1.getSelectedItem());
+
+    }
+
+    @Test
+    void equipItem(){
+        setUnits();
+        testPlayer1.setSelectedUnit(testPlayer1.getUnits().get(0));
+        assertNull(testUnit1.getEquippedItem());
+        assertNull(testPlayer1.getEquippedItem());
+        testPlayer1.equipItem(testItem1);
+        assertEquals(testUnit1.getEquippedItem(),testPlayer1.getEquippedItem());
+    }
 
 
+    @Test
+    void getItems(){
+        setUnits();
+        testPlayer1.setSelectedUnit(testPlayer1.getUnits().get(0));
+        assertEquals(2,testPlayer1.getItems().size());
+        assertTrue(testPlayer1.getItems().containsAll(Arrays.asList(testItem1,testItem2)));
 
+    }
+
+    @Test
+    void giveItemTo(){
+        setUnits();
+        testPlayer1.setSelectedUnit(testPlayer1.getUnits().get(0));
+        assertTrue(!testPlayer2.getUnits().get(0).getItems().contains(testItem1));
+        testPlayer1.setSelectedItem(testItem1);
+        testPlayer1.giveItemTo(testPlayer2.getUnits().get(0),testPlayer1.getSelectedItem());
+        assertTrue(testPlayer2.getUnits().get(0).getItems().contains(testItem1));
+    }
+
+    @Test
+    void getLocation(){
+        setUnits();
+        testPlayer1.setSelectedUnit(testPlayer1.getUnits().get(0));
+        assertEquals(new Location(0,0),testPlayer1.getLocation());
+        testPlayer1.setLocation(field.getCell(2,7));
+        assertEquals(field.getCell(2,7),testUnit1.getLocation());
+        assertEquals(field.getCell(2,7).getUnit(),testUnit1);
+    }
 
     @Test
     public void testUseEquippedItem(){
@@ -134,11 +198,31 @@ public class TactiacianTest {
         assertEquals(70,testPlayer1.getCurrentHitPoints());
         assertEquals(85,testPlayer2.getCurrentHitPoints());
 
+        Tactician testPlayer3 = new Tactician("Player 3");
+        IUnit testUnit4 = new Archer(100,2,field.getCell(2,1),testItem4);
+        ArrayList<IUnit> unit = new ArrayList<>();
+        unit.add(testUnit4);
+        testPlayer3.setUnits(unit);
+        testPlayer3.setSelectedUnit(testPlayer3.getUnits().get(0));
+        testPlayer3.setEquippedItem(testItem4);
+        testPlayer3.useEquippedItem(testPlayer1.getUnits().get(0));
+        assertTrue(testUnit1.getCurrentHitPoints()<=0);
+
+
+
     }
 
 
 
-
+    @Test
+    void removeUnit(){
+        setUnits();
+        assertEquals(2,testPlayer1.getUnits().size());
+        assertTrue(testPlayer1.getUnits().contains(testUnit2));
+        testPlayer1.removeUnit(testUnit2);
+        assertEquals(1, testPlayer1.getUnits().size());
+        assertFalse(testPlayer1.getUnits().contains(testUnit2));
+    }
 
 
 }

@@ -69,16 +69,16 @@ public class Tactician {
     }
 
     /**
-     * @return the item that the selected unit has equipped
+     * @return the item that has been selected
      */
     public IEquipableItem getSelectedItem() {
         return selectedItem;
     }
 
     /**
-     * Set the selected units equipped item.
+     * Select an item
      * @param selectedItem
-     *     the item to be set
+     *     the item to be selected
      */
     public void setSelectedItem(IEquipableItem selectedItem) {
         this.selectedItem = selectedItem;
@@ -182,14 +182,6 @@ public class Tactician {
         selectedUnit.giveItemTo(unit,item);
     }
 
-    /**
-     * receive an item from another unt
-     * @param gift
-     * the item to be received
-     */
-   public void receiveItem(IEquipableItem gift){
-        selectedUnit.receiveItem(gift);
-    }
 
     /**
      * @return the number of cells this unit can move
