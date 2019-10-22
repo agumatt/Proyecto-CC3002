@@ -25,9 +25,8 @@ class GameControllerTest {
     private long randomSeed;
     private List<String> testTacticians;
     private IEquipableItem testItem1 = new Spear("a1",10,1,3);
-    private IEquipableItem testItem2 = new Sword("b2", 10,1,2);
+    private IEquipableItem testItem2 = new Sword("b1", 10,1,2);
     private IEquipableItem testItem3 = new Darkness("a2", 20,2,6);
-    private IEquipableItem testItem4 = new Bow("b2", 100,2,10);
     private IUnit testUnit1;
     private IUnit testUnit2;
     private IUnit testUnit3;
@@ -67,7 +66,7 @@ class GameControllerTest {
 
 
     void setUp3(){
-        controller = new GameController(4,7,true);
+        controller = new GameController(4,3,true);
         randomSeed = controller.getSeed();
     }
 
@@ -87,9 +86,8 @@ class GameControllerTest {
 
     @Test
     void getGameMap() {
-        System.out.println(randomSeed+" ");
         Field gameMap = controller.getGameMap();
-        assertEquals(7, gameMap.getSize()); // getSize deben definirlo
+        assertEquals(7, gameMap.getSize());
         assertTrue(controller.getGameMap().isConnected());
         Random testRandom = new Random(randomSeed);
         // Para testear funcionalidades que dependen de valores aleatorios se hacen 2 cosas:
@@ -105,7 +103,11 @@ class GameControllerTest {
 
     @Test
     void getTurnOwner() {
-        //  En este caso deben hacer lo mismo que para el mapa
+        ArrayList<Tactician> auxArr = new ArrayList<>();
+        auxArr.addAll(controller.getTacticians());
+        Collections.shuffle(auxArr,new Random(controller.getSeed()));
+        Tactician predictedTurnOwner = auxArr.get(0);
+        assertEquals(predictedTurnOwner,controller.getTurnOwner());
     }
 
     @Test
@@ -124,7 +126,6 @@ class GameControllerTest {
         Random randomTurnSequence = new Random();
         IntStream.range(0, 50).map(i -> randomTurnSequence.nextInt() & Integer.MAX_VALUE).forEach(nextInt -> {
             controller.initGame(nextInt);
-            System.out.println(nextInt);
             assertEquals(nextInt, controller.getMaxRounds());
             System.out.println(nextInt);
         });
@@ -219,7 +220,10 @@ class GameControllerTest {
     @Test
     void getItems() {
         setUp2();
+        controller.selectUnitIn(0,0);
         assertTrue(testPlayer1.getItems().containsAll(Arrays.asList(testItem1,testItem2)));
+        assertTrue(controller.getItems().containsAll(Arrays.asList(testItem1,testItem2)));
+
     }
 
     @Test
@@ -232,7 +236,7 @@ class GameControllerTest {
 
     }
 
-   // @Test
+    @Test
     void useItemOn() {
         setUp3();
         setUp2();
@@ -243,6 +247,33 @@ class GameControllerTest {
         controller.useItemOn(1,0);
         assertEquals(70, controller.getSelectedUnit().getCurrentHitPoints());
         assertEquals(85, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
+
+        testItem3 = new Darkness("a2", 100,2,6);
+        setUp3();
+        setUp2();
+        controller.selectUnitIn(0,0);
+        controller.equipItem(0);
+        testUnit3.setEquippedItem(testItem3); //equip sorcerer
+        Tactician defeatedPlayer = controller.getTurnOwner();
+        assertTrue(defeatedPlayer.getSelectedUnit().gameChanger());
+        assertTrue(controller.getTacticians().contains(defeatedPlayer));
+
+        controller.useItemOn(1,0);
+        assertEquals(85, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
+        assertFalse(controller.getTacticians().contains(defeatedPlayer));  //defeated hero
+
+        testItem1 = new Spear("a1",100,1,3);
+        setUp3();
+        setUp2();
+        controller.selectUnitIn(0,0);
+        controller.equipItem(0);
+        testUnit3.setEquippedItem(testItem3); //equip sorcerer
+        defeatedPlayer = controller.getCurrentRoundOrder().get(1);
+        assertEquals(100, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
+        assertTrue(controller.getTacticians().contains(defeatedPlayer));
+        controller.useItemOn(1,0);
+        assertFalse(controller.getTacticians().contains(defeatedPlayer));  //defeated hero
+
     }
 
     @Test
@@ -264,9 +295,9 @@ class GameControllerTest {
         controller.selectItem(1);
         assertEquals(1,testUnit3.getItems().size());
         assertEquals(testItem2,controller.getTurnOwner().getSelectedItem());
-        testUnit1.giveItemTo(testUnit3,testItem2);
-     //   controller.giveItemTo(1,0);
-     //   assertTrue(testUnit3.getItems().contains(testItem2));
+     //   testUnit1.giveItemTo(testUnit3,testItem2);
+        controller.giveItemTo(1,0);
+        assertTrue(testUnit3.getItems().contains(testItem2));
     }
 
 

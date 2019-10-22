@@ -16,7 +16,6 @@ public class Field {
 
   private Map<String, Location> map = new HashMap<>();
   private Random random = new Random();
-  private boolean connect;
   private StringBuilder builder = new StringBuilder();
 
   /**
