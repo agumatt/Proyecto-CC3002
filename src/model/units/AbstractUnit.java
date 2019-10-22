@@ -156,7 +156,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
-        && targetLocation.getUnit() == null && currentHitPoints>0) {
+        && targetLocation.getUnit() == null) {
       setLocation(targetLocation);
     }
   }
