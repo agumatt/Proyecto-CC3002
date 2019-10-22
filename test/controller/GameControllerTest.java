@@ -151,22 +151,30 @@ class GameControllerTest {
 
     @Test
     void removeTactician() {
-        assertEquals(4, controller.getTacticians().size());
-        controller.getTacticians()
+        assertEquals(4, controller.getCurrentRoundOrder().size());
+        controller.getCurrentRoundOrder()
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
 
         controller.removeTactician("Player 0");
-        assertEquals(3, controller.getTacticians().size());
-        controller.getTacticians().forEach(tactician -> assertNotEquals("Player 0", tactician));
-        controller.getTacticians()
+        assertEquals(3, controller.getCurrentRoundOrder().size());
+        controller.getCurrentRoundOrder().forEach(tactician -> assertNotEquals("Player 0", tactician));
+        controller.getCurrentRoundOrder()
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
 
         controller.removeTactician("Player 5");
-        assertEquals(3, controller.getTacticians().size());
+        assertEquals(3, controller.getCurrentRoundOrder().size());
         controller.getTacticians()
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
     }
 
+
+    @Test
+    void cleanPlayers(){
+
+
+
+
+    }
 
     @Test
     void getWinners() {
@@ -260,7 +268,7 @@ class GameControllerTest {
 
         controller.useItemOn(1,0);
         assertEquals(85, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
-        assertFalse(controller.getTacticians().contains(defeatedPlayer));  //defeated hero
+        assertFalse(controller.getCurrentRoundOrder().contains(defeatedPlayer));  //defeated hero
 
         testItem1 = new Spear("a1",100,1,3);
         setUp3();
@@ -270,9 +278,9 @@ class GameControllerTest {
         testUnit3.setEquippedItem(testItem3); //equip sorcerer
         defeatedPlayer = controller.getCurrentRoundOrder().get(1);
         assertEquals(100, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
-        assertTrue(controller.getTacticians().contains(defeatedPlayer));
+        assertTrue(controller.getCurrentRoundOrder().contains(defeatedPlayer));
         controller.useItemOn(1,0);
-        assertFalse(controller.getTacticians().contains(defeatedPlayer));  //defeated hero
+        assertFalse(controller.getCurrentRoundOrder().contains(defeatedPlayer));  //defeated hero
 
     }
 

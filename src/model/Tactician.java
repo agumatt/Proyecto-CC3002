@@ -64,7 +64,7 @@ public class Tactician {
      *     the units to be selected
      */
    public void setSelectedUnit(IUnit selectedUnit) {
-       if(this.equals(selectedUnit.getTactician())){
+       if(selectedUnit==null || this.equals(selectedUnit.getTactician())){
         this.selectedUnit = selectedUnit;}
     }
 

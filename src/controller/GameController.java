@@ -49,7 +49,7 @@ public class GameController {
     public GameController(int numberOfPlayers, int mapSize) {
            for(int i=0;i<numberOfPlayers;i++){
                tacticians.add(new Tactician("Player "+ i));
-               currentRoundOrder.add(new Tactician("Player "+ i));
+               currentRoundOrder.add(tacticians.get(i));
            }
            for(int i=0;i<mapSize;i++){
                for(int j=0;j<mapSize;j++){
@@ -82,7 +82,7 @@ public class GameController {
     public GameController(int numberOfPlayers, int mapSize, boolean connect) {
         for(int i=0;i<numberOfPlayers;i++){
             tacticians.add(new Tactician("Player "+ i));
-            currentRoundOrder.add(new Tactician("Player "+ i));
+            currentRoundOrder.add(tacticians.get(i));
         }
         for(int i=0;i<mapSize;i++){
             for(int j=0;j<mapSize;j++){
@@ -158,12 +158,25 @@ public class GameController {
         return maxRounds;
     }
 
+    public void cleanPlayers(ArrayList<Tactician> players){
+        for(Tactician t : players){
+            t.setSelectedUnit(null);
+            t.setSelectedItem(null);
+            for(IUnit u : t.getUnits()){
+                t.removeUnit(u);
+            }
+        }
+    }
+
     /**
      * Finishes the current player's turn.
      */
     public void endTurn() {
-        if(tacticians.size()==1){
-            winners.add(tacticians.get(0).getName());
+        if(currentRoundOrder.size()==1){
+            winners.add(currentRoundOrder.get(0).getName());
+            currentRoundOrder.clear();
+            cleanPlayers(tacticians);
+            currentRoundOrder.addAll(tacticians);
             Collections.shuffle(currentRoundOrder,new Random(seed));
             turnOwner = currentRoundOrder.get(0);  //se prepara un juego nuevo
             roundNumber = 0;
@@ -181,18 +194,21 @@ public class GameController {
         }else{
             int maxUnits=0;
             Tactician aWinner=turnOwner;
-            for(Tactician t: tacticians){
+            for(Tactician t: currentRoundOrder){
                 if(t.getUnits().size()>maxUnits){
                     maxUnits=t.getUnits().size();
                     aWinner=t;
                 }
             }
             winners.add(aWinner.getName());
-            for(Tactician t : tacticians){
+            for(Tactician t : currentRoundOrder){
                 if(!t.getName().equals(aWinner.getName()) && t.getUnits().size()==maxUnits){
                     winners.add(t.getName());
                 }
             }
+            cleanPlayers(tacticians);
+            currentRoundOrder.clear();
+            currentRoundOrder.addAll(tacticians);
             Collections.shuffle(currentRoundOrder,new Random(seed));
             turnOwner = currentRoundOrder.get(0);  //se prepara un juego nuevo
             roundNumber = 0;
@@ -207,21 +223,23 @@ public class GameController {
      *     the player to be removed
      */
     public void removeTactician(String tactician) {
-         int i=0;
-         while(i<tacticians.size() && !tacticians.get(i).getName().equals(tactician)){
-             i++;
+         boolean found = false;
+        Tactician tacticianToRemove = null;
+         for(Tactician t : currentRoundOrder){
+             if(t.getName().equals(tactician)){
+                 found = true;
+                 tacticianToRemove = t;
+             }
          }
-         if(i==tacticians.size()){
+         if(!found){
              return;
          }
-         for(IUnit u : tacticians.get(i).getUnits()){
+         for(IUnit u : tacticianToRemove.getUnits()){
              u.getLocation().setUnit(null);
          }
-         Tactician tAuxSave = tacticians.get(i);
          int cSize = currentRoundOrder.size();
-         int iAuxSave = currentRoundOrder.indexOf(tAuxSave);
-         tacticians.remove(i);
-         currentRoundOrder.remove(tAuxSave);   //clean order array
+         int iAuxSave = currentRoundOrder.indexOf(tacticianToRemove);
+         currentRoundOrder.remove(tacticianToRemove);   //remove player
         if(turnOwner!=null && turnOwner.getName().equals(tactician)){  //remove current player
             if(iAuxSave<cSize-1){
                 next=0;

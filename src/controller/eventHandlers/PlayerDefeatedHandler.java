@@ -14,10 +14,8 @@ public class PlayerDefeatedHandler extends AbstractEventHandler{
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("property triggered");
-        if(evt.getPropertyName().equals("current player defeated") || evt.getPropertyName().equals("attacked player defeated")){
+        if(evt.getPropertyName().equals("player defeated")){
             controller.removeTactician(((Tactician) evt.getOldValue()).getName());
-            System.out.println("change executed");
         }
 
     }
