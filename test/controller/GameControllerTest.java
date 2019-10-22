@@ -1,27 +1,19 @@
 package controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 
 import controller.Factory.AlpacaFactory;
 import model.Tactician;
-import model.items.Bow;
-import model.items.Sword;
+import model.items.*;
 import model.map.Field;
 import model.map.Location;
-import model.units.Alpaca;
-import model.units.IUnit;
+import model.units.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -32,25 +24,60 @@ class GameControllerTest {
     private GameController controller;
     private long randomSeed;
     private List<String> testTacticians;
+    private IEquipableItem testItem1 = new Spear("a1",10,1,3);
+    private IEquipableItem testItem2 = new Sword("b2", 10,1,2);
+    private IEquipableItem testItem3 = new Darkness("a2", 20,2,6);
+    private IEquipableItem testItem4 = new Bow("b2", 100,2,10);
+    private IUnit testUnit1;
+    private IUnit testUnit2;
+    private IUnit testUnit3;
+    private Tactician testPlayer1;
+    private Tactician testPlayer2;
+
+
+    void setUp2(){
+        testUnit1 = new Hero(100,2,controller.getGameMap().getCell(0,0),testItem1,testItem2);
+        testUnit2 = new Cleric(100,2,controller.getGameMap().getCell(2,2));
+        testUnit3 = new Sorcerer(100,2,controller.getGameMap().getCell(1,0),testItem3);
+
+        testPlayer1 = controller.getCurrentRoundOrder().get(0);
+        testPlayer2 = controller.getCurrentRoundOrder().get(1);
+
+        ArrayList<IUnit> unitsT1 = new ArrayList<>();
+        unitsT1.add(testUnit1);
+        unitsT1.add(testUnit2);
+        ArrayList<IUnit> unitsT2 = new ArrayList<>();
+        unitsT2.add(testUnit3);
+        testPlayer1.setUnits(unitsT1);
+        testPlayer2.setUnits(unitsT2);
+
+
+    }
+
+
 
     @BeforeEach
     void setUp() {
         // Se define la semilla como un número aleatorio para generar variedad en los tests
-        randomSeed = new Random().nextLong();
         controller = new GameController(4, 7);
+        randomSeed = controller.getSeed();   //Recupero la semilla utilizada al crear el controlador
         testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
     }
 
 
-    @Test
-    void test(){
-        IUnit a = new Alpaca(5,5,new Location(3,2),new Sword("a",4,3,4),new Bow("b",3,4,3));
 
+    void setUp3(){
+        controller = new GameController(4,7,true);
+        randomSeed = controller.getSeed();
     }
+
+
+
+
+
 
     @Test
     void getTacticians() {
-        System.out.println(randomSeed+" ");
         List<Tactician> tacticians = controller.getTacticians();
         assertEquals(4, tacticians.size());
         for (int i = 0; i < tacticians.size(); i++) {
@@ -108,14 +135,17 @@ class GameControllerTest {
     @Test
     void endTurn() {
         Tactician firstPlayer = controller.getTurnOwner();
-        // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
+        // Se comprueba utilizando el arreglo que almacena el orden de los turnos y un nuevo arreglo que utiliza la misma semilla
         Tactician secondPlayer = controller.getCurrentRoundOrder().get(1);
-
+        ArrayList<Tactician> auxArr = new ArrayList<>();
+        auxArr.addAll(controller.getTacticians());
+        Collections.shuffle(auxArr,new Random(controller.getSeed()));
         assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
         controller.endTurn();
         assertNotEquals(firstPlayer.getName(), controller.getTurnOwner().getName());
         assertEquals(secondPlayer.getName(), controller.getTurnOwner().getName());
+        assertEquals(secondPlayer,auxArr.get(1));
     }
 
     @Test
@@ -166,30 +196,78 @@ class GameControllerTest {
 
     // Desde aquí en adelante, los tests deben definirlos completamente ustedes
     @Test
-    void getSelectedUnit() {
+    void selectUnitIn() {
+        setUp2();
+        assertNull(controller.getSelectedUnit());
+        controller.selectUnitIn(0,0);
+        assertEquals(controller.getTurnOwner().getSelectedUnit(),testUnit1);
     }
 
+
+
     @Test
-    void selectUnitIn() {
+    void getSelectedUnit() {
+        setUp2();
+        assertNull(controller.getSelectedUnit());
+        controller.selectUnitIn(0,0);
+        assertEquals(controller.getTurnOwner().getSelectedUnit(),controller.getSelectedUnit());
+
     }
+
+
 
     @Test
     void getItems() {
+        setUp2();
+        assertTrue(testPlayer1.getItems().containsAll(Arrays.asList(testItem1,testItem2)));
     }
 
     @Test
     void equipItem() {
+        setUp2();
+        controller.selectUnitIn(0,0);
+        assertNull(controller.getSelectedUnit().getEquippedItem());
+        controller.equipItem(0);
+        assertEquals(controller.getSelectedUnit().getEquippedItem(),testItem1);
+
     }
 
-    @Test
+   // @Test
     void useItemOn() {
+        setUp3();
+        setUp2();
+        assertEquals(100, controller.getGameMap().getCell(2,2).getUnit().getCurrentHitPoints());
+        controller.selectUnitIn(0,0);
+        controller.equipItem(0);
+        testUnit3.setEquippedItem(testItem3); //equip sorcerer
+        controller.useItemOn(1,0);
+        assertEquals(70, controller.getSelectedUnit().getCurrentHitPoints());
+        assertEquals(85, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
     }
 
     @Test
     void selectItem() {
+        setUp2();
+        controller.selectUnitIn(0,0);
+        assertNull(controller.getTurnOwner().getSelectedItem());
+        controller.selectItem(0);
+        assertEquals(testItem1,controller.getTurnOwner().getSelectedItem());
+
     }
 
     @Test
     void giveItemTo() {
+        setUp3();
+        setUp2();
+        assertFalse(testUnit3.getItems().contains(testItem2));
+        controller.selectUnitIn(0,0);
+        controller.selectItem(1);
+        assertEquals(1,testUnit3.getItems().size());
+        assertEquals(testItem2,controller.getTurnOwner().getSelectedItem());
+        testUnit1.giveItemTo(testUnit3,testItem2);
+     //   controller.giveItemTo(1,0);
+     //   assertTrue(testUnit3.getItems().contains(testItem2));
     }
+
+
 }

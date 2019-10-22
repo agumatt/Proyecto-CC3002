@@ -42,6 +42,8 @@ public class AlpacaTest extends AbstractTestUnit {
 
   @Test
   public void testGiveItem(){
+    field.getCell(0,0).setUnit(null);
+    field.getCell(0,1).setUnit(null);
     alpaca=new Alpaca(100,3,field.getCell(0,0),light,bow,anima,axe,sword);
     fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
     assertTrue(fighter.getItems().contains(darkness));

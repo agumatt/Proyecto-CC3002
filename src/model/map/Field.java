@@ -16,6 +16,7 @@ public class Field {
 
   private Map<String, Location> map = new HashMap<>();
   private Random random = new Random();
+  private boolean connect;
   private StringBuilder builder = new StringBuilder();
 
   /**
@@ -37,6 +38,14 @@ public class Field {
       }
     }
   }
+
+
+  public Field(long seed){
+    random = new Random(seed);
+  }
+
+
+  public Field(){}
 
   /**
    * Adds a cell to the map

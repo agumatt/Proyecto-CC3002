@@ -125,8 +125,10 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
 
 
-        setTestUnit();
-        setOtherTestUnits();
+        setUp();
+        sorcerer.getLocation().setUnit(null);
+        sorcerer2.getLocation().setUnit(null);
+        sorcerer3.getLocation().setUnit(null);
         sorcerer= new Sorcerer(50,2,field.getCell(0,2));
         sorcerer2= new Sorcerer(1000,2,field.getCell(0,0));
         sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
@@ -191,8 +193,10 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
 
 
-        setTestUnit();
-        setOtherTestUnits();
+        setUp();
+        sorcerer.getLocation().setUnit(null);
+        sorcerer2.getLocation().setUnit(null);
+        sorcerer3.getLocation().setUnit(null);
         sorcerer= new Sorcerer(50,2,field.getCell(0,2));
         sorcerer2= new Sorcerer(50,2,field.getCell(0,3));
         sorcerer3= new Sorcerer(1000,2,field.getCell(0,0));
@@ -264,6 +268,8 @@ public class SorcererTest extends AbstractTestUnit {
 
     @Test
     public void testGiveItem(){
+        field.getCell(0,0).setUnit(null);
+        field.getCell(0,1).setUnit(null);
         sorcerer=new Sorcerer(100,3,field.getCell(0,0),light,bow);
         fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
         assertTrue(fighter.getItems().contains(darkness));

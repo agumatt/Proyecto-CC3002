@@ -3,6 +3,11 @@ package controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+
+import controller.eventHandlers.AttackedUnitDefeatedHandler;
+import controller.eventHandlers.PlayerDefeatedHandler;
+import controller.eventHandlers.SelectedUnitDefeatedHandler;
 import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
@@ -22,13 +27,16 @@ public class GameController {
 
     private final ArrayList<Tactician> tacticians = new ArrayList<>();
     private final ArrayList<Tactician> currentRoundOrder = new ArrayList<>();
-    private Field map = new Field();
     private int roundNumber = 0;
     private int maxRounds;
     private Tactician turnOwner;
     private ArrayList<String> winners = new ArrayList<>();
     private int next = 1;
-
+    private SelectedUnitDefeatedHandler sUDH = new SelectedUnitDefeatedHandler(this);
+    private PlayerDefeatedHandler pDH = new PlayerDefeatedHandler(this);
+    private  AttackedUnitDefeatedHandler aUDH = new AttackedUnitDefeatedHandler(this);
+    private long seed = new Random().nextLong();
+    private Field map = new Field(seed);
 
     /**
      * Creates the controller for a new game.
@@ -48,13 +56,57 @@ public class GameController {
                    map.addCells(false,new Location(i,j));
                }
            }
-           Collections.shuffle(currentRoundOrder);
+           Collections.shuffle(currentRoundOrder,new Random(seed));
            turnOwner=currentRoundOrder.get(0);
+
+           for(Tactician t : tacticians){
+               t.addObserver(aUDH);
+               t.addObserver(pDH);
+               t.addObserver(sUDH);
+           }
+
+
+    }
+
+
+    /**
+     * Creates the controller for a new game.
+     *
+     * @param numberOfPlayers
+     *     the number of players for this game
+     * @param mapSize
+     *     the dimensions of the map, for simplicity, all maps are squares
+     * @param connect
+     *      indicates if the cells of the map are all connected
+     */
+    public GameController(int numberOfPlayers, int mapSize, boolean connect) {
+        for(int i=0;i<numberOfPlayers;i++){
+            tacticians.add(new Tactician("Player "+ i));
+            currentRoundOrder.add(new Tactician("Player "+ i));
+        }
+        for(int i=0;i<mapSize;i++){
+            for(int j=0;j<mapSize;j++){
+                map.addCells(connect,new Location(i,j));
+            }
+        }
+        Collections.shuffle(currentRoundOrder,new Random(seed));
+        turnOwner=currentRoundOrder.get(0);
+
+        for(Tactician t : tacticians){
+            t.addObserver(aUDH);
+            t.addObserver(pDH);
+            t.addObserver(sUDH);
+        }
+
 
     }
 
     public List<Tactician> getCurrentRoundOrder(){
         return List.copyOf(currentRoundOrder);
+    }
+
+    public long getSeed() {
+        return seed;
     }
 
     /**
@@ -65,10 +117,15 @@ public class GameController {
     }
 
     private void setNewOrder(){   //randomize
+        if(roundNumber==0){
+            Collections.shuffle(currentRoundOrder,new Random(seed));
+            turnOwner = currentRoundOrder.get(0);
+            return;
+        }
         Tactician auxSave = currentRoundOrder.get(currentRoundOrder.size()-1);
-        Collections.shuffle(currentRoundOrder);
+        Collections.shuffle(currentRoundOrder,new Random(seed));
         while(currentRoundOrder.get(0).getName().equals(auxSave.getName())) {
-             Collections.shuffle(currentRoundOrder);
+             Collections.shuffle(currentRoundOrder,new Random(seed));
         }
         turnOwner=currentRoundOrder.get(0);
     }
@@ -107,8 +164,9 @@ public class GameController {
     public void endTurn() {
         if(tacticians.size()==1){
             winners.add(tacticians.get(0).getName());
-            Collections.shuffle(currentRoundOrder);
+            Collections.shuffle(currentRoundOrder,new Random(seed));
             turnOwner = currentRoundOrder.get(0);  //se prepara un juego nuevo
+            roundNumber = 0;
             return;
         }
         int currentIndex = currentRoundOrder.indexOf(turnOwner);
@@ -135,8 +193,9 @@ public class GameController {
                     winners.add(t.getName());
                 }
             }
-            Collections.shuffle(currentRoundOrder);
+            Collections.shuffle(currentRoundOrder,new Random(seed));
             turnOwner = currentRoundOrder.get(0);  //se prepara un juego nuevo
+            roundNumber = 0;
 
         }
     }
