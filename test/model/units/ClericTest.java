@@ -42,6 +42,12 @@ public class ClericTest extends AbstractTestUnit {
     swordMaster =new SwordMaster(50,2,field.getCell(2,8));
   }
 
+  @Override
+  @Test
+  public void gameChangerTest() {
+    assertFalse(secondCleric.gameChanger());
+  }
+
   @Test
   @Override
   public void testUseEquippedItem() {

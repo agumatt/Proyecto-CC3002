@@ -22,7 +22,7 @@ public class Cleric extends AbstractUnit {
    * @param movement
    *     the number of panels a unit can move
    */
-  public Cleric(final int hitPoints, final int movement, final Location location,
+  public Cleric(final double hitPoints, final int movement, final Location location,
       IEquipableItem... items) {
     super(hitPoints, movement, location, 3, items);
   }
@@ -38,5 +38,10 @@ public class Cleric extends AbstractUnit {
     if (item.getOwner() == this) {
       ((INonMagicalItem) item).equipToCleric(this);
     }
+  }
+
+  @Override
+  public boolean gameChanger() {
+    return false;
   }
 }

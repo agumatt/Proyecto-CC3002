@@ -6,6 +6,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -16,8 +18,8 @@ import model.map.Location;
  * game, but that contains the implementation of some of the methods that are common for most
  * units.
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public abstract class AbstractUnit implements IUnit {
 
@@ -27,6 +29,17 @@ public abstract class AbstractUnit implements IUnit {
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
+  private Tactician tactician;
+
+  public Tactician getTactician() {
+    return tactician;
+  }
+
+  public void setTactician(Tactician tactician) {
+    this.tactician = tactician;
+  }
+
+
 
   /**
    * Creates a new Unit.
@@ -40,13 +53,15 @@ public abstract class AbstractUnit implements IUnit {
    * @param maxItems
    *     maximum amount of items this unit can carry
    */
-  protected AbstractUnit(final int hitPoints, final int movement,
+  protected AbstractUnit(final double hitPoints, final int movement,
       final Location location, final int maxItems, final IEquipableItem... items) {
     this.maxHitPoints = hitPoints;
     this.currentHitPoints=hitPoints;
     this.movement = movement;
     if (location.getUnit() == null && hitPoints>0){
-    this.location = location;}
+      this.location = location;
+      location.setUnit(this);
+    }
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
    for(IEquipableItem i:items){
       i.setOwner(this);
@@ -56,7 +71,7 @@ public abstract class AbstractUnit implements IUnit {
 
 
 
-  public void giveItem(IUnit unit, IEquipableItem gift){
+  public void giveItemTo(IUnit unit, IEquipableItem gift){
       if(gift.getOwner()==this && (this.location.distanceTo(unit.getLocation())==1) && currentHitPoints>0){
         unit.receiveItem(gift);
         if(gift.getOwner()==unit){
@@ -85,12 +100,6 @@ public abstract class AbstractUnit implements IUnit {
       if (unit.getCurrentHitPoints()>0 && unit.getEquippedItem()!=null) {
         unit.getEquippedItem().counterAttack(this);
       }
-    }
-    if(this.getCurrentHitPoints()<=0){
-        this.setLocation(null);
-    }
-    if(unit.getCurrentHitPoints()<=0){
-        unit.setLocation(null);
     }
     }
     }}
@@ -133,7 +142,10 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void setLocation(final Location location) {
+    if(location.getUnit()==null){
     this.location = location;
+    location.setUnit(this);
+    }
   }
 
   @Override
@@ -144,7 +156,8 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
-        && targetLocation.getUnit() == null && currentHitPoints>0) {
+        && targetLocation.getUnit() == null) {
+      this.getLocation().setUnit(null);
       setLocation(targetLocation);
     }
   }

@@ -28,7 +28,7 @@ public class Light extends AbstractMagicalItem {
      *     the maximum range of the light
      */
 
-    public Light(final String name, final int power, final int minRange, final int maxRange) {
+    public Light(final String name, final double power, final int minRange, final int maxRange) {
         super(name, power, minRange, maxRange);
     }
 

@@ -24,7 +24,7 @@ public class Sword extends AbstractNonMagicalItem {
    * @param maxRange
    *     the maximum range of the weapon
    */
-  public Sword(final String name, final int power, final int minRange, final int maxRange) {
+  public Sword(final String name, final double power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);
   }
 

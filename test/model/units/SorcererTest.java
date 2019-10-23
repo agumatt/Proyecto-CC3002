@@ -2,7 +2,6 @@ package model.units;
 
 import model.items.Anima;
 import model.items.Darkness;
-import model.items.IEquipableItem;
 import model.items.Light;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -54,6 +53,12 @@ public class SorcererTest extends AbstractTestUnit {
         fighter =new Fighter(50,2,field.getCell(2,3));
         hero =new Hero(50,2,field.getCell(2,4));
         swordMaster =new SwordMaster(50,2,field.getCell(2,8));
+    }
+
+    @Override
+    @Test
+    public void gameChangerTest() {
+        assertFalse(secondSorcerer.gameChanger());
     }
 
     @Test
@@ -120,8 +125,10 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
 
 
-        setTestUnit();
-        setOtherTestUnits();
+        setUp();
+        sorcerer.getLocation().setUnit(null);
+        sorcerer2.getLocation().setUnit(null);
+        sorcerer3.getLocation().setUnit(null);
         sorcerer= new Sorcerer(50,2,field.getCell(0,2));
         sorcerer2= new Sorcerer(1000,2,field.getCell(0,0));
         sorcerer3= new Sorcerer(50,2,field.getCell(0,3));
@@ -186,8 +193,10 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(-9,noCounterattackSorcerer.getCurrentHitPoints());
 
 
-        setTestUnit();
-        setOtherTestUnits();
+        setUp();
+        sorcerer.getLocation().setUnit(null);
+        sorcerer2.getLocation().setUnit(null);
+        sorcerer3.getLocation().setUnit(null);
         sorcerer= new Sorcerer(50,2,field.getCell(0,2));
         sorcerer2= new Sorcerer(50,2,field.getCell(0,3));
         sorcerer3= new Sorcerer(1000,2,field.getCell(0,0));
@@ -259,13 +268,15 @@ public class SorcererTest extends AbstractTestUnit {
 
     @Test
     public void testGiveItem(){
+        field.getCell(0,0).setUnit(null);
+        field.getCell(0,1).setUnit(null);
         sorcerer=new Sorcerer(100,3,field.getCell(0,0),light,bow);
         fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
         assertTrue(fighter.getItems().contains(darkness));
         assertEquals(fighter,darkness.getOwner());
         assertTrue(!(sorcerer.getItems().contains(darkness)));
 
-        fighter.giveItem(sorcerer,darkness);
+        fighter.giveItemTo(sorcerer,darkness);
 
         assertTrue(sorcerer.getItems().contains(darkness));
         assertEquals(sorcerer,darkness.getOwner());

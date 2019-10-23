@@ -1,6 +1,5 @@
 package model.units;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +21,12 @@ public class AlpacaTest extends AbstractTestUnit {
     deadAlpaca = new Alpaca(0, 2, field.getCell(2, 2));
   }
 
+  @Override
+  @Test
+  public void gameChangerTest() {
+    assertFalse(weakAlpaca.gameChanger());
+  }
+
 
   public void setOtherTestUnits() {
     sorcerer = new Sorcerer(50, 2, field.getCell(0, 1));
@@ -37,13 +42,15 @@ public class AlpacaTest extends AbstractTestUnit {
 
   @Test
   public void testGiveItem(){
+    field.getCell(0,0).setUnit(null);
+    field.getCell(0,1).setUnit(null);
     alpaca=new Alpaca(100,3,field.getCell(0,0),light,bow,anima,axe,sword);
     fighter=new Fighter(100,3,field.getCell(0,1),darkness,bow,staff);
     assertTrue(fighter.getItems().contains(darkness));
     assertEquals(fighter,darkness.getOwner());
     assertTrue(!(alpaca.getItems().contains(darkness)));
 
-    fighter.giveItem(alpaca,darkness);
+    fighter.giveItemTo(alpaca,darkness);
 
     assertTrue(alpaca.getItems().contains(darkness));
     assertEquals(alpaca,darkness.getOwner());
@@ -168,4 +175,6 @@ public class AlpacaTest extends AbstractTestUnit {
     alpaca.equipItem(axe);
     assertNull(alpaca.getEquippedItem());
   }
+
+
 }

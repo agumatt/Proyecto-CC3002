@@ -38,6 +38,14 @@ public class Field {
     }
   }
 
+
+  public Field(long seed){
+    random = new Random(seed);
+  }
+
+
+  public Field(){}
+
   /**
    * Adds a cell to the map
    *
@@ -140,4 +148,8 @@ public class Field {
   public boolean checkConnection(final Location cell1, final Location cell2) {
     return cell1.isNeighbour(cell2);
   }
+
+    public int getSize() {
+      return (int) Math.sqrt(map.size());
+    }
 }

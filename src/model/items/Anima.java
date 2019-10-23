@@ -26,7 +26,7 @@ public class Anima extends AbstractMagicalItem {
      *     the maximum range of the anima
      */
 
-    public Anima(final String name, final int power, final int minRange, final int maxRange) {
+    public Anima(final String name, final double power, final int minRange, final int maxRange) {
         super(name, power, minRange, maxRange);
     }
 

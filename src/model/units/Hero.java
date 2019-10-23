@@ -24,7 +24,7 @@ public class Hero extends AbstractUnit {
    * @param movement
    *     the number of panels a unit can move
    */
-  public Hero(final int hitPoints, final int movement, final Location location,
+  public Hero(final double hitPoints, final int movement, final Location location,
       IEquipableItem... items) {
     super(hitPoints, movement, location, 3, items);
   }
@@ -40,5 +40,10 @@ public class Hero extends AbstractUnit {
     if (item.getOwner() == this) {
       ((INonMagicalItem) item).equipToHero(this);
     }
+  }
+
+  @Override
+  public boolean gameChanger() {
+    return true;
   }
 }

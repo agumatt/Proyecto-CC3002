@@ -27,7 +27,7 @@ public class Archer extends AbstractUnit {
    * @param items
    *     the items carried by this unit
    */
-  public Archer(final int hitPoints, final int movement, final Location position,
+  public Archer(final double hitPoints, final int movement, final Location position,
       final IEquipableItem... items) {
     super(hitPoints, movement, position, 3, items);
   }
@@ -45,5 +45,10 @@ public class Archer extends AbstractUnit {
     if (item.getOwner() == this) {
       ((INonMagicalItem) item).equipToArcher(this);
     }
+  }
+
+  @Override
+  public boolean gameChanger() {
+    return false;
   }
 }

@@ -251,6 +251,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void testMovement() {
+    getField().getCell(2,2).setUnit(null);
+    getField().getCell(0,2).setUnit(null);
     getTestUnit().moveTo(getField().getCell(2, 2));
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
 

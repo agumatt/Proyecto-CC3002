@@ -1,6 +1,8 @@
 package model.units;
 
 import java.util.List;
+
+import model.Tactician;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -22,6 +24,20 @@ public interface IUnit {
    *     the item to equip
    */
   void equipItem(IEquipableItem item);
+
+
+    /**
+     * @return player that owns the unit
+     */
+  Tactician getTactician();
+
+
+    /**
+     * Sets the owner of this unit.
+     * @param tactician
+     *     the tactician to be set
+     */
+  void setTactician(Tactician tactician);
 
   /**
    * @return hit points of the unit
@@ -68,13 +84,18 @@ public interface IUnit {
   void setLocation(final Location location);
 
   /**
+   * Determines if the loss of the unit makes you lose the game instantly
+   */
+  boolean gameChanger();
+
+  /**
    * Gives an item to another unit
    * @param unit
    * the unit that gives the item
    * @param item
    * the item to be given
    */
-  void giveItem(IUnit unit, IEquipableItem item);
+  void giveItemTo(IUnit unit, IEquipableItem item);
 
   /**
    * receive an item from another unt
