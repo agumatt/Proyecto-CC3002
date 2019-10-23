@@ -11,6 +11,3 @@ Sobre la segunda parte del proyecto:
 IMPORTANTE 
 Para mantener el orden de cada ronda, y respaldar a los jugadores iniciales para posibilitar una nueva partida, se utilizan dos arreglos en el controlador del juego. El primero, "tacticians", contiene a los jugadores en el orden y cantidad que fueron creados, manteniendose asi durante todo el juego. El segundo, "currentRoundOrder", determina el orden de la ronda actual y contiene solamente a los jugadores que hasta el momento no han sido derrotados. Dada esta lógica, el metodo removeTactician se aplica a "currentRoundOrder", y por lo tanto, ese es el arreglo que se utiliza para comprobar su funcionamiento en el test, y no "tacticians" como era originalmente.
 El test "endTurn", tambien hace uso de currentRoundOrder.
-.
-.  
-.  
