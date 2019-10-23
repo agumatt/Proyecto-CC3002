@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1873.0" y="2887.0">model.map.Field</node>
+    <node x="1279.0" y="2387.0">model.map.Location</node>
+    <node x="0.0" y="2793.0">controller.factory.FighterFactory</node>
+    <node x="0.0" y="2260.0">model.units.Fighter</node>
+    <node x="687.5" y="1832.0">model.units.AbstractUnit</node>
+    <node x="0.0" y="3259.0">controller.factory.LightFactory</node>
+    <node x="906.0000000000001" y="1067.0">model.items.Bow</node>
+    <node x="1386.0" y="3259.0">controller.factory.SwordFactory</node>
+    <node x="354.0" y="2793.0">controller.factory.HeroFactory</node>
+    <node x="693.0" y="3259.0">controller.factory.SpearFactory</node>
+    <node x="687.5" y="1381.0">model.units.IUnit</node>
+    <node x="531.0" y="2793.0">controller.factory.ArcherFactory</node>
+    <node x="2560.0" y="2887.0">controller.eventHandlers.AbstractEventHandler</node>
+    <node x="943.0" y="2260.0">model.units.Hero</node>
+    <node x="476.5" y="2596.0">controller.factory.AbstractUnitFactory</node>
+    <node x="476.5" y="2387.0">controller.factory.UnitFactory</node>
+    <node x="0.0" y="1133.0">model.items.Light</node>
+    <node x="1670.0" y="1381.0">model.Tactician</node>
+    <node x="2210.0" y="2964.0">controller.eventHandlers.PlayerDefeatedHandler</node>
+    <node x="1329.0" y="2750.0">model.map.InvalidLocation</node>
+    <node x="272.1904761904764" y="836.0">model.items.AbstractMagicalItem</node>
+    <node x="1617.0654761904764" y="385.0">model.items.INonMagicalItem</node>
+    <node x="177.0" y="2793.0">controller.factory.ClericFactory</node>
+    <node x="1155.0" y="3259.0">controller.factory.BowFactory</node>
+    <node x="302.0000000000001" y="1133.0">model.items.Darkness</node>
+    <node x="702.0" y="2249.0">model.units.Alpaca</node>
+    <node x="1617.0" y="3259.0">controller.factory.DarknessFactory</node>
+    <node x="2814.0" y="2964.0">controller.eventHandlers.AttackedUnitDefeatedHandler</node>
+    <node x="234.0" y="2260.0">model.units.Archer</node>
+    <node x="1528.0" y="1067.0">model.items.Sword</node>
+    <node x="808.5" y="2887.0">controller.factory.ItemFactory</node>
+    <node x="231.0" y="3259.0">controller.factory.AxeFactory</node>
+    <node x="924.0" y="3259.0">controller.factory.AnimaFactory</node>
+    <node x="1990.0" y="1381.0">controller.GameController</node>
+    <node x="1217.0" y="1067.0">model.items.Axe</node>
+    <node x="708.0" y="2793.0">controller.factory.SwordMasterFactory</node>
+    <node x="2512.0" y="2964.0">controller.eventHandlers.SelectedUnitDefeatedHandler</node>
+    <node x="824.5" y="3074.0">controller.factory.AbstractItemFactory</node>
+    <node x="900.0" y="2793.0">controller.factory.SorcererFactory</node>
+    <node x="468.0" y="2260.0">model.units.SwordMaster</node>
+    <node x="2150.0" y="1067.0">model.items.Spear</node>
+    <node x="1411.0" y="2260.0">model.units.Cleric</node>
+    <node x="1077.0" y="2793.0">controller.factory.AlpacaFactory</node>
+    <node x="1839.0" y="1045.0">model.items.Staff</node>
+    <node x="828.9404761904764" y="484.0">model.items.AbstractItem</node>
+    <node x="182.0654761904766" y="440.0">model.items.IMagicalItem</node>
+    <node x="1502.6904761904764" y="847.0">model.items.AbstractNonMagicalItem</node>
+    <node x="462.0" y="3259.0">controller.factory.StaffFactory</node>
+    <node x="1177.0" y="2260.0">model.units.Sorcerer</node>
+    <node x="759.4404761904764" y="0.0">model.items.IEquipableItem</node>
+    <node x="604.0000000000001" y="1133.0">model.items.Anima</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="controller.factory.ArcherFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.StaffFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="567.5" y="3229.0" />
+      <point x="880.4375" y="3229.0" />
+      <point x="-33.5625" y="57.5" />
+    </edge>
+    <edge source="model.items.Axe" target="model.items.AbstractNonMagicalItem">
+      <point x="0.0" y="-123.5" />
+      <point x="1362.5" y="1025.0" />
+      <point x="1598.6904761904764" y="1025.0" />
+      <point x="-64.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.AxeFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="336.5" y="3219.0" />
+      <point x="858.0625" y="3219.0" />
+      <point x="-55.9375" y="57.5" />
+    </edge>
+    <edge source="model.units.Hero" target="model.units.AbstractUnit">
+      <point x="0.0" y="-35.5" />
+      <point x="1050.0" y="2229.0" />
+      <point x="848.2142857142858" y="2229.0" />
+      <point x="35.71428571428578" y="178.5" />
+    </edge>
+    <edge source="controller.factory.AbstractItemFactory" target="controller.factory.ItemFactory">
+      <point x="0.0" y="-57.5" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="model.items.Sword" target="model.items.AbstractNonMagicalItem">
+      <point x="0.0" y="-123.5" />
+      <point x="1673.5" y="1025.0" />
+      <point x="1662.6904761904764" y="1025.0" />
+      <point x="0.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.HeroFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="432.5" y="2773.0" />
+      <point x="571.5" y="2773.0" />
+      <point x="-38.0" y="68.5" />
+    </edge>
+    <edge source="model.items.AbstractMagicalItem" target="model.items.AbstractItem">
+      <point x="80.00000000000023" y="-79.5" />
+      <point x="512.1904761904766" y="811.0" />
+      <point x="874.1904761904764" y="811.0" />
+      <point x="-45.25" y="101.5" />
+    </edge>
+    <edge source="controller.factory.LightFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="105.5" y="3209.0" />
+      <point x="835.6875" y="3209.0" />
+      <point x="-78.3125" y="57.5" />
+    </edge>
+    <edge source="model.items.Light" target="model.items.AbstractMagicalItem">
+      <point x="0.0" y="-57.5" />
+      <point x="141.0" y="1025.0" />
+      <point x="325.52380952380963" y="1025.0" />
+      <point x="-106.66666666666674" y="79.5" />
+    </edge>
+    <edge source="controller.eventHandlers.SelectedUnitDefeatedHandler" target="controller.eventHandlers.AbstractEventHandler">
+      <point x="0.0" y="-24.5" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="model.items.Bow" target="model.items.AbstractNonMagicalItem">
+      <point x="0.0" y="-123.5" />
+      <point x="1051.5" y="1015.0" />
+      <point x="1534.6904761904764" y="1015.0" />
+      <point x="-128.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.DarknessFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="1722.5" y="3209.0" />
+      <point x="992.3125" y="3209.0" />
+      <point x="78.3125" y="57.5" />
+    </edge>
+    <edge source="model.map.InvalidLocation" target="model.map.Location">
+      <point x="0.0" y="-35.5" />
+      <point x="0.0" y="156.5" />
+    </edge>
+    <edge source="controller.factory.SwordFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="1491.5" y="3219.0" />
+      <point x="969.9375" y="3219.0" />
+      <point x="55.9375" y="57.5" />
+    </edge>
+    <edge source="model.items.AbstractItem" target="model.items.IEquipableItem">
+      <point x="0.0" y="-101.5" />
+      <point x="0.0" y="167.5" />
+    </edge>
+    <edge source="controller.factory.SpearFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="798.5" y="3239.0" />
+      <point x="902.8125" y="3239.0" />
+      <point x="-11.1875" y="57.5" />
+    </edge>
+    <edge source="model.items.Spear" target="model.items.AbstractNonMagicalItem">
+      <point x="0.0" y="-123.5" />
+      <point x="2295.5" y="1015.0" />
+      <point x="1790.6904761904764" y="1015.0" />
+      <point x="128.0" y="68.5" />
+    </edge>
+    <edge source="model.items.Staff" target="model.items.AbstractNonMagicalItem">
+      <point x="0.0" y="-145.5" />
+      <point x="1984.5" y="1025.0" />
+      <point x="1726.6904761904764" y="1025.0" />
+      <point x="64.0" y="68.5" />
+    </edge>
+    <edge source="model.units.Archer" target="model.units.AbstractUnit">
+      <point x="0.0" y="-35.5" />
+      <point x="341.0" y="2219.0" />
+      <point x="741.0714285714286" y="2219.0" />
+      <point x="-71.42857142857144" y="178.5" />
+    </edge>
+    <edge source="controller.eventHandlers.PlayerDefeatedHandler" target="controller.eventHandlers.AbstractEventHandler">
+      <point x="0.0" y="-24.5" />
+      <point x="2351.0" y="2939.0" />
+      <point x="2591.0" y="2939.0" />
+      <point x="-62.0" y="13.5" />
+    </edge>
+    <edge source="model.units.Cleric" target="model.units.AbstractUnit">
+      <point x="0.0" y="-35.5" />
+      <point x="1518.0" y="2209.0" />
+      <point x="919.6428571428571" y="2209.0" />
+      <point x="107.14285714285711" y="178.5" />
+    </edge>
+    <edge source="model.units.Sorcerer" target="model.units.AbstractUnit">
+      <point x="0.0" y="-35.5" />
+      <point x="1284.0" y="2219.0" />
+      <point x="883.9285714285714" y="2219.0" />
+      <point x="71.42857142857144" y="178.5" />
+    </edge>
+    <edge source="model.items.AbstractNonMagicalItem" target="model.items.AbstractItem">
+      <point x="-80.0" y="-68.5" />
+      <point x="1582.6904761904764" y="811.0" />
+      <point x="964.6904761904764" y="811.0" />
+      <point x="45.25" y="101.5" />
+    </edge>
+    <edge source="model.items.Darkness" target="model.items.AbstractMagicalItem">
+      <point x="0.0" y="-57.5" />
+      <point x="443.0000000000001" y="1025.0" />
+      <point x="432.1904761904764" y="1025.0" />
+      <point x="0.0" y="79.5" />
+    </edge>
+    <edge source="controller.factory.AlpacaFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="1155.5" y="2753.0" />
+      <point x="723.5" y="2753.0" />
+      <point x="114.0" y="68.5" />
+    </edge>
+    <edge source="model.units.Fighter" target="model.units.AbstractUnit">
+      <point x="0.0" y="-35.5" />
+      <point x="107.0" y="2209.0" />
+      <point x="705.3571428571429" y="2209.0" />
+      <point x="-107.14285714285711" y="178.5" />
+    </edge>
+    <edge source="model.units.SwordMaster" target="model.units.AbstractUnit">
+      <point x="0.0" y="-35.5" />
+      <point x="575.0" y="2229.0" />
+      <point x="776.7857142857143" y="2229.0" />
+      <point x="-35.714285714285666" y="178.5" />
+    </edge>
+    <edge source="controller.factory.BowFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="1260.5" y="3229.0" />
+      <point x="947.5625" y="3229.0" />
+      <point x="33.5625" y="57.5" />
+    </edge>
+    <edge source="model.items.Anima" target="model.items.AbstractMagicalItem">
+      <point x="0.0" y="-57.5" />
+      <point x="745.0000000000001" y="1025.0" />
+      <point x="538.8571428571431" y="1025.0" />
+      <point x="106.66666666666674" y="79.5" />
+    </edge>
+    <edge source="controller.eventHandlers.AttackedUnitDefeatedHandler" target="controller.eventHandlers.AbstractEventHandler">
+      <point x="0.0" y="-24.5" />
+      <point x="2955.0" y="2939.0" />
+      <point x="2715.0" y="2939.0" />
+      <point x="62.0" y="13.5" />
+    </edge>
+    <edge source="controller.factory.AbstractUnitFactory" target="controller.factory.UnitFactory">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="79.5" />
+    </edge>
+    <edge source="controller.factory.AnimaFactory" target="controller.factory.AbstractItemFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="1029.5" y="3239.0" />
+      <point x="925.1875" y="3239.0" />
+      <point x="11.1875" y="57.5" />
+    </edge>
+    <edge source="model.units.AbstractUnit" target="model.units.IUnit">
+      <point x="0.0" y="-178.5" />
+      <point x="0.0" y="200.5" />
+    </edge>
+    <edge source="model.units.Alpaca" target="model.units.AbstractUnit">
+      <point x="0.0" y="-46.5" />
+      <point x="0.0" y="178.5" />
+    </edge>
+    <edge source="model.items.AbstractMagicalItem" target="model.items.IMagicalItem">
+      <point x="-79.99999999999977" y="-79.5" />
+      <point x="352.1904761904766" y="811.0" />
+      <point x="327.0654761904766" y="811.0" />
+      <point x="0.0" y="145.5" />
+    </edge>
+    <edge source="model.items.AbstractNonMagicalItem" target="model.items.INonMagicalItem">
+      <point x="80.0" y="-68.5" />
+      <point x="1742.6904761904764" y="811.0" />
+      <point x="1773.5654761904764" y="811.0" />
+      <point x="0.0" y="200.5" />
+    </edge>
+    <edge source="controller.factory.SorcererFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="978.5" y="2763.0" />
+      <point x="685.5" y="2763.0" />
+      <point x="76.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.ClericFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="255.5" y="2763.0" />
+      <point x="533.5" y="2763.0" />
+      <point x="-76.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.FighterFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="78.5" y="2753.0" />
+      <point x="495.5" y="2753.0" />
+      <point x="-114.0" y="68.5" />
+    </edge>
+    <edge source="controller.factory.SwordMasterFactory" target="controller.factory.AbstractUnitFactory">
+      <point x="0.0" y="-24.5" />
+      <point x="794.0" y="2773.0" />
+      <point x="647.5" y="2773.0" />
+      <point x="38.0" y="68.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.10000000000000014" x="499.5" y="265.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
