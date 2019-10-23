@@ -1,6 +1,14 @@
-package controller.Factory;
+package controller.factory;
 
 import model.units.IUnit;
+
+/**
+ * This class represents an abstract item factory. It contains the logic for item creation.
+ *
+ * @author Agustin Matthey
+ * @version 1.0
+ * @since 1.0
+ */
 
 public abstract class AbstractItemFactory implements ItemFactory {
 

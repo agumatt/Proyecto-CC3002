@@ -19,9 +19,9 @@ import model.units.IUnit;
  * Controller of the game.
  * The controller manages all the input received from de game's GUI.
  *
- * @author Ignacio Slater Muñoz
- * @version 2.0
- * @since 2.0
+ * @author Agustin Matthey
+ * @version 2.1
+ * @since 2.1
  */
 public class GameController {
 
@@ -37,6 +37,8 @@ public class GameController {
     private  AttackedUnitDefeatedHandler aUDH = new AttackedUnitDefeatedHandler(this);
     private long seed = new Random().nextLong();
     private Field map = new Field(seed);
+
+
 
     /**
      * Creates the controller for a new game.
@@ -101,21 +103,32 @@ public class GameController {
 
     }
 
+    /**
+     * @return the list of all the tacticians currently participating in the game, ordered
+     * by the current round's order.
+     */
     public List<Tactician> getCurrentRoundOrder(){
         return List.copyOf(currentRoundOrder);
     }
 
+
+    /**
+     * @return the seed used to generate all random values used in this class.
+     */
     public long getSeed() {
         return seed;
     }
 
     /**
-     * @return the list of all the tacticians participating in the game.
+     * @return the list of all the tacticians participating at the beginning of the game.
      */
     public List<Tactician> getTacticians() {
         return List.copyOf(tacticians);
     }
 
+    /**
+     * sets a new playing order for a round.
+     */
     private void setNewOrder(){   //randomize
         if(roundNumber==0){
             Collections.shuffle(currentRoundOrder,new Random(seed));
@@ -158,7 +171,14 @@ public class GameController {
         return maxRounds;
     }
 
-    public void cleanPlayers(ArrayList<Tactician> players){
+
+    /**
+     * Refreshes the game's players to be used in a new game.
+     *
+     * @param players
+     *     the players to be cleaned.
+     */
+    private void cleanPlayers(ArrayList<Tactician> players){
         for(Tactician t : players){
             t.setSelectedUnit(null);
             t.setSelectedItem(null);
@@ -253,6 +273,12 @@ public class GameController {
     }
 
 
+    /**
+     * Removes a unit from tha game.
+     *
+     * @param unit
+     *     the unit to be removed.
+     */
     public void removeUnit(IUnit unit){
          unit.getLocation().setUnit(null);
          unit.getTactician().removeUnit(unit);
@@ -260,13 +286,13 @@ public class GameController {
 
     /**
      * Starts the game.
-     * @param maxTurns
+     * @param maxRounds
      *  the maximum number of turns the game can last
      */
-    public void initGame(final int maxTurns) {
+    public void initGame(final int maxRounds) {
         winners = new ArrayList<>();
         roundNumber = 1;
-        this.maxRounds = maxTurns;
+        this.maxRounds = maxRounds;
 
     }
 

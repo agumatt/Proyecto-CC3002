@@ -1,23 +1,13 @@
-package controller;
+package controller.factory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.sql.Array;
-import java.util.*;
-import java.util.stream.IntStream;
-
-import controller.Factory.*;
-import model.Tactician;
 import model.items.*;
-import model.map.Field;
 import model.map.Location;
 import model.units.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 

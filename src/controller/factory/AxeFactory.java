@@ -1,7 +1,15 @@
-package controller.Factory;
+package controller.factory;
 
 import model.items.Axe;
 import model.items.IEquipableItem;
+
+/**
+ * This class is in charge of generating Axes.
+ *
+ * @author Agustin Matthey
+ * @version 1.0
+ * @since 1.0
+ */
 
 public class AxeFactory extends AbstractItemFactory {
     @Override

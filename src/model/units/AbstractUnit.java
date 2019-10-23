@@ -18,8 +18,8 @@ import model.map.Location;
  * game, but that contains the implementation of some of the methods that are common for most
  * units.
  *
- * @author Ignacio Slater Muñoz
- * @since 1.0
+ * @author Agustin Matthey
+ * @since 2.0
  */
 public abstract class AbstractUnit implements IUnit {
 

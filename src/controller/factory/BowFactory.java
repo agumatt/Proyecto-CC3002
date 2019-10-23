@@ -1,7 +1,15 @@
-package controller.Factory;
+package controller.factory;
 
 import model.items.Bow;
 import model.items.IEquipableItem;
+
+/**
+ * This class is in charge of generating Bow.
+ *
+ * @author Agustin Matthey
+ * @version 1.0
+ * @since 1.0
+ */
 
 public class BowFactory extends AbstractItemFactory {
     @Override

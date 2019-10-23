@@ -1,4 +1,4 @@
-package controller.Factory;
+package controller.factory;
 
 
 import model.items.IEquipableItem;
@@ -6,7 +6,13 @@ import model.map.Location;
 
 import java.util.ArrayList;
 
-
+/**
+ * This class represents an abstract unit factory. It contains the logic for unit creation.
+ *
+ * @author Agustin Matthey
+ * @version 1.0
+ * @since 1.0
+ */
 public abstract class AbstractUnitFactory implements UnitFactory {
 
     protected double maxHitPoints = 75;

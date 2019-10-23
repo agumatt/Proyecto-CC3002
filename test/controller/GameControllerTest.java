@@ -3,11 +3,9 @@ package controller;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import controller.Factory.AlpacaFactory;
 import model.Tactician;
 import model.items.*;
 import model.map.Field;
-import model.map.Location;
 import model.units.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,42 +14,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author Ignacio Slater Muñoz
- * @since v2.0
+ * @author Agustin Matthey
+ * @since v2.1
  */
-class GameControllerTest {
-
-    private GameController controller;
-    private long randomSeed;
-    private List<String> testTacticians;
-    private IEquipableItem testItem1 = new Spear("a1",10,1,3);
-    private IEquipableItem testItem2 = new Sword("b1", 10,1,2);
-    private IEquipableItem testItem3 = new Darkness("a2", 20,2,6);
-    private IUnit testUnit1;
-    private IUnit testUnit2;
-    private IUnit testUnit3;
-    private Tactician testPlayer1;
-    private Tactician testPlayer2;
-
-
-    void setUp2(){
-        testUnit1 = new Hero(100,2,controller.getGameMap().getCell(0,0),testItem1,testItem2);
-        testUnit2 = new Cleric(100,2,controller.getGameMap().getCell(2,2));
-        testUnit3 = new Sorcerer(100,2,controller.getGameMap().getCell(1,0),testItem3);
-
-        testPlayer1 = controller.getCurrentRoundOrder().get(0);
-        testPlayer2 = controller.getCurrentRoundOrder().get(1);
-
-        ArrayList<IUnit> unitsT1 = new ArrayList<>();
-        unitsT1.add(testUnit1);
-        unitsT1.add(testUnit2);
-        ArrayList<IUnit> unitsT2 = new ArrayList<>();
-        unitsT2.add(testUnit3);
-        testPlayer1.setUnits(unitsT1);
-        testPlayer2.setUnits(unitsT2);
-
-
-    }
+class GameControllerTest extends AbstractControllerTest {
 
 
 
@@ -62,14 +28,6 @@ class GameControllerTest {
         randomSeed = controller.getSeed();   //Recupero la semilla utilizada al crear el controlador
         testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
     }
-
-
-
-    void setUp3(){
-        controller = new GameController(4,3,true);
-        randomSeed = controller.getSeed();
-    }
-
 
 
 
@@ -127,7 +85,6 @@ class GameControllerTest {
         IntStream.range(0, 50).map(i -> randomTurnSequence.nextInt() & Integer.MAX_VALUE).forEach(nextInt -> {
             controller.initGame(nextInt);
             assertEquals(nextInt, controller.getMaxRounds());
-            System.out.println(nextInt);
         });
         controller.initEndlessGame();
         assertEquals(-1, controller.getMaxRounds());
@@ -168,13 +125,6 @@ class GameControllerTest {
     }
 
 
-    @Test
-    void cleanPlayers(){
-
-
-
-
-    }
 
     @Test
     void getWinners() {
@@ -256,31 +206,7 @@ class GameControllerTest {
         assertEquals(70, controller.getSelectedUnit().getCurrentHitPoints());
         assertEquals(85, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
 
-        testItem3 = new Darkness("a2", 100,2,6);
-        setUp3();
-        setUp2();
-        controller.selectUnitIn(0,0);
-        controller.equipItem(0);
-        testUnit3.setEquippedItem(testItem3); //equip sorcerer
-        Tactician defeatedPlayer = controller.getTurnOwner();
-        assertTrue(defeatedPlayer.getSelectedUnit().gameChanger());
-        assertTrue(controller.getTacticians().contains(defeatedPlayer));
 
-        controller.useItemOn(1,0);
-        assertEquals(85, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
-        assertFalse(controller.getCurrentRoundOrder().contains(defeatedPlayer));  //defeated hero
-
-        testItem1 = new Spear("a1",100,1,3);
-        setUp3();
-        setUp2();
-        controller.selectUnitIn(0,0);
-        controller.equipItem(0);
-        testUnit3.setEquippedItem(testItem3); //equip sorcerer
-        defeatedPlayer = controller.getCurrentRoundOrder().get(1);
-        assertEquals(100, controller.getGameMap().getCell(1,0).getUnit().getCurrentHitPoints());
-        assertTrue(controller.getCurrentRoundOrder().contains(defeatedPlayer));
-        controller.useItemOn(1,0);
-        assertFalse(controller.getCurrentRoundOrder().contains(defeatedPlayer));  //defeated hero
 
     }
 
@@ -303,8 +229,7 @@ class GameControllerTest {
         controller.selectItem(1);
         assertEquals(1,testUnit3.getItems().size());
         assertEquals(testItem2,controller.getTurnOwner().getSelectedItem());
-     //   testUnit1.giveItemTo(testUnit3,testItem2);
-        controller.giveItemTo(1,0);
+        testUnit1.giveItemTo(testUnit3,testItem2);
         assertTrue(testUnit3.getItems().contains(testItem2));
     }
 

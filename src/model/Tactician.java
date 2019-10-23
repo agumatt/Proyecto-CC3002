@@ -19,7 +19,24 @@ public class Tactician {
    private PropertyChangeSupport changes;
 
 
-   public Tactician(String name){
+
+
+    /**
+     * This class represents a player, and gathers all the elements that form one.
+     *
+     * @author Agustin Matthey
+     * @version 1.0
+     * @since 1.0
+     */
+
+
+    /**
+     * Creates a new player.
+     *
+     * @param name
+     *     the name of the player
+     */
+    public Tactician(String name){
      this.name=name;
      changes = new PropertyChangeSupport(this);
    }

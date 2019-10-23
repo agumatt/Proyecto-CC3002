@@ -4,7 +4,13 @@ import controller.GameController;
 import model.units.IUnit;
 
 import java.beans.PropertyChangeEvent;
-
+/**
+ * This class represents an event handler.
+ * <p>
+ * This event handler acts in response to the death of an attacked unit.
+ * @author Agustin Matthey
+ * @since 1.0
+ */
 public class AttackedUnitDefeatedHandler extends AbstractEventHandler{
 
     public AttackedUnitDefeatedHandler(GameController controller){
