@@ -7,6 +7,10 @@ En este caso se usa double dispatch. Se le entrega al objeto la tarea de decidir
 Para utilizar el objeto equipado: unidad.useEquippedItem(unidadObjetivo)  
 Se realiza una separación de tipo entre objetos, utilizándose las cateogrías de mágico y no mágico para construir la primera parte de las relaciones de debilidad y resistencia. Esto se hace mediante el uso de interfaces y clases abstractas (un para interfaz-clase abstracta para cada tipo). Luego, se usan submétodos para el proceso de desambiguacion de tipo, decidiendose si el ataque es mágico o no mágico, y de cual item específico viene. Esto último implementado nuevamente con double disptach.  
 
-.  
+Sobre la segunda parte del proyecto:
+IMPORTANTE 
+Para mantener el orden de cada ronda, y respaldar a los jugadores iniciales para posibilitar una nueva partida, se utilizan dos arreglos en el controlador del juego. El primero, "tacticians", contiene a los jugadores en el orden y cantidad que fueron creados, manteniendose asi durante todo el juego. El segundo, "currentRoundOrder", determina el orden de la ronda actual y contiene solamente a los jugadores que hasta el momento no han sido derrotados. Dada esta lógica, el metodo removeTactician se aplica a "currentRoundOrder", y por lo tanto, ese es el arreglo que se utiliza para comprobar su funcionamiento en el test, y no "tacticians" como era originalmente.
+El test "endTurn", tambien hace uso de currentRoundOrder.
+.
 .  
 .  
